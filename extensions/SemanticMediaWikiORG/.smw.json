@@ -1,0 +1,10 @@
+{
+    "fina-fw": {
+        "upgrade_key": "f9eb87209a46e41aae3e1e25f1a7031c72660f51",
+        "maintenance_mode": false,
+        "latest_version": "4.0.2",
+        "incomplete_tasks": [],
+        "last_optimization_run": "2022-11-15 11:59",
+        "entity_collation": "numeric"
+    }
+}
