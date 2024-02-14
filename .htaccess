@@ -1,0 +1,35 @@
+RewriteOptions inherit
+
+RewriteEngine on
+#RewriteCond %{HTTPS} off
+#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{REQUEST_URI} /img_auth\.php/
+RewriteRule ^ - [L]
+
+#RewriteCond %{HTTP_HOST} ^knowledge\.wiki$ [OR]
+#RewriteCond %{HTTP_HOST} ^fina-v\.knowledge\.wiki$
+
+## http://www.mediawiki.org/wiki/Manual:Short_URL/Apache
+
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-d
+## RewriteRule ^(.*)$ %{DOCUMENT_ROOT}/index.php [L]
+RewriteRule ^(?:(?!rest.php/).)*$ %{DOCUMENT_ROOT}/index.php [L]
+RewriteRule ^/*$ %{DOCUMENT_ROOT}/index.php [L]
+
+
+
+## http://www.mediawiki.org/wiki/Manual:Short_URL/Apache
+
+#<IfModule mod_rewrite.c>
+#    RewriteEngine on
+#
+#       RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f
+#       RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-d
+#       RewriteRule ^(?:(?!rest.php/).)*$ %{DOCUMENT_ROOT}/index.php [L]
+#       RewriteRule ^/*$ %{DOCUMENT_ROOT}/index.php [L]
+#</IfModule>
+
+RedirectMatch 404 /\.git
+

@@ -1,0 +1,102 @@
+
+.ItemWidget {
+	padding: 12px 0;
+	display: block;
+}
+
+.InnerItemWidget {
+	padding-bottom: 8px;
+	display: block;
+}
+
+.mw-prefs-buttons {
+	z-index: 10;
+}
+
+.pageproperties_dynamictable label {
+	display: inline;
+}
+
+.pageproperties_dynamictable_key_cell {
+	/* stylelint-disable-next-line declaration-property-unit-disallowed-list */
+	width: 50%;
+}
+
+.pageproperties_dynamictable_row {
+	vertical-align: top;
+}
+
+.pageproperties_dynamictable_row .oo-ui-fieldLayout:before,
+.oo-ui-fieldLayout:after {
+	display: inline;
+}
+
+.oo-ui-comboBoxInputWidget-field {
+	border-spacing: 0;
+}
+
+.pageproperties_dynamictable td {
+	padding-top: 4px;
+}
+
+/* stylelint-disable selector-max-id */
+#semantic-properties-wrapper #pageproperties-datatable tr td {
+	cursor: pointer;
+}
+
+#semantic-properties-wrapper .pageproperties-datatable-left {
+	float: left;
+}
+
+#semantic-properties-wrapper .pageproperties-datatable-right {
+	float: right;
+}
+
+#semantic-properties-wrapper .oo-ui-panelLayout-expanded {
+	position: relative;
+}
+
+.pageproperties-ooui-window .oo-ui-actionFieldLayout-button,
+#semantic-properties-wrapper .oo-ui-actionFieldLayout-button {
+	vertical-align: top;
+}
+
+#pageproperties-form .oo-ui-panelLayout-scrollable {
+	overflow: visible;
+}
+
+#semantic-properties-wrapper [ class*='inputName-mw.widgets.DateInputWidget' ] {
+	max-width: 24em;
+}
+
+#semantic-properties-wrapper .PanelProperties {
+	min-height: 160px;
+}
+
+.oo-ui-messageWidget.oo-ui-messageWidget-block.oo-ui-messageWidget-showClose {
+	padding-right: 56px;
+}
+
+.oo-ui-messageWidget.oo-ui-messageWidget-block > .oo-ui-messageWidget-close {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+}
+
+
+.pageproperties-ooui-window {
+	z-index: 10000;
+}
+
+.oo-ui-labelElement .oo-ui-labelElement-label {
+	display: inline;
+}
+
+.oo-ui-actionFieldLayout .oo-ui-actionFieldLayout-input .oo-ui-widget:not(.oo-ui-textInputWidget) {
+	margin-right: auto;
+}
+
+.oo-ui-draggableElement.oo-ui-tagItemWidget.oo-ui-widget-enabled:not(.oo-ui-tagItemWidget-fixed) {
+	/* margin-right: 8px; */
+}
+
