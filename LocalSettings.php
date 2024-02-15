@@ -49,13 +49,14 @@ if (!defined('MW_DB') && in_array($_SERVER['REMOTE_ADDR'],
 
 # Elasticsearch:
 $wgSearchType = 'CirrusSearch'; # No need to change this
-$wgCirrusSearchClusters = [
-    'default' => [
-        [ 'host' => getenv( 'OPENSEARCH_SERVER' ),
-           'port' => 9200 
-        ]
+
+$wgCirrusSearchServers = [
+    [
+            "port" => 9200, # Probably change to 9200
+            "host" => getenv( 'OPENSEARCH_SERVER' ) #Change to ElasticSearch host if not localhost
     ]
 ];
+
 
 $wgCirrusSearchIndexBaseName ='fina'; # No need to change this, if no special index name preferences
 
