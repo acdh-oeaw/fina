@@ -4,8 +4,159 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "91a9c8d4b850851b8b6e94653993b458",
+    "content-hash": "da54afeb47a51e7696f33eeb5954f196",
     "packages": [
+        {
+            "name": "composer/installers",
+            "version": "v1.12.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/installers.git",
+                "reference": "d20a64ed3c94748397ff5973488761b22f6d3f19"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/installers/zipball/d20a64ed3c94748397ff5973488761b22f6d3f19",
+                "reference": "d20a64ed3c94748397ff5973488761b22f6d3f19",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0 || ^2.0"
+            },
+            "replace": {
+                "roundcube/plugin-installer": "*",
+                "shama/baton": "*"
+            },
+            "require-dev": {
+                "composer/composer": "1.6.* || ^2.0",
+                "composer/semver": "^1 || ^3",
+                "phpstan/phpstan": "^0.12.55",
+                "phpstan/phpstan-phpunit": "^0.12.16",
+                "symfony/phpunit-bridge": "^4.2 || ^5",
+                "symfony/process": "^2.3"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Composer\\Installers\\Plugin",
+                "branch-alias": {
+                    "dev-main": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Composer\\Installers\\": "src/Composer/Installers"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kyle Robinson Young",
+                    "email": "kyle@dontkry.com",
+                    "homepage": "https://github.com/shama"
+                }
+            ],
+            "description": "A multi-framework Composer library installer",
+            "homepage": "https://composer.github.io/installers/",
+            "keywords": [
+                "Craft",
+                "Dolibarr",
+                "Eliasis",
+                "Hurad",
+                "ImageCMS",
+                "Kanboard",
+                "Lan Management System",
+                "MODX Evo",
+                "MantisBT",
+                "Mautic",
+                "Maya",
+                "OXID",
+                "Plentymarkets",
+                "Porto",
+                "RadPHP",
+                "SMF",
+                "Starbug",
+                "Thelia",
+                "Whmcs",
+                "WolfCMS",
+                "agl",
+                "aimeos",
+                "annotatecms",
+                "attogram",
+                "bitrix",
+                "cakephp",
+                "chef",
+                "cockpit",
+                "codeigniter",
+                "concrete5",
+                "croogo",
+                "dokuwiki",
+                "drupal",
+                "eZ Platform",
+                "elgg",
+                "expressionengine",
+                "fuelphp",
+                "grav",
+                "installer",
+                "itop",
+                "joomla",
+                "known",
+                "kohana",
+                "laravel",
+                "lavalite",
+                "lithium",
+                "magento",
+                "majima",
+                "mako",
+                "mediawiki",
+                "miaoxing",
+                "modulework",
+                "modx",
+                "moodle",
+                "osclass",
+                "pantheon",
+                "phpbb",
+                "piwik",
+                "ppi",
+                "processwire",
+                "puppet",
+                "pxcms",
+                "reindex",
+                "roundcube",
+                "shopware",
+                "silverstripe",
+                "sydes",
+                "sylius",
+                "symfony",
+                "tastyigniter",
+                "typo3",
+                "wordpress",
+                "yawik",
+                "zend",
+                "zikula"
+            ],
+            "support": {
+                "issues": "https://github.com/composer/installers/issues",
+                "source": "https://github.com/composer/installers/tree/v1.12.0"
+            },
+            "funding": [
+                {
+                    "url": "https://packagist.com",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/composer",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-09-13T08:19:44+00:00"
+        },
         {
             "name": "composer/semver",
             "version": "3.3.2",
@@ -137,6 +288,348 @@
                 "source": "https://github.com/wikimedia/php-cssjanus/tree/v2.1.1"
             },
             "time": "2023-01-08T17:45:35+00:00"
+        },
+        {
+            "name": "data-values/common",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DataValues/Common.git",
+                "reference": "9f5e6216ec66ac8f2281351b110bad0eded43e65"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DataValues/Common/zipball/9f5e6216ec66ac8f2281351b110bad0eded43e65",
+                "reference": "9f5e6216ec66ac8f2281351b110bad0eded43e65",
+                "shasum": ""
+            },
+            "require": {
+                "data-values/data-values": "~3.0|~2.0|~1.0|~0.1",
+                "data-values/interfaces": "~1.0|~0.2.0",
+                "php": ">=7.2.0"
+            },
+            "require-dev": {
+                "mediawiki/mediawiki-codesniffer": "^34",
+                "ockcyp/covers-validator": "^1.3.3",
+                "phpunit/phpunit": "~8.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DataValues\\": "src/DataValues/",
+                    "ValueParsers\\": "src/ValueParsers/",
+                    "ValueFormatters\\": "src/ValueFormatters/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jeroen De Dauw",
+                    "email": "jeroendedauw@gmail.com",
+                    "homepage": "http://jeroendedauw.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Contains common implementations of the interfaces defined by DataValuesInterfaces",
+            "homepage": "https://github.com/DataValues/Common",
+            "keywords": [
+                "datavalues",
+                "valueformatters",
+                "valueparsers",
+                "valuevalidators",
+                "wikidata"
+            ],
+            "support": {
+                "irc": "irc://irc.freenode.net/wikidata",
+                "issues": "https://github.com/DataValues/Common/issues",
+                "source": "https://github.com/DataValues/Common/tree/1.1.0"
+            },
+            "time": "2022-10-21T14:13:11+00:00"
+        },
+        {
+            "name": "data-values/data-values",
+            "version": "3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DataValues/DataValues.git",
+                "reference": "1084142918095dfedf9b6cc0de0755f8c4628264"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DataValues/DataValues/zipball/1084142918095dfedf9b6cc0de0755f8c4628264",
+                "reference": "1084142918095dfedf9b6cc0de0755f8c4628264",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.0"
+            },
+            "replace": {
+                "mediawiki/data-values": "*"
+            },
+            "require-dev": {
+                "mediawiki/mediawiki-codesniffer": "^38",
+                "phpunit/phpunit": "~8.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DataValues\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jeroen De Dauw",
+                    "email": "jeroendedauw@gmail.com",
+                    "homepage": "http://jeroendedauw.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Defines the DataValue interface and some trivial implementations",
+            "homepage": "https://github.com/DataValues/DataValues",
+            "keywords": [
+                "datavalues",
+                "wikibase",
+                "wikidata"
+            ],
+            "support": {
+                "issues": "https://github.com/DataValues/DataValues/issues",
+                "source": "https://github.com/DataValues/DataValues/tree/3.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/JeroenDeDauw",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-10-21T13:57:56+00:00"
+        },
+        {
+            "name": "data-values/geo",
+            "version": "4.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DataValues/Geo.git",
+                "reference": "1dd742dabb63e211862486259b2cbe0274211bf9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DataValues/Geo/zipball/1dd742dabb63e211862486259b2cbe0274211bf9",
+                "reference": "1dd742dabb63e211862486259b2cbe0274211bf9",
+                "shasum": ""
+            },
+            "require": {
+                "data-values/data-values": "^3.0|^2.0|^1.0|~0.1",
+                "data-values/interfaces": "^1.0.0|^0.2.0",
+                "php": ">=7.3",
+                "symfony/polyfill-php80": "^1.18.1"
+            },
+            "require-dev": {
+                "maglnet/composer-require-checker": "^3.0|^2.0",
+                "mediawiki/mediawiki-codesniffer": "^34 || ^35 || ^36 || ^38",
+                "ockcyp/covers-validator": "^1.3.3",
+                "phpmd/phpmd": "^2.9.1",
+                "phpstan/phpstan": "^0.12.68 || ^1.0.0",
+                "phpunit/phpunit": "^9.4.1",
+                "vimeo/psalm": "^4.4.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DataValues\\Geo\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jeroen De Dauw",
+                    "email": "jeroendedauw@gmail.com",
+                    "homepage": "http://jeroendedauw.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "The Wikidata team",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Geographical value objects, parsers and formatters",
+            "homepage": "https://github.com/DataValues/Geo",
+            "keywords": [
+                "Degrees",
+                "Minutes",
+                "coordinate",
+                "coordinates",
+                "datavalues",
+                "dms",
+                "formatters",
+                "geo",
+                "geographical",
+                "latitude",
+                "latlong",
+                "longitude",
+                "parsers",
+                "seconds",
+                "wikidata"
+            ],
+            "support": {
+                "docs": "https://github.com/DataValues/Geo/#usage",
+                "issues": "https://github.com/DataValues/Geo/issues",
+                "source": "https://github.com/DataValues/Geo/tree/4.4.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/JeroenDeDauw",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-10-21T14:19:26+00:00"
+        },
+        {
+            "name": "data-values/interfaces",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DataValues/Interfaces.git",
+                "reference": "244d078954bc05edf8f8c6b088e848289171c3a8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DataValues/Interfaces/zipball/244d078954bc05edf8f8c6b088e848289171c3a8",
+                "reference": "244d078954bc05edf8f8c6b088e848289171c3a8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "mediawiki/mediawiki-codesniffer": "^34",
+                "ockcyp/covers-validator": "~1.0",
+                "phpmd/phpmd": "^2.9.1",
+                "phpstan/phpstan": "^0.12.68",
+                "phpunit/phpunit": "~8.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ValueParsers\\": "src/ValueParsers/",
+                    "ValueFormatters\\": "src/ValueFormatters/",
+                    "ValueValidators\\": "src/ValueValidators/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jeroen De Dauw",
+                    "email": "jeroendedauw@gmail.com",
+                    "homepage": "http://jeroendedauw.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Defines interfaces for ValueParsers, ValueFormatters and ValueValidators",
+            "homepage": "https://github.com/DataValues/Interfaces",
+            "keywords": [
+                "datavalues",
+                "valueformatters",
+                "valueparsers",
+                "valuevalidators",
+                "wikidata"
+            ],
+            "support": {
+                "issues": "https://github.com/DataValues/Interfaces/issues",
+                "source": "https://github.com/DataValues/Interfaces/tree/1.0.0"
+            },
+            "time": "2021-01-20T13:45:09+00:00"
+        },
+        {
+            "name": "data-values/validators",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DataValues/Validators.git",
+                "reference": "83dbac2c5e9442e8fa2119c8b941ecb88156abe8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DataValues/Validators/zipball/83dbac2c5e9442e8fa2119c8b941ecb88156abe8",
+                "reference": "83dbac2c5e9442e8fa2119c8b941ecb88156abe8",
+                "shasum": ""
+            },
+            "require": {
+                "data-values/data-values": "^3.0.0|^2.1.1|~1.0|~0.1",
+                "data-values/interfaces": "^1.0.0|~0.2.0|~0.1.0",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "mediawiki/mediawiki-codesniffer": "^34",
+                "phpunit/phpunit": "^8.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ValueValidators\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jeroen De Dauw",
+                    "email": "jeroendedauw@gmail.com",
+                    "homepage": "http://jeroendedauw.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "The Wikidata team",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Common ValueValidator implementations",
+            "homepage": "https://github.com/DataValues/Validators",
+            "keywords": [
+                "datavalues",
+                "validation",
+                "validators",
+                "wikidata"
+            ],
+            "support": {
+                "irc": "irc://irc.freenode.net/wikidata",
+                "source": "https://github.com/DataValues/Validators/tree/1.0.0"
+            },
+            "time": "2021-01-22T19:14:47+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -458,6 +951,349 @@
             "time": "2023-04-17T16:00:45+00:00"
         },
         {
+            "name": "jeroen/file-fetcher",
+            "version": "6.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JeroenDeDauw/FileFetcher.git",
+                "reference": "d38fb0587b52b28bd24fda599f2da69ac8530453"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JeroenDeDauw/FileFetcher/zipball/d38fb0587b52b28bd24fda599f2da69ac8530453",
+                "reference": "d38fb0587b52b28bd24fda599f2da69ac8530453",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.3",
+                "psr/log": "~3.0|~2.0|~1.0"
+            },
+            "require-dev": {
+                "jeroen/psr-log-test-doubles": "~3.1",
+                "phpstan/phpstan": "~1.6.0",
+                "phpunit/phpunit": "~9.5",
+                "squizlabs/php_codesniffer": "~3.2",
+                "vimeo/psalm": "^4.22.0"
+            },
+            "suggest": {
+                "jeroen/file-fetcher-cache": "Provides a SimpleCache (PSR-16) decorator for file fetchers",
+                "jeroen/file-fetcher-stopwatch": "Provides a Symfony Stopwatch decorator for file fetchers"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "6.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "FileFetcher\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Jeroen De Dauw",
+                    "email": "jeroendedauw@gmail.com",
+                    "homepage": "https://EntropyWins.wtf",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Simple file fetching interface",
+            "homepage": "https://github.com/JeroenDeDauw/FileFetcher",
+            "keywords": [
+                "Test Doubles",
+                "curl",
+                "file fetcher",
+                "file_get_contents",
+                "http",
+                "http client",
+                "http request",
+                "interface",
+                "mocks",
+                "request",
+                "spies",
+                "stubs",
+                "wget"
+            ],
+            "support": {
+                "issues": "https://github.com/JeroenDeDauw/FileFetcher/issues",
+                "source": "https://github.com/JeroenDeDauw/FileFetcher/tree/6.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/JeroenDeDauw",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-04-26T17:29:31+00:00"
+        },
+        {
+            "name": "jeroen/file-fetcher-cache",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JeroenDeDauw/file-fetcher-cache.git",
+                "reference": "048ca2f966edcb38989332d13543185e864200ba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JeroenDeDauw/file-fetcher-cache/zipball/048ca2f966edcb38989332d13543185e864200ba",
+                "reference": "048ca2f966edcb38989332d13543185e864200ba",
+                "shasum": ""
+            },
+            "require": {
+                "jeroen/file-fetcher": "~6.0|~5.0",
+                "jeroen/simple-cache": "~2.0",
+                "php": ">=7.1",
+                "psr/simple-cache": "~1.0"
+            },
+            "require-dev": {
+                "mediawiki/mediawiki-codesniffer": "~31.0",
+                "ockcyp/covers-validator": "~1.0",
+                "phpstan/phpstan": "^0.12.29",
+                "phpunit/phpunit": "~7.5",
+                "slevomat/coding-standard": "~6.0",
+                "squizlabs/php_codesniffer": "~3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "FileFetcher\\Cache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jeroen De Dauw",
+                    "email": "jeroendedauw@gmail.com",
+                    "homepage": "https://EntropyWins.wtf"
+                }
+            ],
+            "description": "Provides a SimpleCache (PSR-16) decorator for file fetchers",
+            "keywords": [
+                "cache",
+                "caching",
+                "file-fetcher",
+                "file_get_contents",
+                "filefetcher",
+                "psr-16",
+                "simple-cache",
+                "simplecache"
+            ],
+            "support": {
+                "issues": "https://github.com/JeroenDeDauw/file-fetcher-cache/issues",
+                "source": "https://github.com/JeroenDeDauw/file-fetcher-cache/tree/1.0.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/JeroenDeDauw",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/jeroendedauw",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2020-08-19T16:25:55+00:00"
+        },
+        {
+            "name": "jeroen/simple-cache",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JeroenDeDauw/SimpleCache.git",
+                "reference": "159a72cf2ba7b7506495914d294d9e423700bd54"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JeroenDeDauw/SimpleCache/zipball/159a72cf2ba7b7506495914d294d9e423700bd54",
+                "reference": "159a72cf2ba7b7506495914d294d9e423700bd54",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "replace": {
+                "jeroen-de-dauw/simple-cache": "*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SimpleCache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Jeroen De Dauw",
+                    "email": "jeroendedauw@gmail.com",
+                    "homepage": "http://jeroendedauw.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Small library defining a minimalistic caching interface and provides some basic implementations",
+            "homepage": "https://github.com/JeroenDeDauw/SimpleCache",
+            "keywords": [
+                "cache",
+                "simplecache"
+            ],
+            "support": {
+                "issues": "https://github.com/JeroenDeDauw/SimpleCache/issues",
+                "source": "https://github.com/JeroenDeDauw/SimpleCache/tree/2.0.0"
+            },
+            "time": "2014-08-19T00:36:41+00:00"
+        },
+        {
+            "name": "jeroen/simple-geocoder",
+            "version": "1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JeroenDeDauw/SimpleGeocoder.git",
+                "reference": "1a9e6a6b8318d712363b53b1715aee5ce266e6b8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JeroenDeDauw/SimpleGeocoder/zipball/1a9e6a6b8318d712363b53b1715aee5ce266e6b8",
+                "reference": "1a9e6a6b8318d712363b53b1715aee5ce266e6b8",
+                "shasum": ""
+            },
+            "require": {
+                "data-values/geo": "~4.0|~3.0|~2.0",
+                "jeroen/file-fetcher": "~6.0|~5.0|~4.0",
+                "php": ">=7.0",
+                "willdurand/geocoder": "~4.1"
+            },
+            "require-dev": {
+                "geocoder-php/google-maps-provider": "~4.1",
+                "guzzlehttp/psr7": "~1.4",
+                "mediawiki/mediawiki-codesniffer": "~31.0",
+                "ockcyp/covers-validator": "~1.2",
+                "php-http/mock-client": "~1.0",
+                "phpstan/phpstan": "^0.12.29",
+                "phpunit/phpunit": "~6.2",
+                "slevomat/coding-standard": "~6.0",
+                "squizlabs/php_codesniffer": "~3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Jeroen\\SimpleGeocoder\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jeroen De Dauw",
+                    "email": "jeroendedauw@gmail.com",
+                    "homepage": "https://EntropyWins.wtf",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Simple and minimalistic Geocoder interface with some basic implementations",
+            "support": {
+                "issues": "https://github.com/JeroenDeDauw/SimpleGeocoder/issues",
+                "source": "https://github.com/JeroenDeDauw/SimpleGeocoder/tree/1.3.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/JeroenDeDauw",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/jeroendedauw",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2020-08-19T15:49:20+00:00"
+        },
+        {
+            "name": "jmikola/geojson",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jmikola/geojson.git",
+                "reference": "e28f3855bb61a91aab32b74c176d76dd0b5658d7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jmikola/geojson/zipball/e28f3855bb61a91aab32b74c176d76dd0b5658d7",
+                "reference": "e28f3855bb61a91aab32b74c176d76dd0b5658d7",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.4 || ^8.0",
+                "symfony/polyfill-php80": "^1.25"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5",
+                "scrutinizer/ocular": "^1.8.1",
+                "slevomat/coding-standard": "^8.0",
+                "squizlabs/php_codesniffer": "^3.6"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GeoJson\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Mikola",
+                    "email": "jmikola@gmail.com"
+                }
+            ],
+            "description": "GeoJSON implementation for PHP",
+            "homepage": "https://github.com/jmikola/geojson",
+            "keywords": [
+                "geo",
+                "geojson",
+                "geospatial"
+            ],
+            "support": {
+                "issues": "https://github.com/jmikola/geojson/issues",
+                "source": "https://github.com/jmikola/geojson/tree/1.2.0"
+            },
+            "time": "2023-12-04T17:19:43+00:00"
+        },
+        {
             "name": "justinrainbow/json-schema",
             "version": "5.2.11",
             "source": {
@@ -582,6 +1418,982 @@
             "time": "2015-07-23T23:12:45+00:00"
         },
         {
+            "name": "mediawiki/bootstrap",
+            "version": "4.6.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ProfessionalWiki/Bootstrap.git",
+                "reference": "179bcff7bd3c4748003bdb2825f521826e18ca3e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ProfessionalWiki/Bootstrap/zipball/179bcff7bd3c4748003bdb2825f521826e18ca3e",
+                "reference": "179bcff7bd3c4748003bdb2825f521826e18ca3e",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "^2|^1.0.1",
+                "mediawiki/scss": "~3.0|~2.0",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "mediawiki/mediawiki-codesniffer": "39.0.0",
+                "mediawiki/mediawiki-phan-config": "0.11.1",
+                "php": ">=7.2"
+            },
+            "type": "mediawiki-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bootstrap\\": "src/",
+                    "Bootstrap\\Tests\\": "tests/phpunit/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Stephan Gambke",
+                    "email": "s7eph4n@protonmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Professional.Wiki",
+                    "email": "info@professional.wiki",
+                    "homepage": "https://professional.wiki",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Provides the Bootstrap 4 web front-end framework to MediaWiki skins and extensions",
+            "homepage": "https://www.mediawiki.org/wiki/Extension:Bootstrap",
+            "keywords": [
+                "bootstrap",
+                "extension",
+                "mediawiki",
+                "twitter",
+                "wiki"
+            ],
+            "support": {
+                "docs": "https://github.com/cmln/mw-bootstrap/tree/latest/docs",
+                "forum": "https://www.mediawiki.org/wiki/Extension_talk:Bootstrap",
+                "irc": "irc://libera.chat:6667/mediawiki",
+                "issues": "https://github.com/cmln/mw-bootstrap/issues",
+                "rss": "https://github.com/cmln/mw-bootstrap/releases.atom",
+                "source": "https://github.com/cmln/mw-bootstrap",
+                "wiki": "https://www.mediawiki.org/wiki/Extension:Bootstrap"
+            },
+            "time": "2023-06-06T08:21:41+00:00"
+        },
+        {
+            "name": "mediawiki/chameleon-skin",
+            "version": "4.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ProfessionalWiki/chameleon.git",
+                "reference": "1e091b946f21fa219df5c04d2f8e0c346a0b0d4f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ProfessionalWiki/chameleon/zipball/1e091b946f21fa219df5c04d2f8e0c346a0b0d4f",
+                "reference": "1e091b946f21fa219df5c04d2f8e0c346a0b0d4f",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "^2|^1.0.12",
+                "ext-dom": "*",
+                "ext-filter": "*",
+                "jeroen/file-fetcher": "^6|^5|^4.4",
+                "mediawiki/bootstrap": "^4.5",
+                "php": ">=7.4.3",
+                "psr/http-message": "^1"
+            },
+            "require-dev": {
+                "mediawiki/mediawiki-codesniffer": "42.0.0",
+                "mediawiki/mediawiki-phan-config": "0.13.0"
+            },
+            "type": "mediawiki-skin",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Stephan Gambke",
+                    "email": "s7eph4n@protonmail.com",
+                    "role": "Creator"
+                },
+                {
+                    "name": "Professional Wiki",
+                    "email": "info@professional.wiki",
+                    "homepage": "https://professional.wiki",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "A highly flexible MediaWiki skin using Bootstrap 4",
+            "homepage": "https://github.com/ProfessionalWiki/chameleon",
+            "keywords": [
+                "bootstrap",
+                "mediawiki",
+                "skin",
+                "twitter",
+                "wiki"
+            ],
+            "support": {
+                "docs": "https://github.com/ProfessionalWiki/chameleon",
+                "irc": "irc://libera.chat:6667/mediawiki",
+                "issues": "https://github.com/ProfessionalWiki/chameleon/issues",
+                "source": "https://github.com/ProfessionalWiki/chameleon.git"
+            },
+            "time": "2023-11-26T16:30:25+00:00"
+        },
+        {
+            "name": "mediawiki/http-request",
+            "version": "1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SemanticMediaWiki/http-request.git",
+                "reference": "a7cf33bae82cffe570086fc06d6617e802c0cc74"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SemanticMediaWiki/http-request/zipball/a7cf33bae82cffe570086fc06d6617e802c0cc74",
+                "reference": "a7cf33bae82cffe570086fc06d6617e802c0cc74",
+                "shasum": ""
+            },
+            "require": {
+                "onoi/cache": "~1.2",
+                "php": ">=5.3.2"
+            },
+            "suggest": {
+                "lib-curl": "Allows making CURL requests"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Onoi\\HttpRequest\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "mwjames",
+                    "homepage": "https://github.com/mwjames"
+                }
+            ],
+            "description": "A minimalistic http/curl request interface library",
+            "homepage": "https://github.com/onoi/http-request",
+            "keywords": [
+                "curl",
+                "http request"
+            ],
+            "support": {
+                "issues": "https://github.com/SemanticMediaWiki/http-request/issues",
+                "source": "https://github.com/SemanticMediaWiki/http-request/tree/1.3.1"
+            },
+            "time": "2017-01-14T16:25:41+00:00"
+        },
+        {
+            "name": "mediawiki/lingo",
+            "version": "3.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wikimedia/mediawiki-extensions-Lingo.git",
+                "reference": "5ca6e832ab44507c90dfd99c6135ae35968766d5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wikimedia/mediawiki-extensions-Lingo/zipball/5ca6e832ab44507c90dfd99c6135ae35968766d5",
+                "reference": "5ca6e832ab44507c90dfd99c6135ae35968766d5",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": ">1.0.12",
+                "ext-dom": "*",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "jakub-onderka/php-console-highlighter": "0.3.2",
+                "jakub-onderka/php-parallel-lint": "1.0.0",
+                "justinrainbow/json-schema": ">=1.0",
+                "mediawiki/mediawiki-codesniffer": "26.0.0",
+                "mediawiki/minus-x": "0.3.1"
+            },
+            "suggest": {
+                "mediawiki/semantic-glossary": "Alternative back-end that retrieves terms and definitions from a Semantic MediaWiki store"
+            },
+            "type": "mediawiki-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Stephan Gambke",
+                    "email": "s7eph4n@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Provides hover-over tool tips on wiki pages from terms defined on a wiki page",
+            "homepage": "https://www.mediawiki.org/wiki/Extension:Lingo",
+            "keywords": [
+                "extension",
+                "glossary",
+                "mediawiki",
+                "terminology",
+                "wiki"
+            ],
+            "support": {
+                "forum": "https://www.mediawiki.org/wiki/Extension_talk:Lingo",
+                "irc": "irc://irc.freenode.org/mediawiki",
+                "issues": "https://phabricator.wikimedia.org/tag/mediawiki-extensions-lingo/",
+                "source": "https://phabricator.wikimedia.org/diffusion/ELIN",
+                "wiki": "https://www.mediawiki.org/wiki/Extension:Lingo"
+            },
+            "time": "2019-11-11T21:55:04+00:00"
+        },
+        {
+            "name": "mediawiki/maps",
+            "version": "10.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ProfessionalWiki/Maps.git",
+                "reference": "737b445639428f943773decb7a4ea1b1845ccfc5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ProfessionalWiki/Maps/zipball/737b445639428f943773decb7a4ea1b1845ccfc5",
+                "reference": "737b445639428f943773decb7a4ea1b1845ccfc5",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "^2.0.0|^1.0.1",
+                "data-values/geo": "~4.0|~3.0",
+                "jeroen/file-fetcher": "~6.0|~5.0",
+                "jeroen/file-fetcher-cache": "~1.0",
+                "jeroen/simple-cache": "~2.0",
+                "jeroen/simple-geocoder": "~1.2",
+                "jmikola/geojson": "^1.0.2",
+                "mediawiki/parser-hooks": "~1.5",
+                "mediawiki/validator": "~2.2",
+                "param-processor/param-processor": "^1.10",
+                "php": ">=7.4"
+            },
+            "replace": {
+                "mediawiki/semantic-maps": "*"
+            },
+            "require-dev": {
+                "mediawiki/mediawiki-codesniffer": "39.0.0",
+                "phpstan/phpstan": "^1.4.8",
+                "vimeo/psalm": "^5.0.0"
+            },
+            "suggest": {
+                "mediawiki/semantic-media-wiki": "Add, edit, aggregate and visualize structured coordinate data stored with Semantic MediaWiki"
+            },
+            "type": "mediawiki-extension",
+            "autoload": {
+                "files": [
+                    "Maps_Settings.php"
+                ],
+                "psr-4": {
+                    "Maps\\": "src/",
+                    "Maps\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jeroen De Dauw",
+                    "email": "jeroendedauw@gmail.com",
+                    "homepage": "https://EntropyWins.wtf",
+                    "role": "Creator and lead developer"
+                },
+                {
+                    "name": "Professional.Wiki",
+                    "email": "info@professional.wiki",
+                    "homepage": "https://professional.wiki"
+                }
+            ],
+            "description": "Adds various mapping features to MediaWiki",
+            "homepage": "https://maps.extension.wiki",
+            "keywords": [
+                "OpenLayers",
+                "OpenStreetMap",
+                "Semantic Maps",
+                "Semantic MediaWiki",
+                "geocode",
+                "geocoding",
+                "google maps",
+                "leaflet",
+                "maps",
+                "mediawiki",
+                "osm"
+            ],
+            "support": {
+                "email": "semediawiki-user@lists.sourceforge.net",
+                "irc": "irc://irc.libera.chat/mediawiki",
+                "issues": "https://github.com/ProfessionalWiki/Maps/issues",
+                "source": "https://github.com/ProfessionalWiki/Maps"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/JeroenDeDauw",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-12-04T00:18:21+00:00"
+        },
+        {
+            "name": "mediawiki/parser-hooks",
+            "version": "1.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JeroenDeDauw/ParserHooks.git",
+                "reference": "45660efef737bcf33abbbb12c1ddb049c4e713fe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JeroenDeDauw/ParserHooks/zipball/45660efef737bcf33abbbb12c1ddb049c4e713fe",
+                "reference": "45660efef737bcf33abbbb12c1ddb049c4e713fe",
+                "shasum": ""
+            },
+            "require": {
+                "param-processor/param-processor": "^1.3.2",
+                "php": ">=7.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.6.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "ParserHooks.php"
+                ],
+                "psr-4": {
+                    "ParserHooks\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jeroen De Dauw",
+                    "email": "jeroendedauw@gmail.com",
+                    "homepage": "https://www.entropywins.wtf"
+                }
+            ],
+            "description": "Adds a OOP and declarative parser hook interface on top of MediaWiki",
+            "homepage": "https://github.com/JeroenDeDauw/ParserHooks/blob/master/README.md",
+            "keywords": [
+                "mediawiki",
+                "parser function",
+                "parser hook",
+                "parserhooks",
+                "tag extension"
+            ],
+            "support": {
+                "irc": "irc://irc.freenode.net/mediawiki",
+                "issues": "https://github.com/JeroenDeDauw/ParserHooks/issues",
+                "source": "https://github.com/JeroenDeDauw/ParserHooks/tree/master"
+            },
+            "time": "2020-01-14T02:43:39+00:00"
+        },
+        {
+            "name": "mediawiki/scss",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ProfessionalWiki/SCSS.git",
+                "reference": "54b3e6e89e5abcb623ee7eb8d2eb6c6e17e258cb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ProfessionalWiki/SCSS/zipball/54b3e6e89e5abcb623ee7eb8d2eb6c6e17e258cb",
+                "reference": "54b3e6e89e5abcb623ee7eb8d2eb6c6e17e258cb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4.3",
+                "scssphp/scssphp": "^1.10.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SCSS\\": "src/",
+                    "SCSS\\Tests\\": "tests/phpunit/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Stephan Gambke",
+                    "email": "s7eph4n@protonmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Professional.Wiki",
+                    "email": "info@professional.wiki",
+                    "homepage": "https://professional.wiki",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Allows using SCSS files for MediaWiki styling",
+            "homepage": "https://github.com/ProfessionalWiki/SCSS",
+            "keywords": [
+                "extension",
+                "mediawiki",
+                "resouce loader",
+                "resouceloader",
+                "sass",
+                "scss",
+                "scssphp",
+                "wiki"
+            ],
+            "support": {
+                "docs": "https://github.com/ProfessionalWiki/SCSS",
+                "irc": "irc://libera.chat:6667/mediawiki",
+                "issues": "https://github.com/ProfessionalWiki/SCSS/issues",
+                "rss": "https://github.com/ProfessionalWiki/SCSS/releases.atom",
+                "source": "https://github.com/ProfessionalWiki/SCSS"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/JeroenDeDauw",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-07-25T12:00:38+00:00"
+        },
+        {
+            "name": "mediawiki/semantic-cite",
+            "version": "dev-onoi-fix",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SemanticMediaWiki/SemanticCite.git",
+                "reference": "99815ba9ea4e2974ce27ff0a48dcfb91950d9812"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SemanticMediaWiki/SemanticCite/zipball/99815ba9ea4e2974ce27ff0a48dcfb91950d9812",
+                "reference": "99815ba9ea4e2974ce27ff0a48dcfb91950d9812",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "^1.0.12",
+                "mediawiki/http-request": "~2.0|~1.1",
+                "mediawiki/semantic-media-wiki": "~3.0|~4.0",
+                "onoi/cache": "~1.2",
+                "onoi/remi": "~0.2",
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "mediawiki/semantic-media-wiki": "@dev"
+            },
+            "type": "mediawiki-extension",
+            "autoload": {
+                "files": [
+                    "SemanticCite.php"
+                ],
+                "psr-4": {
+                    "SCI\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "James Hong Kong",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Semantic MediaWiki extension to manage citation resources.",
+            "homepage": "https://semantic-mediawiki.org/wiki/Extension:Semantic_Cite",
+            "keywords": [
+                "SMW",
+                "Semantic MediaWiki",
+                "citation",
+                "mediawiki",
+                "wiki"
+            ],
+            "support": {
+                "email": "semediawiki-user@lists.sourceforge.net",
+                "forum": "https://www.semantic-mediawiki.org/wiki/semantic-mediawiki.org_talk:Community_portal",
+                "irc": "irc://irc.freenode.net/semantic-mediawiki",
+                "issues": "https://github.com/SemanticMediaWiki/SemanticCite/issues",
+                "source": "https://github.com/SemanticMediaWiki/SemanticCite",
+                "wiki": "https://www.semantic-mediawiki.org/wiki/"
+            },
+            "funding": [
+                {
+                    "url": "https://www.semantic-mediawiki.org/wiki/Sponsorship",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://opencollective.com/smw",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2023-12-28T11:35:58+00:00"
+        },
+        {
+            "name": "mediawiki/semantic-compound-queries",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SemanticMediaWiki/SemanticCompoundQueries.git",
+                "reference": "eeb514393fdf2e80ae7084839d8803ee32ae3da4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SemanticMediaWiki/SemanticCompoundQueries/zipball/eeb514393fdf2e80ae7084839d8803ee32ae3da4",
+                "reference": "eeb514393fdf2e80ae7084839d8803ee32ae3da4",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "1.*,>=1.0.1",
+                "mediawiki/semantic-media-wiki": "~3.0|~4.0",
+                "php": ">=7.3"
+            },
+            "require-dev": {
+                "mediawiki/semantic-media-wiki": "@dev",
+                "phpmd/phpmd": "~2.1",
+                "squizlabs/php_codesniffer": "~2.1"
+            },
+            "type": "mediawiki-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "SemanticCompoundQueries.php"
+                ],
+                "psr-4": {
+                    "SCQ\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Yaron Koren",
+                    "role": "Original author"
+                }
+            ],
+            "description": "A Semantic Mediawiki extension to display and combine multiple #ask queries in a single visualization output",
+            "homepage": "https://www.mediawiki.org/wiki/Extension:Semantic_Compound_Queries",
+            "keywords": [
+                "SMW",
+                "Semantic MediaWiki",
+                "mediawiki",
+                "wiki"
+            ],
+            "support": {
+                "email": "semediawiki-user@lists.sourceforge.net",
+                "forum": "https://www.semantic-mediawiki.org/wiki/semantic-mediawiki.org_talk:Community_portal",
+                "irc": "irc://irc.freenode.net/semantic-mediawiki",
+                "issues": "https://github.com/SemanticMediaWiki/SemanticCompoundQueries/issues",
+                "source": "https://github.com/SemanticCompoundQueries/SemanticCompoundQueries",
+                "wiki": "https://www.mediawiki.org/wiki/Extension:Semantic_Compound_Queries"
+            },
+            "time": "2022-01-20T17:43:20+00:00"
+        },
+        {
+            "name": "mediawiki/semantic-extra-special-properties",
+            "version": "3.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SemanticMediaWiki/SemanticExtraSpecialProperties.git",
+                "reference": "37d3bd4769f14d211a24c49ecc8a11ee1c97cc1c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SemanticMediaWiki/SemanticExtraSpecialProperties/zipball/37d3bd4769f14d211a24c49ecc8a11ee1c97cc1c",
+                "reference": "37d3bd4769f14d211a24c49ecc8a11ee1c97cc1c",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": ">=1.0.1",
+                "mediawiki/semantic-media-wiki": "~4.0|~3.1",
+                "php": ">=7.3.0"
+            },
+            "type": "mediawiki-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SESP\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Leo Wallentin",
+                    "homepage": "https://github.com/rotsee",
+                    "role": "Creator"
+                },
+                {
+                    "name": "James Hong Kong",
+                    "homepage": "https://semantic-mediawiki.org/wiki/User:MWJames",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Jeroen De Dauw",
+                    "homepage": "https://www.entropywins.wtf/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Professional Wiki",
+                    "email": "info@professional.wiki",
+                    "homepage": "https://professional.wiki",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Provides extra special properties for Semantic MediaWiki",
+            "homepage": "https://www.semantic-mediawiki.org/wiki/Extension:Semantic_Extra_Special_Properties",
+            "keywords": [
+                "SMW",
+                "Semantic MediaWiki",
+                "mediawiki",
+                "properties",
+                "special properties",
+                "wiki"
+            ],
+            "support": {
+                "email": "semediawiki-user@lists.sourceforge.net",
+                "forum": "https://www.semantic-mediawiki.org/wiki/semantic-mediawiki.org_talk:Community_portal",
+                "issues": "https://github.com/SemanticMediaWiki/SemanticExtraSpecialProperties/issues",
+                "source": "https://github.com/SemanticMediaWiki/SemanticExtraSpecialProperties",
+                "wiki": "https://www.semantic-mediawiki.org/wiki/"
+            },
+            "funding": [
+                {
+                    "url": "https://www.semantic-mediawiki.org/wiki/Sponsorship",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://opencollective.com/smw",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2023-12-25T23:24:31+00:00"
+        },
+        {
+            "name": "mediawiki/semantic-glossary",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SemanticMediaWiki/SemanticGlossary.git",
+                "reference": "435c6aa842057d8bd352dd429dd1545c373872f5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SemanticMediaWiki/SemanticGlossary/zipball/435c6aa842057d8bd352dd429dd1545c373872f5",
+                "reference": "435c6aa842057d8bd352dd429dd1545c373872f5",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "^1.0.12",
+                "mediawiki/lingo": "3.1.1",
+                "mediawiki/semantic-media-wiki": "^3.1|^3.2|^4.0",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.5"
+            },
+            "default-branch": true,
+            "type": "mediawiki-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SG\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Stephan Gambke",
+                    "role": "Developer"
+                },
+                {
+                    "name": "James Hong Kong",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A terminology markup extension with a Semantic MediaWiki back-end",
+            "homepage": "https://www.mediawiki.org/wiki/Extension:Semantic_Glossary",
+            "keywords": [
+                "Semantic MediaWiki",
+                "extension",
+                "glossary",
+                "lingo",
+                "mediawiki",
+                "terminology",
+                "wiki"
+            ],
+            "support": {
+                "email": "semediawiki-user@lists.sourceforge.net",
+                "forum": "https://www.mediawiki.org/wiki/Extension_talk:Semantic_Glossary",
+                "issues": "https://github.com/SemanticMediaWiki/SemanticGlossary/issues",
+                "source": "https://github.com/SemanticMediaWiki/SemanticGlossary.git",
+                "wiki": "https://www.mediawiki.org/wiki/Extension:Semantic_Glossary"
+            },
+            "funding": [
+                {
+                    "url": "https://www.semantic-mediawiki.org/wiki/Sponsorship",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://opencollective.com/smw",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2023-10-26T11:15:27+00:00"
+        },
+        {
+            "name": "mediawiki/semantic-media-wiki",
+            "version": "4.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SemanticMediaWiki/SemanticMediaWiki.git",
+                "reference": "5c94879171d5f741b896828c25a9f2bb07a03dff"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SemanticMediaWiki/SemanticMediaWiki/zipball/5c94879171d5f741b896828c25a9f2bb07a03dff",
+                "reference": "5c94879171d5f741b896828c25a9f2bb07a03dff",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "^2.2.0|^1.0.1",
+                "ext-mbstring": "*",
+                "jeroen/file-fetcher": "^6|^5|^4.4",
+                "justinrainbow/json-schema": "~5.2",
+                "mediawiki/http-request": "~2.0|~1.1",
+                "mediawiki/parser-hooks": "~1.4",
+                "onoi/blob-store": "~1.2",
+                "onoi/cache": "~1.2",
+                "onoi/callback-container": "~2.0",
+                "onoi/event-dispatcher": "~1.0",
+                "onoi/message-reporter": "~1.0",
+                "param-processor/param-processor": "~1.2",
+                "php": ">=7.4",
+                "psr/log": "~1.0",
+                "seld/jsonlint": "^1.7",
+                "serialization/serialization": "~3.2|~4.0",
+                "symfony/css-selector": "^5|^4|^3.3",
+                "wikimedia/cdb": "^3|^2|^1",
+                "wikimedia/textcat": "^2|^1.1"
+            },
+            "require-dev": {
+                "phpmd/phpmd": "~2.1",
+                "squizlabs/php_codesniffer": "~3.5"
+            },
+            "suggest": {
+                "mediawiki/semantic-result-formats": "Provides additional result formats for queries of structured data"
+            },
+            "type": "mediawiki-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "includes/GlobalFunctions.php"
+                ],
+                "psr-0": {
+                    "SemanticMediaWiki": "includes/SemanticMediaWiki.php"
+                },
+                "psr-4": {
+                    "SMW\\": "src/",
+                    "Onoi\\Tesa\\": "src/Tesa/src/",
+                    "SMW\\Tests\\": "tests/phpunit/",
+                    "SMW\\Maintenance\\": "maintenance/"
+                },
+                "classmap": [
+                    "includes/",
+                    "tests/phpunit/includes/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Markus Krötzsch",
+                    "homepage": "https://www.korrekt.org/",
+                    "role": "Original author"
+                },
+                {
+                    "name": "Jeroen De Dauw",
+                    "email": "jeroendedauw@gmail.com",
+                    "homepage": "https://www.entropywins.wtf/",
+                    "role": "Core developer"
+                },
+                {
+                    "name": "James Hong Kong",
+                    "homepage": "https://www.semantic-mediawiki.org/wiki/User:MWJames",
+                    "role": "Core developer"
+                },
+                {
+                    "name": "Professional Wiki",
+                    "email": "info@professional.wiki",
+                    "homepage": "https://professional.wiki",
+                    "role": "Developer"
+                }
+            ],
+            "description": "An extension to MediaWiki that lets you store and query structured data within wiki pages",
+            "homepage": "https://www.semantic-mediawiki.org/wiki/",
+            "keywords": [
+                "SMW",
+                "Semantic MediaWiki",
+                "mediawiki",
+                "wiki"
+            ],
+            "support": {
+                "email": "semediawiki-user@lists.sourceforge.net",
+                "forum": "https://www.semantic-mediawiki.org/wiki/semantic-mediawiki.org_talk:Community_portal",
+                "issues": "https://github.com/SemanticMediaWiki/SemanticMediaWiki/issues",
+                "source": "https://github.com/SemanticMediaWiki/SemanticMediaWiki",
+                "wiki": "https://www.semantic-mediawiki.org/wiki/"
+            },
+            "time": "2023-07-29T18:01:41+00:00"
+        },
+        {
+            "name": "mediawiki/validator",
+            "version": "2.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JeroenDeDauw/Validator.git",
+                "reference": "944421640b3b34273b3722fbfd155550f1c7a8c6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JeroenDeDauw/Validator/zipball/944421640b3b34273b3722fbfd155550f1c7a8c6",
+                "reference": "944421640b3b34273b3722fbfd155550f1c7a8c6",
+                "shasum": ""
+            },
+            "require": {
+                "param-processor/param-processor": "~1.1",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "data-values/common": "~1.0|~0.4.0|~0.3.1"
+            },
+            "type": "mediawiki-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "Validator.php"
+                ],
+                "psr-4": {
+                    "ParamProcessor\\": "src/ParamProcessor/"
+                },
+                "classmap": [
+                    "src/legacy/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jeroen De Dauw",
+                    "email": "jeroendedauw@gmail.com",
+                    "homepage": "https://www.entropywins.wtf",
+                    "role": "Developer"
+                }
+            ],
+            "description": "MediaWiki wrapper for the ParamProcessor library",
+            "homepage": "https://github.com/JeroenDeDauw/Validator",
+            "keywords": [
+                "ParamProcessor",
+                "SMW",
+                "Semantic MediaWiki",
+                "mediawiki",
+                "validator"
+            ],
+            "support": {
+                "irc": "irc://irc.freenode.net/mediawiki",
+                "issues": "https://github.com/JeroenDeDauw/Validator/issues",
+                "source": "https://github.com/JeroenDeDauw/Validator/tree/2.2.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/JeroenDeDauw",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/jeroendedauw",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2020-11-19T22:38:12+00:00"
+        },
+        {
             "name": "monolog/monolog",
             "version": "2.2.0",
             "source": {
@@ -678,6 +2490,371 @@
             "time": "2020-12-14T13:15:25+00:00"
         },
         {
+            "name": "onoi/blob-store",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/onoi/blob-store.git",
+                "reference": "c3e1f15214977e904fc0e91e0480175a464977ce"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/onoi/blob-store/zipball/c3e1f15214977e904fc0e91e0480175a464977ce",
+                "reference": "c3e1f15214977e904fc0e91e0480175a464977ce",
+                "shasum": ""
+            },
+            "require": {
+                "onoi/cache": "~1.1",
+                "php": ">=5.3.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Onoi\\BlobStore\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "mwjames"
+                }
+            ],
+            "description": "A simple interface to manage schema-free temporal persistent key/values",
+            "homepage": "https://github.com/onoi/blob-store",
+            "keywords": [
+                "messages"
+            ],
+            "support": {
+                "issues": "https://github.com/onoi/blob-store/issues",
+                "source": "https://github.com/onoi/blob-store/tree/master"
+            },
+            "time": "2016-07-09T17:32:53+00:00"
+        },
+        {
+            "name": "onoi/cache",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/onoi/cache.git",
+                "reference": "ecc999186aab7c8db411aedd892b2e5fe5a0b422"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/onoi/cache/zipball/ecc999186aab7c8db411aedd892b2e5fe5a0b422",
+                "reference": "ecc999186aab7c8db411aedd892b2e5fe5a0b422",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Onoi\\Cache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "mwjames",
+                    "homepage": "https://github.com/mwjames"
+                }
+            ],
+            "description": "A minimalistic cache adapter interface library",
+            "homepage": "https://github.com/onoi/cache",
+            "keywords": [
+                "cache"
+            ],
+            "support": {
+                "issues": "https://github.com/onoi/cache/issues",
+                "source": "https://github.com/onoi/cache/tree/master"
+            },
+            "time": "2015-06-02T08:52:45+00:00"
+        },
+        {
+            "name": "onoi/callback-container",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/onoi/callback-container.git",
+                "reference": "cf2f4dda1b2479bc786985fdb5554af528d03e52"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/onoi/callback-container/zipball/cf2f4dda1b2479bc786985fdb5554af528d03e52",
+                "reference": "cf2f4dda1b2479bc786985fdb5554af528d03e52",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5",
+                "psr/log": "~1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Onoi\\CallbackContainer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "mwjames",
+                    "homepage": "https://github.com/mwjames"
+                }
+            ],
+            "description": "A very simple callback container/builder library",
+            "homepage": "https://github.com/onoi/callback-container",
+            "keywords": [
+                "container"
+            ],
+            "support": {
+                "issues": "https://github.com/onoi/callback-container/issues",
+                "source": "https://github.com/onoi/callback-container/tree/master"
+            },
+            "time": "2017-02-18T10:46:46+00:00"
+        },
+        {
+            "name": "onoi/event-dispatcher",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/onoi/event-dispatcher.git",
+                "reference": "2af64e3997fc59b6d1e1f8f77e65fd6311c37109"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/onoi/event-dispatcher/zipball/2af64e3997fc59b6d1e1f8f77e65fd6311c37109",
+                "reference": "2af64e3997fc59b6d1e1f8f77e65fd6311c37109",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Onoi\\EventDispatcher\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "James Hong Kong"
+                }
+            ],
+            "description": "A minimalistic interface to relay generic events to registered listeners",
+            "homepage": "https://github.com/onoi/event-dispatcher",
+            "keywords": [
+                "events",
+                "listener"
+            ],
+            "support": {
+                "issues": "https://github.com/onoi/event-dispatcher/issues",
+                "source": "https://github.com/onoi/event-dispatcher/tree/master"
+            },
+            "time": "2019-01-27T03:37:14+00:00"
+        },
+        {
+            "name": "onoi/http-request",
+            "version": "1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/onoi/http-request.git",
+                "reference": "a7cf33bae82cffe570086fc06d6617e802c0cc74"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/onoi/http-request/zipball/a7cf33bae82cffe570086fc06d6617e802c0cc74",
+                "reference": "a7cf33bae82cffe570086fc06d6617e802c0cc74",
+                "shasum": ""
+            },
+            "require": {
+                "onoi/cache": "~1.2",
+                "php": ">=5.3.2"
+            },
+            "suggest": {
+                "lib-curl": "Allows making CURL requests"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Onoi\\HttpRequest\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "mwjames",
+                    "homepage": "https://github.com/mwjames"
+                }
+            ],
+            "description": "A minimalistic http/curl request interface library",
+            "homepage": "https://github.com/onoi/http-request",
+            "keywords": [
+                "curl",
+                "http request"
+            ],
+            "support": {
+                "issues": "https://github.com/onoi/http-request/issues",
+                "source": "https://github.com/onoi/http-request/tree/master"
+            },
+            "time": "2017-01-14T16:25:41+00:00"
+        },
+        {
+            "name": "onoi/message-reporter",
+            "version": "1.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/onoi/message-reporter.git",
+                "reference": "ead8ef8f2868ccee6881e471295ebbaf8428c96c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/onoi/message-reporter/zipball/ead8ef8f2868ccee6881e471295ebbaf8428c96c",
+                "reference": "ead8ef8f2868ccee6881e471295ebbaf8428c96c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.3"
+            },
+            "require-dev": {
+                "mediawiki/mediawiki-codesniffer": "~34.0",
+                "ockcyp/covers-validator": "~1.1",
+                "phpstan/phpstan": "~0.12.67",
+                "phpunit/phpunit": "^9.5",
+                "squizlabs/php_codesniffer": "~3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Onoi\\MessageReporter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jeroen De Dauw",
+                    "homepage": "https://EntropyWins.wtf"
+                },
+                {
+                    "name": "James Hong Kong"
+                }
+            ],
+            "description": "An interface to report and relay arbitrary messages to registered handlers",
+            "homepage": "https://github.com/onoi/message-reporter",
+            "keywords": [
+                "messages",
+                "reporter"
+            ],
+            "support": {
+                "issues": "https://github.com/onoi/message-reporter/issues",
+                "source": "https://github.com/onoi/message-reporter/tree/1.4.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/JeroenDeDauw",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-01-15T14:23:11+00:00"
+        },
+        {
+            "name": "onoi/remi",
+            "version": "0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/onoi/remi.git",
+                "reference": "48898ecd1387656f6decc5bb1e38b4ecbdde5e4a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/onoi/remi/zipball/48898ecd1387656f6decc5bb1e38b4ecbdde5e4a",
+                "reference": "48898ecd1387656f6decc5bb1e38b4ecbdde5e4a",
+                "shasum": ""
+            },
+            "require": {
+                "onoi/http-request": "~1.1",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Onoi\\Remi\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "mwjames",
+                    "homepage": "https://github.com/mwjames"
+                }
+            ],
+            "description": "A small library to mine (parse) REST responses from selected metatdata providers",
+            "homepage": "https://github.com/onoi/remi",
+            "keywords": [
+                "rest"
+            ],
+            "support": {
+                "issues": "https://github.com/onoi/remi/issues",
+                "source": "https://github.com/onoi/remi/tree/master"
+            },
+            "time": "2017-05-13T02:25:54+00:00"
+        },
+        {
             "name": "oojs/oojs-ui",
             "version": "v0.44.5",
             "source": {
@@ -760,6 +2937,83 @@
                 "source": "https://github.com/wikimedia/oojs-ui/tree/v0.44.5"
             },
             "time": "2023-02-06T21:53:25+00:00"
+        },
+        {
+            "name": "param-processor/param-processor",
+            "version": "1.12.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JeroenDeDauw/ParamProcessor.git",
+                "reference": "0850dc2af72d31b8f645e0f87a44ff4b68583a64"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JeroenDeDauw/ParamProcessor/zipball/0850dc2af72d31b8f645e0f87a44ff4b68583a64",
+                "reference": "0850dc2af72d31b8f645e0f87a44ff4b68583a64",
+                "shasum": ""
+            },
+            "require": {
+                "data-values/common": "~1.0|~0.4.0|~0.3.0",
+                "data-values/data-values": "~3.0|~2.0|~1.0",
+                "data-values/interfaces": "~1.0|~0.2.0|~0.1.4",
+                "data-values/validators": "~1.0|~0.1.1",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "ockcyp/covers-validator": "~1.0",
+                "phpmd/phpmd": "~2.6",
+                "phpunit/phpunit": "~8.0|~7.4",
+                "squizlabs/php_codesniffer": "~3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "DefaultConfig.php"
+                ],
+                "psr-4": {
+                    "ParamProcessor\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jeroen De Dauw",
+                    "email": "jeroendedauw@gmail.com",
+                    "homepage": "https://EntropyWins.wtf",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Parameter processing library",
+            "homepage": "https://github.com/JeroenDeDauw/ParamProcessor",
+            "keywords": [
+                "ParamProcessor",
+                "SMW",
+                "Semantic MediaWiki",
+                "Vaidation",
+                "declarative",
+                "mediawiki",
+                "parameters",
+                "validator"
+            ],
+            "support": {
+                "issues": "https://github.com/JeroenDeDauw/ParamProcessor/issues",
+                "source": "https://github.com/JeroenDeDauw/ParamProcessor/tree/1.12.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/JeroenDeDauw",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-05-04T14:53:22+00:00"
         },
         {
             "name": "pear/console_getopt",
@@ -1279,6 +3533,144 @@
             "time": "2022-05-02T23:00:47+00:00"
         },
         {
+            "name": "professional-wiki/modern-timeline",
+            "version": "1.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ProfessionalWiki/ModernTimeline.git",
+                "reference": "70f0baba3c416115bdcf69e77e36dc022a1886d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ProfessionalWiki/ModernTimeline/zipball/70f0baba3c416115bdcf69e77e36dc022a1886d2",
+                "reference": "70f0baba3c416115bdcf69e77e36dc022a1886d2",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "^2|^1.0.1",
+                "param-processor/param-processor": "~1.10",
+                "php": ">=7.1"
+            },
+            "type": "mediawiki-extension",
+            "autoload": {
+                "psr-4": {
+                    "ModernTimeline\\": "src/",
+                    "ModernTimeline\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Professional.Wiki",
+                    "email": "info@professional.wiki",
+                    "homepage": "https://professional.wiki",
+                    "role": "Creator"
+                },
+                {
+                    "name": "Jeroen De Dauw",
+                    "email": "jeroendedauw@gmail.com",
+                    "homepage": "https://www.entropywins.wtf",
+                    "role": "Creator and lead developer"
+                }
+            ],
+            "description": "Adds a modern timeline visualization as Semantic MediaWiki result format",
+            "homepage": "https://github.com/ProfessionalWiki/ModernTimeline",
+            "keywords": [
+                "Result format",
+                "Semantic MediaWiki",
+                "mediawiki",
+                "timeline",
+                "timelineJS3",
+                "visualization",
+                "wiki"
+            ],
+            "support": {
+                "issues": "https://github.com/ProfessionalWiki/ModernTimeline/issues",
+                "source": "https://github.com/ProfessionalWiki/ModernTimeline"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/JeroenDeDauw",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-11-09T18:34:51+00:00"
+        },
+        {
+            "name": "professional-wiki/network",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ProfessionalWiki/Network.git",
+                "reference": "4cbf523ff2370b897418189e5cbb907e091044f7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ProfessionalWiki/Network/zipball/4cbf523ff2370b897418189e5cbb907e091044f7",
+                "reference": "4cbf523ff2370b897418189e5cbb907e091044f7",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "^2|^1.0.1",
+                "php": ">=7.3"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^1.0.0",
+                "vimeo/psalm": "*"
+            },
+            "type": "mediawiki-extension",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Professional.Wiki",
+                    "email": "info@professional.wiki",
+                    "homepage": "https://professional.wiki",
+                    "role": "Creator"
+                },
+                {
+                    "name": "Jeroen De Dauw",
+                    "email": "jeroendedauw@gmail.com",
+                    "homepage": "https://www.entropywins.wtf",
+                    "role": "Creator and lead developer"
+                }
+            ],
+            "description": "MediaWiki extension for adding interactive network visualizations to your wiki pages",
+            "homepage": "https://github.com/ProfessionalWiki/Network",
+            "keywords": [
+                "VISJS",
+                "chart",
+                "dynamic",
+                "force-directed graph",
+                "graph",
+                "incoming links",
+                "interactive",
+                "links",
+                "mediawiki",
+                "network",
+                "outgoing links",
+                "pages",
+                "visualization",
+                "what links here"
+            ],
+            "support": {
+                "issues": "https://github.com/ProfessionalWiki/Network/issues",
+                "source": "https://github.com/ProfessionalWiki/Network/issues"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/JeroenDeDauw",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-12-09T15:39:08+00:00"
+        },
+        {
             "name": "psr/container",
             "version": "1.1.1",
             "source": {
@@ -1537,6 +3929,57 @@
             "time": "2021-05-03T11:20:27+00:00"
         },
         {
+            "name": "psr/simple-cache",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/simple-cache.git",
+                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
+                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\SimpleCache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interfaces for simple caching",
+            "keywords": [
+                "cache",
+                "caching",
+                "psr",
+                "psr-16",
+                "simple-cache"
+            ],
+            "support": {
+                "source": "https://github.com/php-fig/simple-cache/tree/master"
+            },
+            "time": "2017-10-23T01:57:42+00:00"
+        },
+        {
             "name": "ralouphie/getallheaders",
             "version": "3.0.3",
             "source": {
@@ -1579,6 +4022,276 @@
                 "source": "https://github.com/ralouphie/getallheaders/tree/develop"
             },
             "time": "2019-03-08T08:55:37+00:00"
+        },
+        {
+            "name": "scssphp/scssphp",
+            "version": "v1.12.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/scssphp/scssphp.git",
+                "reference": "394ed1e960138710a60d035c1a85d43d0bf0faeb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/scssphp/scssphp/zipball/394ed1e960138710a60d035c1a85d43d0bf0faeb",
+                "reference": "394ed1e960138710a60d035c1a85d43d0bf0faeb",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ctype": "*",
+                "ext-json": "*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "bamarni/composer-bin-plugin": "^1.4",
+                "phpunit/phpunit": "^5.7 || ^6.5 || ^7.5 || ^8.3 || ^9.4",
+                "sass/sass-spec": "*",
+                "squizlabs/php_codesniffer": "~3.5",
+                "symfony/phpunit-bridge": "^5.1",
+                "thoughtbot/bourbon": "^7.0",
+                "twbs/bootstrap": "~5.0",
+                "twbs/bootstrap4": "4.6.1",
+                "zurb/foundation": "~6.7.0"
+            },
+            "suggest": {
+                "ext-iconv": "Can be used as fallback when ext-mbstring is not available",
+                "ext-mbstring": "For best performance, mbstring should be installed as it is faster than ext-iconv"
+            },
+            "bin": [
+                "bin/pscss"
+            ],
+            "type": "library",
+            "extra": {
+                "bamarni-bin": {
+                    "forward-command": false,
+                    "bin-links": false
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ScssPhp\\ScssPhp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anthon Pang",
+                    "email": "apang@softwaredevelopment.ca",
+                    "homepage": "https://github.com/robocoder"
+                },
+                {
+                    "name": "Cédric Morin",
+                    "email": "cedric@yterium.com",
+                    "homepage": "https://github.com/Cerdic"
+                }
+            ],
+            "description": "scssphp is a compiler for SCSS written in PHP.",
+            "homepage": "http://scssphp.github.io/scssphp/",
+            "keywords": [
+                "css",
+                "less",
+                "sass",
+                "scss",
+                "stylesheet"
+            ],
+            "support": {
+                "issues": "https://github.com/scssphp/scssphp/issues",
+                "source": "https://github.com/scssphp/scssphp/tree/v1.12.1"
+            },
+            "time": "2024-01-13T12:36:40+00:00"
+        },
+        {
+            "name": "seld/jsonlint",
+            "version": "1.8.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Seldaek/jsonlint.git",
+                "reference": "9ad6ce79c342fbd44df10ea95511a1b24dee5b57"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Seldaek/jsonlint/zipball/9ad6ce79c342fbd44df10ea95511a1b24dee5b57",
+                "reference": "9ad6ce79c342fbd44df10ea95511a1b24dee5b57",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3 || ^7.0 || ^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.0"
+            },
+            "bin": [
+                "bin/jsonlint"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Seld\\JsonLint\\": "src/Seld/JsonLint/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be",
+                    "homepage": "http://seld.be"
+                }
+            ],
+            "description": "JSON Linter",
+            "keywords": [
+                "json",
+                "linter",
+                "parser",
+                "validator"
+            ],
+            "support": {
+                "issues": "https://github.com/Seldaek/jsonlint/issues",
+                "source": "https://github.com/Seldaek/jsonlint/tree/1.8.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/Seldaek",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/seld/jsonlint",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-11-11T09:19:24+00:00"
+        },
+        {
+            "name": "serialization/serialization",
+            "version": "4.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wmde/Serialization.git",
+                "reference": "6fa293415e2b70c30c1e673d8bcd04d27dc15e44"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wmde/Serialization/zipball/6fa293415e2b70c30c1e673d8bcd04d27dc15e44",
+                "reference": "6fa293415e2b70c30c1e673d8bcd04d27dc15e44",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8",
+                "wikibase/wikibase-codesniffer": "^0.2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Serializers\\": "src/Serializers/",
+                    "Deserializers\\": "src/Deserializers/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Jeroen De Dauw",
+                    "email": "jeroendedauw@gmail.com",
+                    "homepage": "http://jeroendedauw.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Library defining a Serializer and a Deserializer interface and basic utilities",
+            "homepage": "https://github.com/wmde/Serialization",
+            "keywords": [
+                "deserialization",
+                "deserializer",
+                "serialization",
+                "serializer",
+                "unserialization",
+                "wikidata"
+            ],
+            "support": {
+                "irc": "irc://irc.freenode.net/wikidata",
+                "source": "https://github.com/wmde/Serialization/tree/master"
+            },
+            "time": "2017-10-25T11:45:30+00:00"
+        },
+        {
+            "name": "symfony/css-selector",
+            "version": "v5.4.35",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/css-selector.git",
+                "reference": "9e615d367e2bed41f633abb383948c96a2dbbfae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/9e615d367e2bed41f633abb383948c96a2dbbfae",
+                "reference": "9e615d367e2bed41f633abb383948c96a2dbbfae",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5",
+                "symfony/polyfill-php80": "^1.16"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\CssSelector\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Jean-François Simon",
+                    "email": "jeanfrancois.simon@sensiolabs.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Converts CSS selectors to XPath expressions",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/css-selector/tree/v5.4.35"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2024-01-23T13:51:25+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -3436,6 +6149,59 @@
             "time": "2021-11-04T21:41:38+00:00"
         },
         {
+            "name": "wikimedia/textcat",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wikimedia/textcat.git",
+                "reference": "dfdfb1c41bb016814a9d4da3aa68b62437b54a82"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wikimedia/textcat/zipball/dfdfb1c41bb016814a9d4da3aa68b62437b54a82",
+                "reference": "dfdfb1c41bb016814a9d4da3aa68b62437b54a82",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.9"
+            },
+            "require-dev": {
+                "mediawiki/mediawiki-codesniffer": "38.0.0",
+                "mediawiki/mediawiki-phan-config": "0.11.1",
+                "mediawiki/minus-x": "1.1.1",
+                "ockcyp/covers-validator": "1.3.3",
+                "php-parallel-lint/php-console-highlighter": "0.5.0",
+                "php-parallel-lint/php-parallel-lint": "1.3.1",
+                "phpunit/phpunit": "^8.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "TextCat": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1-only"
+            ],
+            "authors": [
+                {
+                    "name": "Trey Jones",
+                    "email": "tjones@wikimedia.org"
+                },
+                {
+                    "name": "Stanislav Malyshev",
+                    "email": "smalyshev@wikimedia.org"
+                }
+            ],
+            "description": "PHP port of the TextCat language guesser utility, see http://odur.let.rug.nl/~vannoord/TextCat/.",
+            "homepage": "https://www.mediawiki.org/wiki/TextCat",
+            "support": {
+                "source": "https://github.com/wikimedia/textcat/tree/2.0.0"
+            },
+            "time": "2022-03-15T15:54:48+00:00"
+        },
+        {
             "name": "wikimedia/timestamp",
             "version": "v4.1.1",
             "source": {
@@ -3809,6 +6575,68 @@
                 "source": "https://github.com/wikimedia/mediawiki-libs-Zest/tree/2.0.2"
             },
             "time": "2021-10-14T16:27:30+00:00"
+        },
+        {
+            "name": "willdurand/geocoder",
+            "version": "4.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/geocoder-php/php-common.git",
+                "reference": "be3d9ed0fddf8c698ee079d8a07ae9520b4a49a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/geocoder-php/php-common/zipball/be3d9ed0fddf8c698ee079d8a07ae9520b4a49a1",
+                "reference": "be3d9ed0fddf8c698ee079d8a07ae9520b4a49a1",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "nyholm/nsa": "^1.1",
+                "phpunit/phpunit": "^9.5",
+                "symfony/stopwatch": "~2.5"
+            },
+            "suggest": {
+                "symfony/stopwatch": "If you want to use the TimedGeocoder"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Geocoder\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "William Durand",
+                    "email": "william.durand1@gmail.com"
+                }
+            ],
+            "description": "Common files for PHP Geocoder",
+            "homepage": "http://geocoder-php.org",
+            "keywords": [
+                "abstraction",
+                "geocoder",
+                "geocoding",
+                "geoip"
+            ],
+            "support": {
+                "source": "https://github.com/geocoder-php/php-common/tree/4.6.0"
+            },
+            "time": "2022-07-30T11:09:43+00:00"
         },
         {
             "name": "zordius/lightncandy",
@@ -7024,69 +9852,6 @@
             "time": "2016-10-03T07:35:21+00:00"
         },
         {
-            "name": "seld/jsonlint",
-            "version": "1.8.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Seldaek/jsonlint.git",
-                "reference": "9ad6ce79c342fbd44df10ea95511a1b24dee5b57"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/jsonlint/zipball/9ad6ce79c342fbd44df10ea95511a1b24dee5b57",
-                "reference": "9ad6ce79c342fbd44df10ea95511a1b24dee5b57",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.3 || ^7.0 || ^8.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.0"
-            },
-            "bin": [
-                "bin/jsonlint"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Seld\\JsonLint\\": "src/Seld/JsonLint/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jordi Boggiano",
-                    "email": "j.boggiano@seld.be",
-                    "homepage": "http://seld.be"
-                }
-            ],
-            "description": "JSON Linter",
-            "keywords": [
-                "json",
-                "linter",
-                "parser",
-                "validator"
-            ],
-            "support": {
-                "issues": "https://github.com/Seldaek/jsonlint/issues",
-                "source": "https://github.com/Seldaek/jsonlint/tree/1.8.3"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/Seldaek",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/seld/jsonlint",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2020-11-11T09:19:24+00:00"
-        },
-        {
             "name": "squizlabs/php_codesniffer",
             "version": "3.6.1",
             "source": {
@@ -8090,7 +10855,10 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "mediawiki/semantic-cite": 20,
+        "mediawiki/semantic-glossary": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
@@ -8105,7 +10873,7 @@
         "ext-mbstring": "*",
         "ext-xml": "*",
         "ext-xmlreader": "*",
-        "php": "7.4.33"
+        "php": "^7.4.0"
     },
     "platform-dev": {
         "ext-simplexml": "*"
