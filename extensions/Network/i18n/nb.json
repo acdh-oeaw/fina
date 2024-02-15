@@ -1,9 +1,0 @@
-{
-	"@metadata": {
-		"authors": [
-			"Jon Harald Søby"
-		]
-	},
-	"network-desc": "Gjør det mulig å legge til interaktive nettverksvisualiseringer på wikisider",
-	"network-aria": "Nettverksvisualisering som viser lenker til og fra {{PLURAL:$1|siden|sidene}} $2"
-}
