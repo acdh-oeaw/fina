@@ -27,8 +27,8 @@
 /maintenance/.mwsql_history
 #/LocalSettings.php
 /includes/PlatformSettings.php
-/extensions
-/skins
+
+
 
 # Repository management
 .svn
