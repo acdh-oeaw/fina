@@ -48,7 +48,7 @@ if (!defined('MW_DB') && in_array($_SERVER['REMOTE_ADDR'],
 }
 
 # Elasticsearch:
-$wgSearchType = 'CirrusSearch'; # No need to change this
+#$wgSearchType = 'CirrusSearch'; # No need to change this
 
 $wgCirrusSearchServers = [
     [
