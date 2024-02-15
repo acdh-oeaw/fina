@@ -201,7 +201,7 @@ $wgShowExceptionDetails = true;
 // Footer
 $wgFooterIcons['poweredby']['knowledge.wiki'] = array(
         "src" => "/KnowledgeWiki.png",
-        "url" => "https://www.knowledge.wiki",
+        "url" => "https://fina.oeaw.ac.at",
         "alt" => "a Knowledge.wiki project",
         "height" => "31",
         "width" => "100",
