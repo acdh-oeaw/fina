@@ -8,29 +8,29 @@
 
 # New domain:
 wfLoadExtension( 'SemanticMediaWiki' ); # Don't change
-enableSemantics( 'fina.knowledge.wiki' );  #Change to new FINA domain
-$wgServer = 'https://fina-v.knowledge.wiki'; #Change to new FINA domain
+enableSemantics( 'fina.oeaw.ac.at' );  #Change to new FINA domain
+$wgServer = getenv( 'PUBLIC_URL' ); #Change to new FINA domain
 
 # Emails:
 $wgSMTP = [
-    'host'     => 'mail.knowledge.wiki', #Change
-    'IDHost'   => 'mail.knowledge.wiki', #Change
+    'host'     => getenv( 'MAIL_SMTP_HOST' ), #Change
+    'IDHost'   => getenv( 'MAIL_SMTP_HOST' ), #Change
     'port'     => 25, #Change?
     'auth'     => true, // Chane? Should we use SMTP authentication? (true or false)
-    'username' => 'USERNAME', #Change
-    'password' => 'PASSWORD' #Change
+    'username' => getenv( 'MAIL_SMTP_USER' ), #Change
+    'password' => getenv( 'MAIL_SMTP_PASSWORD' ) #Change
 ];
-$wgEmergencyContact = 'support@knowledge.wiki'; #Change
-$wgPasswordSender = 'support@knowledge.wiki'; #Change
+$wgEmergencyContact = getenv( 'EMERGENCY_CONTACT' ); #Change
+$wgPasswordSender = getenv( 'EMERGENCY_CONTACT' ); #Change
 
 # Database:
 $wgDBtype = 'mysql'; #Probably don't change
-$wgDBserver = 'localhost'; #Maybe change, depends on where the database host is
+$wgDBserver = getenv( 'MYSQL_SERVER' ); #Maybe change, depends on where the database host is
 
 $wgDBuser = getenv( 'MYSQL_USER' ) ?: 'USERNAME'; #Change
 $wgDBpassword = getenv( 'MYSQL_PASSWORD' ) ?: 'PASSWORD'; #Change
 
-$wgDBname = 'fina_vanilla'; #Change to DB name
+$wgDBname = getenv( 'MYSQL_DB' ); #Change to DB name
 $wgDBprefix = "fw"; #Probably don't change
 $wgPingback = false; # Don't change
 $wgShellLocale = "C.UTF-8"; #Probably don't change
@@ -51,8 +51,8 @@ if (!defined('MW_DB') && in_array($_SERVER['REMOTE_ADDR'],
 $wgSearchType = 'CirrusSearch'; # No need to change this
 $wgCirrusSearchServers = [
         [
-                "port" => 9201, # Probably change to 9200
-                "host" => "localhost" #Change to ElasticSearch host if not localhost
+                "port" => 9200, # Probably change to 9200
+                "host" => getenv( 'OPENSEARCH_SERVER' ) #Change to ElasticSearch host if not localhost
         ]
 ];
 $wgCirrusSearchIndexBaseName = $wgDBname; # No need to change this, if no special index name preferences
@@ -62,7 +62,7 @@ $wgImageMagickConvertCommand = '/usr/bin/convert'; #Maybe change
 
 $wgDiff3 = "/usr/bin/diff3"; #Probably don't change
 
-$wgMatomoAnalyticsServerURL = "https://matomo.knowledge.wiki/"; #Change
+$wgMatomoAnalyticsServerURL = getenv( 'MATOMO_SERVER_URL' ); #Change
 $wgMatomoAnalyticsGlobalID = "7"; #Probably change
 $wgMatomoAnalyticsDisableCookie = "true"; #Probably change
 $wgMatomoAnalyticsDisableJS = "true"; #Probably change
