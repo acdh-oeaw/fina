@@ -223,7 +223,7 @@ wfLoadExtension( 'AdvancedSearch' );
 
 
 // SMW
-// $smwgParserFeatures = SMW_PARSER_STRICT | SMW_PARSER_INL_ERROR | SMW_PARSER_HID_CATS | SMW_PARSER_UNSTRIP | SMW_PARSER_LINV;
+$smwgParserFeatures = SMW_PARSER_STRICT | SMW_PARSER_INL_ERROR | SMW_PARSER_HID_CATS | SMW_PARSER_UNSTRIP | SMW_PARSER_LINV;
 // $smwgQEqualitySupport = SMW_EQ_NONE;  // always interpret redirects as equality in queries
 $smwgPageSpecialProperties = array( '_MDAT', '_CDAT', '_NEWP', '_LEDT');
 $smwgQMaxInlineLimit = 20000;
