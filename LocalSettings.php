@@ -51,7 +51,7 @@ if (!defined('MW_DB') && in_array($_SERVER['REMOTE_ADDR'],
 $wgSearchType = 'CirrusSearch'; # No need to change this
 $wgCirrusSearchServers = [
         [
-                "port" => 9200, # Probably change to 9200
+                "port" => 443, # Probably change to 9200
                 "host" => getenv( 'OPENSEARCH_SERVER' ) #Change to ElasticSearch host if not localhost
         ]
 ];
