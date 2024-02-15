@@ -55,7 +55,7 @@ $wgCirrusSearchServers = [
                 "host" => getenv( 'OPENSEARCH_SERVER' ) #Change to ElasticSearch host if not localhost
         ]
 ];
-$wgCirrusSearchIndexBaseName = $wgDBname; # No need to change this, if no special index name preferences
+$wgCirrusSearchIndexBaseName ='fina'; # No need to change this, if no special index name preferences
 
 # Others:
 $wgImageMagickConvertCommand = '/usr/bin/convert'; #Maybe change
