@@ -7,7 +7,7 @@ php maintenance/update.php
 # php extensions/SemanticMediaWiki/maintenance/updateEntityCollation.php 
 
 
-# php extensionsCirrusSearch/maintenance/UpdateSearchIndexConfig.php  --startOver
+# php extensions/CirrusSearch/maintenance/UpdateSearchIndexConfig.php  --startOver
 # php extensions/CirrusSearch/maintenance/ForceSearchIndex.php --skipLinks —indexOnSkip 
 # php maintenance/runJobs.php
 
