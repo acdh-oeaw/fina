@@ -8,7 +8,7 @@
 
 # New domain:
 wfLoadExtension( 'SemanticMediaWiki' ); # Don't change
-#enableSemantics( 'fina.oeaw.ac.at' );  #Change to new FINA domain
+enableSemantics( 'fina.oeaw.ac.at' );  #Change to new FINA domain
 $wgServer = getenv( 'PUBLIC_URL' ); #Change to new FINA domain
 
 # Emails:
