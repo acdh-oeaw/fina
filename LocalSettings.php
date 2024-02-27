@@ -139,6 +139,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
         exit;
 }
 //$wgMaxArticleSize = 2048;
+$scigReferenceListCacheType = CACHE_NONE;
 $scigMetadataResponseCacheType = CACHE_NONE; //FIX Semantic Cite
 $wgCacheEpoch = 20220901150130;
 
