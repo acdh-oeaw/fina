@@ -1677,16 +1677,16 @@
         },
         {
             "name": "mediawiki/maps",
-            "version": "10.1.1",
+            "version": "10.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ProfessionalWiki/Maps.git",
-                "reference": "737b445639428f943773decb7a4ea1b1845ccfc5"
+                "reference": "ed0eb177b7835c65c048e9dd9c3e79af868c813d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ProfessionalWiki/Maps/zipball/737b445639428f943773decb7a4ea1b1845ccfc5",
-                "reference": "737b445639428f943773decb7a4ea1b1845ccfc5",
+                "url": "https://api.github.com/repos/ProfessionalWiki/Maps/zipball/ed0eb177b7835c65c048e9dd9c3e79af868c813d",
+                "reference": "ed0eb177b7835c65c048e9dd9c3e79af868c813d",
                 "shasum": ""
             },
             "require": {
@@ -1767,7 +1767,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-12-04T00:18:21+00:00"
+            "time": "2024-02-21T16:07:25+00:00"
         },
         {
             "name": "mediawiki/parser-hooks",
@@ -1901,79 +1901,6 @@
                 }
             ],
             "time": "2022-07-25T12:00:38+00:00"
-        },
-        {
-            "name": "mediawiki/semantic-cite",
-            "version": "dev-onoi-fix",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SemanticMediaWiki/SemanticCite.git",
-                "reference": "99815ba9ea4e2974ce27ff0a48dcfb91950d9812"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SemanticMediaWiki/SemanticCite/zipball/99815ba9ea4e2974ce27ff0a48dcfb91950d9812",
-                "reference": "99815ba9ea4e2974ce27ff0a48dcfb91950d9812",
-                "shasum": ""
-            },
-            "require": {
-                "composer/installers": "^1.0.12",
-                "mediawiki/http-request": "~2.0|~1.1",
-                "mediawiki/semantic-media-wiki": "~3.0|~4.0",
-                "onoi/cache": "~1.2",
-                "onoi/remi": "~0.2",
-                "php": ">=7.4"
-            },
-            "require-dev": {
-                "mediawiki/semantic-media-wiki": "@dev"
-            },
-            "type": "mediawiki-extension",
-            "autoload": {
-                "files": [
-                    "SemanticCite.php"
-                ],
-                "psr-4": {
-                    "SCI\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "James Hong Kong",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A Semantic MediaWiki extension to manage citation resources.",
-            "homepage": "https://semantic-mediawiki.org/wiki/Extension:Semantic_Cite",
-            "keywords": [
-                "SMW",
-                "Semantic MediaWiki",
-                "citation",
-                "mediawiki",
-                "wiki"
-            ],
-            "support": {
-                "email": "semediawiki-user@lists.sourceforge.net",
-                "forum": "https://www.semantic-mediawiki.org/wiki/semantic-mediawiki.org_talk:Community_portal",
-                "irc": "irc://irc.freenode.net/semantic-mediawiki",
-                "issues": "https://github.com/SemanticMediaWiki/SemanticCite/issues",
-                "source": "https://github.com/SemanticMediaWiki/SemanticCite",
-                "wiki": "https://www.semantic-mediawiki.org/wiki/"
-            },
-            "funding": [
-                {
-                    "url": "https://www.semantic-mediawiki.org/wiki/Sponsorship",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://opencollective.com/smw",
-                    "type": "open_collective"
-                }
-            ],
-            "time": "2023-12-28T11:35:58+00:00"
         },
         {
             "name": "mediawiki/semantic-compound-queries",
@@ -2208,16 +2135,16 @@
         },
         {
             "name": "mediawiki/semantic-media-wiki",
-            "version": "4.1.2",
+            "version": "4.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SemanticMediaWiki/SemanticMediaWiki.git",
-                "reference": "5c94879171d5f741b896828c25a9f2bb07a03dff"
+                "reference": "b5e2afe11991fe21a335cb90426de24b85bc9fe7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SemanticMediaWiki/SemanticMediaWiki/zipball/5c94879171d5f741b896828c25a9f2bb07a03dff",
-                "reference": "5c94879171d5f741b896828c25a9f2bb07a03dff",
+                "url": "https://api.github.com/repos/SemanticMediaWiki/SemanticMediaWiki/zipball/b5e2afe11991fe21a335cb90426de24b85bc9fe7",
+                "reference": "b5e2afe11991fe21a335cb90426de24b85bc9fe7",
                 "shasum": ""
             },
             "require": {
@@ -2315,7 +2242,17 @@
                 "source": "https://github.com/SemanticMediaWiki/SemanticMediaWiki",
                 "wiki": "https://www.semantic-mediawiki.org/wiki/"
             },
-            "time": "2023-07-29T18:01:41+00:00"
+            "funding": [
+                {
+                    "url": "https://www.semantic-mediawiki.org/wiki/Sponsorship",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://opencollective.com/smw",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2024-02-17T17:03:12+00:00"
         },
         {
             "name": "mediawiki/validator",
@@ -2687,60 +2624,6 @@
             "time": "2019-01-27T03:37:14+00:00"
         },
         {
-            "name": "onoi/http-request",
-            "version": "1.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/onoi/http-request.git",
-                "reference": "a7cf33bae82cffe570086fc06d6617e802c0cc74"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/onoi/http-request/zipball/a7cf33bae82cffe570086fc06d6617e802c0cc74",
-                "reference": "a7cf33bae82cffe570086fc06d6617e802c0cc74",
-                "shasum": ""
-            },
-            "require": {
-                "onoi/cache": "~1.2",
-                "php": ">=5.3.2"
-            },
-            "suggest": {
-                "lib-curl": "Allows making CURL requests"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Onoi\\HttpRequest\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "mwjames",
-                    "homepage": "https://github.com/mwjames"
-                }
-            ],
-            "description": "A minimalistic http/curl request interface library",
-            "homepage": "https://github.com/onoi/http-request",
-            "keywords": [
-                "curl",
-                "http request"
-            ],
-            "support": {
-                "issues": "https://github.com/onoi/http-request/issues",
-                "source": "https://github.com/onoi/http-request/tree/master"
-            },
-            "time": "2017-01-14T16:25:41+00:00"
-        },
-        {
             "name": "onoi/message-reporter",
             "version": "1.4.2",
             "source": {
@@ -2805,54 +2688,6 @@
                 }
             ],
             "time": "2021-01-15T14:23:11+00:00"
-        },
-        {
-            "name": "onoi/remi",
-            "version": "0.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/onoi/remi.git",
-                "reference": "48898ecd1387656f6decc5bb1e38b4ecbdde5e4a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/onoi/remi/zipball/48898ecd1387656f6decc5bb1e38b4ecbdde5e4a",
-                "reference": "48898ecd1387656f6decc5bb1e38b4ecbdde5e4a",
-                "shasum": ""
-            },
-            "require": {
-                "onoi/http-request": "~1.1",
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.8"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Onoi\\Remi\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "mwjames",
-                    "homepage": "https://github.com/mwjames"
-                }
-            ],
-            "description": "A small library to mine (parse) REST responses from selected metatdata providers",
-            "homepage": "https://github.com/onoi/remi",
-            "keywords": [
-                "rest"
-            ],
-            "support": {
-                "issues": "https://github.com/onoi/remi/issues",
-                "source": "https://github.com/onoi/remi/tree/master"
-            },
-            "time": "2017-05-13T02:25:54+00:00"
         },
         {
             "name": "oojs/oojs-ui",
@@ -4165,6 +4000,16 @@
                 }
             ],
             "time": "2020-11-11T09:19:24+00:00"
+        },
+        {
+            "name": "semanticmediawiki/semanticcite",
+            "version": "3.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/semanticmediawiki/semanticcite.git",
+                "reference": "master"
+            },
+            "type": "mediawiki-extension"
         },
         {
             "name": "serialization/serialization",
@@ -8429,21 +8274,21 @@
         },
         {
             "name": "phpdocumentor/type-resolver",
-            "version": "1.8.0",
+            "version": "1.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/TypeResolver.git",
-                "reference": "fad452781b3d774e3337b0c0b245dd8e5a4455fc"
+                "reference": "153ae662783729388a584b4361f2545e4d841e3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/fad452781b3d774e3337b0c0b245dd8e5a4455fc",
-                "reference": "fad452781b3d774e3337b0c0b245dd8e5a4455fc",
+                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/153ae662783729388a584b4361f2545e4d841e3c",
+                "reference": "153ae662783729388a584b4361f2545e4d841e3c",
                 "shasum": ""
             },
             "require": {
                 "doctrine/deprecations": "^1.0",
-                "php": "^7.4 || ^8.0",
+                "php": "^7.3 || ^8.0",
                 "phpdocumentor/reflection-common": "^2.0",
                 "phpstan/phpdoc-parser": "^1.13"
             },
@@ -8481,22 +8326,22 @@
             "description": "A PSR-5 based resolver of Class names, Types and Structural Element Names",
             "support": {
                 "issues": "https://github.com/phpDocumentor/TypeResolver/issues",
-                "source": "https://github.com/phpDocumentor/TypeResolver/tree/1.8.0"
+                "source": "https://github.com/phpDocumentor/TypeResolver/tree/1.8.2"
             },
-            "time": "2024-01-11T11:49:22+00:00"
+            "time": "2024-02-23T11:10:43+00:00"
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "1.25.0",
+            "version": "1.26.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "bd84b629c8de41aa2ae82c067c955e06f1b00240"
+                "reference": "231e3186624c03d7e7c890ec662b81e6b0405227"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/bd84b629c8de41aa2ae82c067c955e06f1b00240",
-                "reference": "bd84b629c8de41aa2ae82c067c955e06f1b00240",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/231e3186624c03d7e7c890ec662b81e6b0405227",
+                "reference": "231e3186624c03d7e7c890ec662b81e6b0405227",
                 "shasum": ""
             },
             "require": {
@@ -8528,9 +8373,9 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.25.0"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.26.0"
             },
-            "time": "2024-01-04T17:06:16+00:00"
+            "time": "2024-02-23T16:05:55+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -9923,16 +9768,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v5.4.35",
+            "version": "v5.4.36",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "dbdf6adcb88d5f83790e1efb57ef4074309d3931"
+                "reference": "39f75d9d73d0c11952fdcecf4877b4d0f62a8f6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/dbdf6adcb88d5f83790e1efb57ef4074309d3931",
-                "reference": "dbdf6adcb88d5f83790e1efb57ef4074309d3931",
+                "url": "https://api.github.com/repos/symfony/console/zipball/39f75d9d73d0c11952fdcecf4877b4d0f62a8f6e",
+                "reference": "39f75d9d73d0c11952fdcecf4877b4d0f62a8f6e",
                 "shasum": ""
             },
             "require": {
@@ -10002,7 +9847,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v5.4.35"
+                "source": "https://github.com/symfony/console/tree/v5.4.36"
             },
             "funding": [
                 {
@@ -10018,7 +9863,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-01-23T14:28:09+00:00"
+            "time": "2024-02-20T16:33:57+00:00"
         },
         {
             "name": "symfony/polyfill-intl-grapheme",
@@ -10340,16 +10185,16 @@
         },
         {
             "name": "symfony/string",
-            "version": "v5.4.35",
+            "version": "v5.4.36",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "c209c4d0559acce1c9a2067612cfb5d35756edc2"
+                "reference": "4e232c83622bd8cd32b794216aa29d0d266d353b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/c209c4d0559acce1c9a2067612cfb5d35756edc2",
-                "reference": "c209c4d0559acce1c9a2067612cfb5d35756edc2",
+                "url": "https://api.github.com/repos/symfony/string/zipball/4e232c83622bd8cd32b794216aa29d0d266d353b",
+                "reference": "4e232c83622bd8cd32b794216aa29d0d266d353b",
                 "shasum": ""
             },
             "require": {
@@ -10406,7 +10251,7 @@
                 "utf8"
             ],
             "support": {
-                "source": "https://github.com/symfony/string/tree/v5.4.35"
+                "source": "https://github.com/symfony/string/tree/v5.4.36"
             },
             "funding": [
                 {
@@ -10422,20 +10267,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-01-23T13:51:25+00:00"
+            "time": "2024-02-01T08:49:30+00:00"
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v5.4.35",
+            "version": "v5.4.36",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "ce4685b30e47d94dfc990c5566285ff99ddf012b"
+                "reference": "2e9c2b11267119d9c90d6b3fdce5e4e9f15e2e90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/ce4685b30e47d94dfc990c5566285ff99ddf012b",
-                "reference": "ce4685b30e47d94dfc990c5566285ff99ddf012b",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/2e9c2b11267119d9c90d6b3fdce5e4e9f15e2e90",
+                "reference": "2e9c2b11267119d9c90d6b3fdce5e4e9f15e2e90",
                 "shasum": ""
             },
             "require": {
@@ -10495,7 +10340,7 @@
                 "dump"
             ],
             "support": {
-                "source": "https://github.com/symfony/var-dumper/tree/v5.4.35"
+                "source": "https://github.com/symfony/var-dumper/tree/v5.4.36"
             },
             "funding": [
                 {
@@ -10511,7 +10356,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-01-23T14:28:09+00:00"
+            "time": "2024-02-15T11:19:14+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -10856,7 +10701,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "mediawiki/semantic-cite": 20,
         "mediawiki/semantic-glossary": 20
     },
     "prefer-stable": true,
