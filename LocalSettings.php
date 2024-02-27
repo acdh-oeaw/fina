@@ -139,7 +139,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
         exit;
 }
 //$wgMaxArticleSize = 2048;
-$scigReferenceListCacheType = CACHE_NONE; //FIX Semantic Cite
+$scigMetadataResponseCacheType = CACHE_NONE; //FIX Semantic Cite
 $wgCacheEpoch = 20220901150130;
 
 //$wgReadOnly = 'This wiki is currently in read-only mode for maintenance purposes.';
