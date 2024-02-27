@@ -445,7 +445,7 @@ $sdgHideCategoriesByDefault = true;
 
 # SemanticCite
 # More info: https://github.com/SemanticMediaWiki/SemanticCite/
-wfLoadExtension( 'SemanticCite' );
+# wfLoadExtension( 'SemanticCite' );
 
 # Semantic Dependency Updater
 # More info: https://www.mediawiki.org/wiki/Extension:SemanticDependencyUpdater
