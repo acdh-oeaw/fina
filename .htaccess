@@ -32,4 +32,5 @@ RewriteRule ^/*$ %{DOCUMENT_ROOT}/index.php [L]
 #</IfModule>
 
 RedirectMatch 404 /\.git
+RedirectMatch 404 /\secrets.env
 

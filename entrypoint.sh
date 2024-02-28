@@ -12,5 +12,5 @@ php maintenance/update.php
 # php maintenance/runJobs.php
 
 # Start web server
-# exec heroku-php-apache2
-exec heroku-php-nginx
+exec heroku-php-apache2
+# exec heroku-php-nginx
