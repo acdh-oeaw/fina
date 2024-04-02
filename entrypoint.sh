@@ -11,6 +11,8 @@ php maintenance/update.php
 # php extensions/CirrusSearch/maintenance/ForceSearchIndex.php --skipLinks —indexOnSkip 
 # php maintenance/runJobs.php
 
+sed -i -r -e 's|max_execution_time = 30|max_execution_time = 300|g' /app/.heroku/php/etc/php/php.ini
+
 # Start web server
 exec heroku-php-apache2
 # exec heroku-php-nginx
