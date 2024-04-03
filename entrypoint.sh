@@ -4,7 +4,7 @@ export PATH="/app/.heroku/php/bin:${PATH}"
 cd /app/
 composer update
 php maintenance/update.php
-php extensions/SemanticMediaWiki/maintenance/updateEntityCollation.php 
+# php extensions/SemanticMediaWiki/maintenance/updateEntityCollation.php 
 
 
 # php extensions/CirrusSearch/maintenance/UpdateSearchIndexConfig.php  --startOver
