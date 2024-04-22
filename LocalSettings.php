@@ -166,7 +166,7 @@ $wgJobRunRate = 0;
 $wgUploadPath = "$wgScriptPath/img_auth.php";
 $wgUploadDirectory = "images";
 
-$wgLogo = "fina-logo.png";
+$wgLogo = "/fina-logo.png";
 $wgFavicon = "favicon.png";
 $wgEnableUploads = true;
 $wgUseImageMagick = false;
