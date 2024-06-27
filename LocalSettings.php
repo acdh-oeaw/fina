@@ -25,7 +25,7 @@ $wgPasswordSender = getenv( 'EMERGENCY_CONTACT' ); #Change
 
 # Database:
 $wgDBtype = 'mysql'; #Probably don't change
-$wgDBserver = getenv( 'MYSQL_SERVER' ); #Maybe change, depends on where the database host is
+$wgDBserver = getenv( 'MYSQL_SERVER' ); #Maybe change, depends on where the database host is.
 
 $wgDBuser = getenv( 'MYSQL_USER' ) ?: 'USERNAME'; #Change
 $wgDBpassword = getenv( 'MYSQL_PASSWORD' ) ?: 'PASSWORD'; #Change
