@@ -66,7 +66,7 @@ $wgImageMagickConvertCommand = '/usr/bin/convert'; #Maybe change
 $wgDiff3 = "/usr/bin/diff3"; #Probably don't change
 
 $wgMatomoAnalyticsServerURL = getenv( 'MATOMO_SERVER_URL' ); #Change
-$wgMatomoAnalyticsGlobalID = "7"; #Probably change
+$wgMatomoAnalyticsSiteID = "7"; #Probably change
 $wgMatomoAnalyticsDisableCookie = "true"; #Probably change
 $wgMatomoAnalyticsDisableJS = "true"; #Probably change
 
