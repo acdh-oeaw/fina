@@ -2,7 +2,7 @@
 export PATH="/app/.heroku/php/bin:${PATH}"
 
 cd /app/
-composer update
+composer update --lock
 php maintenance/update.php
 # php extensions/SemanticMediaWiki/maintenance/updateEntityCollation.php 
 
