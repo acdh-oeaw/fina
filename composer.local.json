@@ -19,7 +19,7 @@
         "mediawiki/maps": "~10.1",
         "professional-wiki/network": "~2.0",
         "professional-wiki/modern-timeline": "~1.0",
-	"mediawiki/semantic-glossary": "4.x-dev"
+	"mediawiki/semantic-glossary": "^4.0"
     },
     "commentedOut": {
         "mediawiki/semantic-glossary": "~4.0",
