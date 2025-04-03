@@ -4,8 +4,12 @@ export PATH="/app/.heroku/php/bin:${PATH}"
 cd /app/
 composer update --lock
 php maintenance/update.php
-php extensions/SemanticMediaWiki/maintenance/updateEntityCollation.php 
-php extensions/SemanticMediaWiki/maintenance/setupStore.php 
+
+# Should be executed after coonfiguration changes:
+# php extensions/SemanticMediaWiki/maintenance/updateEntityCollation.php 
+
+# Should be executed every 90 days
+# php extensions/SemanticMediaWiki/maintenance/setupStore.php 
 
 
 # php extensions/CirrusSearch/maintenance/UpdateSearchIndexConfig.php  --startOver
