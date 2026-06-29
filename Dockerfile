@@ -62,29 +62,23 @@ RUN composer install \
 RUN rm -rf extensions \
  && mkdir -p extensions \
  && cd extensions \
-
-# function to clone latest tag
- && fetch_repo () { \
+ \
+ && fetch_repo() { \
     REPO=$1; \
     NAME=$(basename $REPO .git); \
     echo "Cloning $NAME..."; \
-    git clone --quiet $REPO; \
+    git clone --quiet --depth 1 $REPO; \
     cd $NAME; \
     TAG=$(git tag --sort=-v:refname | head -n 1); \
     if [ -n "$TAG" ]; then \
         echo "Checking out tag $TAG"; \
         git checkout $TAG; \
-    else \
-        echo "No tag found, staying on default branch"; \
     fi; \
     cd ..; \
  }; \
-
-# SMW core
- fetch_repo https://github.com/SemanticMediaWiki/SemanticMediaWiki.git \
+ \
+ && fetch_repo https://github.com/SemanticMediaWiki/SemanticMediaWiki.git \
  && fetch_repo https://github.com/SemanticMediaWiki/SemanticResultFormats.git \
-
-# SMW ecosystem
  && fetch_repo https://github.com/SemanticMediaWiki/SemanticCompoundQueries.git \
  && fetch_repo https://github.com/SemanticMediaWiki/SemanticExtraSpecialProperties.git \
  && fetch_repo https://github.com/SemanticMediaWiki/SemanticMetaTags.git \
@@ -92,15 +86,13 @@ RUN rm -rf extensions \
  && fetch_repo https://github.com/SemanticMediaWiki/SemanticDrilldown.git \
  && fetch_repo https://github.com/SemanticMediaWiki/SemanticCite.git \
  && fetch_repo https://github.com/SemanticMediaWiki/SemanticDependencyUpdater.git \
-
-# external
  && fetch_repo https://github.com/wikimedia/mediawiki-extensions-PageForms.git \
- && fetch_repo https://github.com/ProfessionalWiki/Maps.git \
+ && git clone --depth 1 https://github.com/ProfessionalWiki/Maps.git Maps \
  && fetch_repo https://github.com/ProfessionalWiki/ModernTimeline.git \
- && fetch_repo https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets
+ && fetch_repo https://github.com/wikimedia/mediawiki-extensions-Widgets.git
 
 # --------------------------------------------------
-# INSTALL EXTENSION DEPENDENCIES (ROBUST)
+# INSTALL EXTENSION DEPENDENCIES
 # --------------------------------------------------
 RUN set -ex \
  && cd /var/www/html/extensions \
@@ -111,10 +103,11 @@ RUN set -ex \
  && if [ -d "Maps" ]; then \
       cd Maps && composer install --no-dev --no-interaction && cd .. ; \
     else \
-      echo "Maps not found, skipping composer install"; \
+      echo "Maps not found, skipping"; \
     fi \
  \
  && cd /var/www/html
+
 
 # --------------------------------------------------
 # PERMISSIONS
