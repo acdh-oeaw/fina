@@ -136,7 +136,7 @@ require_once "$IP/extensions/Validator/Validator.php";
 wfLoadExtension('Maps');
 $egMapsDefaultService = 'leaflet';
 
-wfLoadExtension('SemanticCompoundQueries');
+// wfLoadExtension('SemanticCompoundQueries');
 // wfLoadExtension('SemanticExtraSpecialProperties');
 // wfLoadExtension('SemanticMetaTags');
 // wfLoadExtension('SemanticGlossary');
