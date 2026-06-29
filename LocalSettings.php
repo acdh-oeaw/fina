@@ -1,14 +1,16 @@
 
+
 <?php
 
-# Semantic MediaWiki
-wfLoadExtension( 'SemanticMediaWiki' );
-enableSemantics( 'fina.oeaw.ac.at' );
+# server
+$wgServer = getenv( 'PUBLIC_URL' );
 
-# Semantic Result Formats
+# load extensions
+wfLoadExtension( 'SemanticMediaWiki' );
 wfLoadExtension( 'SemanticResultFormats' );
 
-$wgServer = getenv( 'PUBLIC_URL' );
+enableSemantics( 'fina.oeaw.ac.at' );
+
 
 
 # Emails:
