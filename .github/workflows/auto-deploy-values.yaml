@@ -18,7 +18,7 @@ service:
   name: "web"
   url: "$public_url"
   type: ClusterIP
-  externalPort: 80   # must match your app port
+  externalPort: 80
   internalPort: 80
 
 ingress:
