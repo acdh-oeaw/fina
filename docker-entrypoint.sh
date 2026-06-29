@@ -3,13 +3,30 @@ set -e
 
 cd /var/www/html
 
-# 🔥 FIX: restore semantic extensions (PVC override)
-rm -rf /var/www/html/extensions/SemanticMediaWiki
-rm -rf /var/www/html/extensions/SemanticResultFormats
+echo "=== INIT: Fix Composer + SMW setup ==="
 
-ln -s /var/www/html/vendor/mediawiki/semantic-media-wiki /var/www/html/extensions/SemanticMediaWiki
-ln -s /var/www/html/vendor/mediawiki/semantic-result-formats /var/www/html/extensions/SemanticResultFormats
+# 🔥 1. FIX: remove broken SMW autoload (SMW 4.x bug)
+if [ -f vendor/composer/autoload_files.php ]; then
+  sed -i '/SemanticMediaWiki\/includes\/GlobalFunctions.php/d' vendor/composer/autoload_files.php
+fi
 
+if [ -f vendor/composer/autoload_static.php ]; then
+  sed -i '/SemanticMediaWiki\/includes\/GlobalFunctions.php/d' vendor/composer/autoload_static.php
+fi
+
+# 🔥 2. FIX: restore extensions (PVC override)
+echo "Fixing SemanticMediaWiki symlinks (PVC)..."
+
+rm -rf extensions/SemanticMediaWiki
+rm -rf extensions/SemanticResultFormats
+
+ln -s /var/www/html/vendor/mediawiki/semantic-media-wiki extensions/SemanticMediaWiki
+ln -s /var/www/html/vendor/mediawiki/semantic-result-formats extensions/SemanticResultFormats
+
+
+echo "Extensions ready"
+
+# ----- DB CONFIG -----
 DB_HOST="${MYSQL_HOST:-${MYSQL_SERVER}}"
 DB_NAME="${MYSQL_DB}"
 DB_USER="${MYSQL_USER}"
@@ -34,7 +51,14 @@ done
 
 echo "Database is up"
 
+# 🔥 refresh autoload 
+echo "Refreshing Composer autoload..."
+composer dump-autoload --no-dev --optimize || true
+
+# ----- MW UPDATE -----
 echo "Running MediaWiki update..."
 php maintenance/update.php || true
+
+echo "=== INIT DONE ==="
 
 exec "$@"
