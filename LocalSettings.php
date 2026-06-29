@@ -187,7 +187,7 @@ wfLoadSkin('Vector');
 wfLoadSkin('MonoBook');
 // wfLoadSkin('Timeless');
 
-$wgDefaultSkin = 'Vector';
+$wgDefaultSkin = 'vector';
 
 # -----------------------------------------------------
 # NAMESPACES (custom)
