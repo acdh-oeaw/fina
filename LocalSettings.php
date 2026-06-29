@@ -220,16 +220,14 @@ $wgShellLocale = "C.UTF-8";
 $wgShowExceptionDetails = true;
 
 # -----------------------------------------------------
-# FINAL SMW INIT (IMPORTANT!)
+# FINAL SMW INIT
 # -----------------------------------------------------
-# Ensure we use the same host as MediaWiki
+
 $smwHost = parse_url(
     $wgServer ?: 'https://fina.oeaw.ac.at',
     PHP_URL_HOST
 );
 
-if ( function_exists('enableSemantics') ) {
-    enableSemantics($smwHost);
-} else {
-    error_log("SMW not loaded properly");
+if ( function_exists( 'enableSemantics' ) ) {
+    enableSemantics( $smwHost );
 }
