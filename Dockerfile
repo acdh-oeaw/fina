@@ -64,46 +64,27 @@ RUN rm -rf extensions \
  && cd extensions \
  \
  && echo "=== SMW core ===" \
- && git clone https://github.com/SemanticMediaWiki/SemanticMediaWiki.git \
- && cd SemanticMediaWiki && git checkout 4.2.0 && cd .. \
- \
- && git clone https://github.com/SemanticMediaWiki/SemanticResultFormats.git \
- && cd SemanticResultFormats && git checkout 5.2.0 && cd .. \
+ && git clone --depth=1 --branch 4.2.0 https://github.com/SemanticMediaWiki/SemanticMediaWiki.git \
+ && git clone --depth=1 --branch 5.2.0 https://github.com/SemanticMediaWiki/SemanticResultFormats.git \
  \
  && echo "=== SMW ecosystem ===" \
- && git clone https://github.com/SemanticMediaWiki/SemanticCompoundQueries.git \
- && cd SemanticCompoundQueries && git checkout 4.0.1 && cd .. \
- \
- && git clone https://github.com/SemanticMediaWiki/SemanticExtraSpecialProperties.git \
- && cd SemanticExtraSpecialProperties && git checkout v0.2.6 && cd .. \
- \
- && git clone https://github.com/SemanticMediaWiki/SemanticMetaTags.git \
- && cd SemanticMetaTags && git checkout 5.0.0 && cd .. \
- \
- && git clone https://github.com/SemanticMediaWiki/SemanticGlossary.git \
- && cd SemanticGlossary && git checkout 7.0.0 && cd .. \
- \
- && git clone https://github.com/SemanticMediaWiki/SemanticDrilldown.git \
- && cd SemanticDrilldown && git checkout 5.0.2 && cd .. \
- \
- && git clone https://github.com/SemanticMediaWiki/SemanticCite.git \
- && cd SemanticCite && git checkout 5.0.0 && cd .. \
+ && git clone --depth=1 --branch 4.0.1 https://github.com/SemanticMediaWiki/SemanticCompoundQueries.git \
+ && git clone --depth=1 --branch v0.2.6 https://github.com/SemanticMediaWiki/SemanticExtraSpecialProperties.git \
+ && git clone --depth=1 --branch 5.0.0 https://github.com/SemanticMediaWiki/SemanticMetaTags.git \
+ && git clone --depth=1 --branch 7.0.0 https://github.com/SemanticMediaWiki/SemanticGlossary.git \
+ && git clone --depth=1 --branch 5.0.2 https://github.com/SemanticMediaWiki/SemanticDrilldown.git \
+ && git clone --depth=1 --branch 5.0.0 https://github.com/SemanticMediaWiki/SemanticCite.git \
  \
  && echo "=== Forms ===" \
- && git clone https://github.com/wikimedia/mediawiki-extensions-PageForms.git PageForms \
- && cd PageForms && git checkout REL1_42 && cd .. \
+ && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-PageForms.git PageForms \
  \
  && echo "=== External ===" \
- && git clone https://github.com/wikimedia/mediawiki-extensions-Validator.git Validator \
- && git clone https://github.com/wikimedia/mediawiki-extensions-ParamProcessor.git ParamProcessor \
- && git clone https://github.com/ProfessionalWiki/Maps.git \
- \
- && git clone https://github.com/ProfessionalWiki/ModernTimeline.git \
- && cd ModernTimeline && git checkout 4.0.0 && cd .. \
- \
- && git clone https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets \
- && cd Widgets && git checkout REL1_42 && cd ..
- 
+ && git clone --depth=1 https://github.com/wikimedia/mediawiki-extensions-Validator.git Validator \
+ && git clone --depth=1 https://github.com/wikimedia/mediawiki-extensions-ParamProcessor.git ParamProcessor \
+ && git clone --depth=1 https://github.com/ProfessionalWiki/Maps.git \
+ && git clone --depth=1 --branch 4.0.0 https://github.com/ProfessionalWiki/ModernTimeline.git \
+ && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets
+
 # --------------------------------------------------
 # INSTALL EXTENSION DEPENDENCIES
 # --------------------------------------------------
