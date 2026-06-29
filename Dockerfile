@@ -59,7 +59,13 @@ RUN composer install \
 # --------------------------------------------------
 # CLONE EXTENSIONS (PINNED VERSIONS)
 # --------------------------------------------------
-RUN rm -rf extensions \
+RUN git config --global --unset credential.helper || true \
+ && git config --global credential.helper "" \
+ && git config --global url."https://github.com/".insteadOf "git@github.com:" \
+ \
+ && export GIT_TERMINAL_PROMPT=0 \
+ \
+ && rm -rf extensions \
  && mkdir -p extensions \
  && cd extensions \
  \
