@@ -62,21 +62,23 @@ RUN composer install \
 RUN rm -rf extensions \
  && mkdir -p extensions \
  && cd extensions \
- \
+
  && fetch_repo() { \
     REPO=$1; \
     NAME=$(basename $REPO .git); \
     echo "Cloning $NAME..."; \
-    git clone --quiet --depth 1 $REPO; \
+    git clone $REPO; \
     cd $NAME; \
     TAG=$(git tag --sort=-v:refname | head -n 1); \
     if [ -n "$TAG" ]; then \
         echo "Checking out tag $TAG"; \
         git checkout $TAG; \
+    else \
+        echo "No tag found for $NAME, using default branch"; \
     fi; \
     cd ..; \
  }; \
- \
+
  && fetch_repo https://github.com/SemanticMediaWiki/SemanticMediaWiki.git \
  && fetch_repo https://github.com/SemanticMediaWiki/SemanticResultFormats.git \
  && fetch_repo https://github.com/SemanticMediaWiki/SemanticCompoundQueries.git \
@@ -87,7 +89,10 @@ RUN rm -rf extensions \
  && fetch_repo https://github.com/SemanticMediaWiki/SemanticCite.git \
  && fetch_repo https://github.com/SemanticMediaWiki/SemanticDependencyUpdater.git \
  && fetch_repo https://github.com/wikimedia/mediawiki-extensions-PageForms.git \
- && git clone --depth 1 https://github.com/ProfessionalWiki/Maps.git Maps \
+ \
+ # Maps (still direct)
+ && git clone https://github.com/ProfessionalWiki/Maps.git Maps \
+ \
  && fetch_repo https://github.com/ProfessionalWiki/ModernTimeline.git \
  && fetch_repo https://github.com/wikimedia/mediawiki-extensions-Widgets.git
 
