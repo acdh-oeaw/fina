@@ -182,11 +182,11 @@ wfLoadExtension('TemplateStyles');
 # -----------------------------------------------------
 # SKINS
 # -----------------------------------------------------
-wfLoadSkin('Vector');
+// wfLoadSkin('Vector');
 wfLoadSkin('MonoBook');
-wfLoadSkin('Timeless');
+// wfLoadSkin('Timeless');
 
-$wgDefaultSkin = 'vector';
+$wgDefaultSkin = 'MonoBook';
 
 # -----------------------------------------------------
 # NAMESPACES (custom)
@@ -230,4 +230,4 @@ $smwHost = parse_url(
 
 if ( function_exists( 'enableSemantics' ) ) {
     enableSemantics( $smwHost );
-}
+}Vecto
