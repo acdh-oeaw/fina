@@ -81,14 +81,10 @@ RUN git config --global --unset credential.helper || true \
  && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-PageForms.git PageForms \
  && echo "=== External ===" \
  && git clone --depth=1 https://github.com/ProfessionalWiki/Maps.git \
- && git clone --depth=1 https://gerrit.wikimedia.org/r/mediawiki/extensions/Validator \
- && git clone --depth=1 https://github.com/JeroenDeDauw/ParamProcessor.git \
+ && git clone --depth=1 -b REL1_42 https://gerrit.wikimedia.org/r/mediawiki/extensions/Validator \
+ && git clone --depth=1 -b REL1_42 https://github.com/JeroenDeDauw/ParamProcessor.git \
  && git clone --depth=1 --branch 4.0.0 https://github.com/ProfessionalWiki/ModernTimeline.git \
  && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets
-
-
-
-
 
 # --------------------------------------------------
 # INSTALL EXTENSION DEPENDENCIES
