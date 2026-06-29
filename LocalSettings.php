@@ -1,19 +1,15 @@
 
 <?php
-require_once __DIR__ . "/vendor/autoload.php";
 
-//////////////////////////////////////////////
-//////////////////////////////////////////////
-//////////////////////////////////////////////
-// ALL THINGS TO CHANGE BELOW:
+# Semantic MediaWiki
+wfLoadExtension( 'SemanticMediaWiki' );
+enableSemantics( 'fina.oeaw.ac.at' );
 
-# New domain:
-wfLoadExtension( 'SemanticMediaWiki' ); # Don't change
-enableSemantics( 'fina.oeaw.ac.at' );  #Change to new FINA domain
-
+# Semantic Result Formats
 wfLoadExtension( 'SemanticResultFormats' );
 
-$wgServer = getenv( 'PUBLIC_URL' ); #Change to new FINA domain
+$wgServer = getenv( 'PUBLIC_URL' );
+
 
 # Emails:
 $wgSMTP = [
