@@ -43,7 +43,8 @@ RUN composer install \
     --no-dev \
     --optimize-autoloader \
     --no-interaction \
-    --no-progress
+    --no-progress \
+    --ignore-platform-reqs
 
 # permissions
 RUN chown -R www-data:www-data /var/www/html
