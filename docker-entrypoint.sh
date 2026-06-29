@@ -3,6 +3,13 @@ set -e
 
 cd /var/www/html
 
+# 🔥 FIX: restore semantic extensions (PVC override)
+rm -rf /var/www/html/extensions/SemanticMediaWiki
+rm -rf /var/www/html/extensions/SemanticResultFormats
+
+ln -s /var/www/html/vendor/mediawiki/semantic-media-wiki /var/www/html/extensions/SemanticMediaWiki
+ln -s /var/www/html/vendor/mediawiki/semantic-result-formats /var/www/html/extensions/SemanticResultFormats
+
 DB_HOST="${MYSQL_HOST:-${MYSQL_SERVER}}"
 DB_NAME="${MYSQL_DB}"
 DB_USER="${MYSQL_USER}"
