@@ -3,11 +3,15 @@ set -e
 
 cd /var/www/html
 
-# Build DSN from K8s secrets
-DB_HOST="${MYSQL_HOST:-mysql}"
+DB_HOST="${MYSQL_HOST:-${MYSQL_SERVER}}"
 DB_NAME="${MYSQL_DB}"
 DB_USER="${MYSQL_USER}"
 DB_PASS="${MYSQL_PASSWORD}"
+
+if [ -z "$DB_HOST" ]; then
+  echo "ERROR: No DB host defined"
+  exit 1
+fi
 
 echo "Waiting for MySQL at $DB_HOST..."
 
@@ -23,9 +27,7 @@ done
 
 echo "Database is up"
 
-# Run MediaWiki update (safe if repeated)
 echo "Running MediaWiki update..."
 php maintenance/update.php || true
 
-# Start web server
 exec "$@"
