@@ -89,9 +89,9 @@ $wgParserCacheExpireTime = 14 * 24 * 3600;
 # -----------------------------------------------------
 # SEARCH (OpenSearch / Cirrus)
 # -----------------------------------------------------
-wfLoadExtension('Elastica');
-wfLoadExtension('CirrusSearch');
-wfLoadExtension('AdvancedSearch');
+// wfLoadExtension('Elastica');
+// wfLoadExtension('CirrusSearch');
+// wfLoadExtension('AdvancedSearch');
 
 $wgSearchType = 'CirrusSearch';
 
@@ -163,16 +163,16 @@ $smwgPageSpecialProperties = ['_MDAT', '_CDAT', '_NEWP', '_LEDT'];
 # -----------------------------------------------------
 # ADDITIONAL EXTENSIONS (UI & UX)
 # -----------------------------------------------------
-wfLoadExtension('Popups');
+// wfLoadExtension('Popups');
 $wgPopupsTextExtractsIntroOnly = false;
 
-wfLoadExtension('MatomoAnalytics');
+// wfLoadExtension('MatomoAnalytics');
 
 wfLoadExtension('Widgets');
-wfLoadExtension('HeaderTabs');
+// wfLoadExtension('HeaderTabs');
 
-wfLoadExtension('NativeSvgHandler');
-wfLoadExtension('LinkTarget');
+// wfLoadExtension('NativeSvgHandler');
+// wfLoadExtension('LinkTarget');
 wfLoadExtension('TemplateStyles');
 
 # -----------------------------------------------------

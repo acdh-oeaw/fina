@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     git \
     unzip \
     curl \
+    lua5.1 \
     libicu-dev \
     libzip-dev \
     libpng-dev \
@@ -41,7 +42,7 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 
 # --------------------------------------------------
-# APP
+# APPLICATION
 # --------------------------------------------------
 COPY . .
 
@@ -50,9 +51,17 @@ ENV GIT_TERMINAL_PROMPT=0
 # --------------------------------------------------
 # EXTENSIONS
 # --------------------------------------------------
-RUN rm -rf extensions \
- && mkdir -p extensions \
- && cd extensions \
+RUN mkdir -p /var/www/html/extensions \
+ && cd /var/www/html/extensions \
+ \
+ && echo "=== Core MW extensions ===" \
+ && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-ParserFunctions.git ParserFunctions \
+ && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-Scribunto.git Scribunto \
+ && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-Cite.git Cite \
+ && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-CategoryTree.git CategoryTree \
+ && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-TemplateData.git TemplateData \
+ && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-WikiEditor.git WikiEditor \
+ && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-TemplateStyles.git TemplateStyles \
  \
  && echo "=== SMW core ===" \
  && git clone --depth=1 --branch 4.2.0 https://github.com/SemanticMediaWiki/SemanticMediaWiki.git \
@@ -69,18 +78,19 @@ RUN rm -rf extensions \
  && echo "=== Forms ===" \
  && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-PageForms.git PageForms \
  \
- && echo "=== External ===" \
- && git clone --depth=1 https://github.com/ProfessionalWiki/Maps.git \
+ && echo "=== Maps stack ===" \
  && git clone --depth=1 https://github.com/JeroenDeDauw/Validator.git Validator \
  && git clone --depth=1 https://github.com/JeroenDeDauw/ParamProcessor.git ParamProcessor \
- && git clone --depth=1 --branch 4.0.0 https://github.com/ProfessionalWiki/ModernTimeline.git \
+ && git clone --depth=1 https://github.com/ProfessionalWiki/Maps.git Maps \
+ && git clone --depth=1 --branch 4.0.0 https://github.com/ProfessionalWiki/ModernTimeline.git ModernTimeline \
+ \
+ && echo "=== Other ===" \
  && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets
 
 # --------------------------------------------------
 # ROOT COMPOSER
 # --------------------------------------------------
-RUN rm -rf vendor composer.lock \
- && composer install \
+RUN composer install \
     --no-dev \
     --prefer-dist \
     --optimize-autoloader \
@@ -94,8 +104,10 @@ RUN rm -rf vendor composer.lock \
 RUN set -ex \
  && cd /var/www/html/extensions/SemanticMediaWiki \
  && composer install --no-dev --no-interaction --ignore-platform-reqs \
+ \
  && cd /var/www/html/extensions/SemanticResultFormats \
  && composer install --no-dev --no-interaction --ignore-platform-reqs \
+ \
  && cd /var/www/html/extensions/Maps \
  && composer install --no-dev --no-interaction --ignore-platform-reqs
 
@@ -105,7 +117,7 @@ RUN set -ex \
 RUN chown -R www-data:www-data /var/www/html
 
 # --------------------------------------------------
-# PHP
+# PHP SETTINGS
 # --------------------------------------------------
 RUN echo "memory_limit=512M" > /usr/local/etc/php/conf.d/media.ini \
  && echo "max_execution_time=360" >> /usr/local/etc/php/conf.d/media.ini \
