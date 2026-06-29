@@ -146,12 +146,14 @@ wfLoadExtension('PageForms');
 
 
 # SMW config
+/*
 $smwgParserFeatures =
     SMW_PARSER_STRICT |
     SMW_PARSER_INL_ERROR |
     SMW_PARSER_HID_CATS |
     SMW_PARSER_UNSTRIP |
     SMW_PARSER_LINV;
+*/
 
 $smwgQMaxLimit = 20000;
 $smwgQMaxInlineLimit = 20000;
