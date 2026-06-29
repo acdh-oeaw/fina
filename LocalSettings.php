@@ -38,16 +38,18 @@ $wgDBprefix = "fw"; #Probably don't change
 $wgPingback = false; # Don't change
 $wgShellLocale = "C.UTF-8"; #Probably don't change
 
-if (!defined('MW_DB') && in_array($_SERVER['REMOTE_ADDR'],
-   [
-       $_SERVER['SERVER_ADDR'],
-       // $_SERVER['HTTP_X_FORWARDED_FOR'], # for reverse proxies; disabled for now
-       '127.0.0.1', #Maybe change
-       'localhost' #Maybe change
-    ])) {
-   $wgGroupPermissions['*']['read'] = true; #Don't change
-   $wgGroupPermissions['*']['edit'] = true; #Don't change
-   $wgGroupPermissions['*']['writeapi'] = true; #Don't change
+
+if (
+    !defined('MW_DB') &&
+    isset($_SERVER['REMOTE_ADDR'], $_SERVER['SERVER_ADDR']) &&
+    in_array($_SERVER['REMOTE_ADDR'], [
+        $_SERVER['SERVER_ADDR'],
+        '127.0.0.1'
+    ])
+) {
+    $wgGroupPermissions['*']['read'] = true;
+    $wgGroupPermissions['*']['edit'] = true;
+    $wgGroupPermissions['*']['writeapi'] = true;
 }
 
 # Elasticsearch:
