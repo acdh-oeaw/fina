@@ -45,12 +45,12 @@ RUN composer install \
     --no-interaction \
     --no-progress
 
+# Copy rest of app
+COPY . .
+
 # Link MW extensions from vendor
 RUN ln -s /var/www/html/vendor/mediawiki/semantic-media-wiki /var/www/html/extensions/SemanticMediaWiki \
  && ln -s /var/www/html/vendor/mediawiki/semantic-result-formats /var/www/html/extensions/SemanticResultFormats
-
-# Copy rest of app
-COPY . .
 
 # Set correct permissions
 RUN chown -R www-data:www-data /var/www/html
