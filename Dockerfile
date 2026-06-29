@@ -22,10 +22,12 @@ RUN docker-php-ext-install \
     intl \
     pdo \
     pdo_mysql \
+    mysqli \
     zip \
     gd \
     xml \
     calendar
+
 
 # --------------------------------------------------
 # APACHE
