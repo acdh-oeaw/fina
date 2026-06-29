@@ -230,4 +230,4 @@ $smwHost = parse_url(
 
 if ( function_exists( 'enableSemantics' ) ) {
     enableSemantics( $smwHost );
-}Vecto
+}
