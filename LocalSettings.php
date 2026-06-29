@@ -129,8 +129,10 @@ wfLoadExtension('SemanticResultFormats');
 # SEMANTIC STACK (order matters!)
 # --------------------------------------------------
 
-wfLoadExtension('Validator');       // MUST be first
-wfLoadExtension('ParamProcessor'); // dependency of Validator
+// wfLoadExtension('Validator');       // MUST be first
+require_once "$IP/extensions/Validator/Validator.php";
+// wfLoadExtension('ParamProcessor'); // dependency of Validator
+
 wfLoadExtension('Maps');
 $egMapsDefaultService = 'leaflet';
 
