@@ -29,30 +29,27 @@ ingress:
     cert-manager.io/cluster-issuer: acdh-prod
 
 # --- STARTUP PROBE ---
-# Wait until MediaWiki is fully initialized (DB + extensions loaded)
 startupProbe:
   enabled: true
   probeType: "httpGet"
   path: /api.php?action=query&meta=siteinfo&format=json
   port: 80
-  failureThreshold: 60     # ~10 minutes max startup
+  failureThreshold: 60
   periodSeconds: 10
   timeoutSeconds: 5
   initialDelaySeconds: 30
 
 # --- LIVENESS PROBE ---
-# Only check if process is alive (DO NOT use HTTP here)
 livenessProbe:
   enabled: true
   probeType: "tcpSocket"
-  periodSeconds: 20
   port: 80
+  periodSeconds: 20
   timeoutSeconds: 3
   failureThreshold: 5
   initialDelaySeconds: 60
 
 # --- READINESS PROBE ---
-# Check if MediaWiki + DB are actually ready
 readinessProbe:
   enabled: true
   probeType: "httpGet"
