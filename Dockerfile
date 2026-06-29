@@ -94,6 +94,8 @@ RUN rm -rf extensions \
  && cd PageForms && git checkout REL1_42 && cd .. \
 
 # --- external ---
+ && git clone https://github.com/wikimedia/mediawiki-extensions-Validator.git Validator \
+ && git clone https://github.com/wikimedia/mediawiki-extensions-ParamProcessor.git ParamProcessor \
  && git clone https://github.com/ProfessionalWiki/Maps.git \
  && git clone https://github.com/ProfessionalWiki/ModernTimeline.git \
  && cd ModernTimeline && git checkout 4.0.0 && cd .. \

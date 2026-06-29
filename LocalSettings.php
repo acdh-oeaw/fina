@@ -6,7 +6,10 @@
 # -----------------------------------------------------
 # BASIC CONFIG
 # -----------------------------------------------------
-$wgServer = getenv('PUBLIC_URL');
+
+$wgServer = getenv('PUBLIC_URL') ?: 'https://fina.oeaw.ac.at';
+$wgCanonicalServer = $wgServer
+
 
 $wgSitename = 'Fina Wiki';
 $wgMetaNamespace = "FINA";
@@ -122,9 +125,13 @@ wfLoadExtension('WikiEditor');
 wfLoadExtension('SemanticMediaWiki');
 wfLoadExtension('SemanticResultFormats');
 
-# -----------------------------------------------------
-# SEMANTIC STACK
-# -----------------------------------------------------
+
+# --------------------------------------------------
+# SEMANTIC STACK (order matters!)
+# --------------------------------------------------
+
+wfLoadExtension('Validator');       // MUST be first
+wfLoadExtension('ParamProcessor'); // dependency of Validator
 wfLoadExtension('Maps');
 $egMapsDefaultService = 'leaflet';
 
@@ -136,12 +143,21 @@ wfLoadExtension('SemanticDrilldown');
 wfLoadExtension('SemanticCite');
 wfLoadExtension('PageForms');
 
-# Semantic configuration
-$smwgParserFeatures = SMW_PARSER_STRICT | SMW_PARSER_INL_ERROR | SMW_PARSER_HID_CATS;
+
+# SMW config
+$smwgParserFeatures =
+    SMW_PARSER_STRICT |
+    SMW_PARSER_INL_ERROR |
+    SMW_PARSER_HID_CATS |
+    SMW_PARSER_UNSTRIP |
+    SMW_PARSER_LINV;
 
 $smwgQMaxLimit = 20000;
 $smwgQMaxInlineLimit = 20000;
 $smwgQSubcategoryDepth = 10;
+
+$smwgEnableUpdateJobs = true;
+
 
 $smwgPageSpecialProperties = ['_MDAT', '_CDAT', '_NEWP', '_LEDT'];
 
@@ -203,8 +219,14 @@ $wgShowExceptionDetails = true;
 # -----------------------------------------------------
 # FINAL SMW INIT (IMPORTANT!)
 # -----------------------------------------------------
+# Ensure we use the same host as MediaWiki
+$smwHost = parse_url(
+    $wgServer ?: 'https://fina.oeaw.ac.at',
+    PHP_URL_HOST
+);
+
 if ( function_exists('enableSemantics') ) {
-    enableSemantics('fina.oeaw.ac.at');
+    enableSemantics($smwHost);
 } else {
     error_log("SMW not loaded properly");
 }
