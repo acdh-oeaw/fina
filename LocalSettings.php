@@ -137,11 +137,11 @@ wfLoadExtension('Maps');
 $egMapsDefaultService = 'leaflet';
 
 wfLoadExtension('SemanticCompoundQueries');
-wfLoadExtension('SemanticExtraSpecialProperties');
-wfLoadExtension('SemanticMetaTags');
-wfLoadExtension('SemanticGlossary');
-wfLoadExtension('SemanticDrilldown');
-wfLoadExtension('SemanticCite');
+// wfLoadExtension('SemanticExtraSpecialProperties');
+// wfLoadExtension('SemanticMetaTags');
+// wfLoadExtension('SemanticGlossary');
+// wfLoadExtension('SemanticDrilldown');
+// wfLoadExtension('SemanticCite');
 wfLoadExtension('PageForms');
 
 

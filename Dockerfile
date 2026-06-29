@@ -55,28 +55,20 @@ RUN mkdir -p /var/www/html/extensions \
  && cd /var/www/html/extensions \
  \
  && echo "=== Core MW extensions ===" \
- && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-ParserFunctions.git ParserFunctions \
- && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-Scribunto.git Scribunto \
- && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-Cite.git Cite \
- && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-CategoryTree.git CategoryTree \
- && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-TemplateData.git TemplateData \
- && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-WikiEditor.git WikiEditor \
- && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-TemplateStyles.git TemplateStyles \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-ParserFunctions.git ParserFunctions \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-Scribunto.git Scribunto \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-Cite.git Cite \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-CategoryTree.git CategoryTree \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-TemplateData.git TemplateData \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-WikiEditor.git WikiEditor \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-TemplateStyles.git TemplateStyles \
  \
  && echo "=== SMW core ===" \
  && git clone --depth=1 --branch 4.2.0 https://github.com/SemanticMediaWiki/SemanticMediaWiki.git \
  && git clone --depth=1 --branch 5.2.0 https://github.com/SemanticMediaWiki/SemanticResultFormats.git \
  \
- && echo "=== SMW ecosystem ===" \
- && git clone --depth=1 --branch 4.0.1 https://github.com/SemanticMediaWiki/SemanticCompoundQueries.git \
- && git clone --depth=1 --branch v0.2.6 https://github.com/SemanticMediaWiki/SemanticExtraSpecialProperties.git \
- && git clone --depth=1 --branch 5.0.0 https://github.com/SemanticMediaWiki/SemanticMetaTags.git \
- && git clone --depth=1 --branch 7.0.0 https://github.com/SemanticMediaWiki/SemanticGlossary.git \
- && git clone --depth=1 --branch 5.0.2 https://github.com/SemanticMediaWiki/SemanticDrilldown.git \
- && git clone --depth=1 --branch 5.0.0 https://github.com/SemanticMediaWiki/SemanticCite.git \
- \
  && echo "=== Forms ===" \
- && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-PageForms.git PageForms \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-PageForms.git PageForms \
  \
  && echo "=== Maps stack ===" \
  && git clone --depth=1 https://github.com/JeroenDeDauw/Validator.git Validator \
@@ -85,8 +77,7 @@ RUN mkdir -p /var/www/html/extensions \
  && git clone --depth=1 --branch 4.0.0 https://github.com/ProfessionalWiki/ModernTimeline.git ModernTimeline \
  \
  && echo "=== Other ===" \
- && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets
-
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets
 # --------------------------------------------------
 # ROOT COMPOSER
 # --------------------------------------------------
