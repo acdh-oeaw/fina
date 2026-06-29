@@ -9,7 +9,7 @@ DB_USER="${MYSQL_USER}"
 DB_PASS="${MYSQL_PASSWORD}"
 
 if [ -z "$DB_HOST" ]; then
-  echo "ERROR: No DB host defined"
+  echo "ERROR: MYSQL_SERVER not set"
   exit 1
 fi
 
