@@ -9,6 +9,9 @@
 # New domain:
 wfLoadExtension( 'SemanticMediaWiki' ); # Don't change
 enableSemantics( 'fina.oeaw.ac.at' );  #Change to new FINA domain
+
+wfLoadExtension( 'SemanticResultFormats' );
+
 $wgServer = getenv( 'PUBLIC_URL' ); #Change to new FINA domain
 
 # Emails:
@@ -345,7 +348,6 @@ $wgScribuntoDefaultEngine = 'luasandbox';
 # More info: https://semantic-mediawiki.org/wiki/Semantic_Result_Formats
 $srfgFormats[] = 'incoming';
 $srfgMapProvider='BasemapAT.basemap';
-wfLoadExtension( 'SemanticResultFormats' );
 $srfgMapProvider='OpenStreetMap.Mapnik';
 
 
