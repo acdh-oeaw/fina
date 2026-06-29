@@ -1,0 +1,65 @@
+replicaCount: 1
+
+image:
+  repository: $repository
+  tag: "$tag"
+  pullPolicy: Always
+  secrets: []
+
+extraLabels:
+  "ID": "$service_id"
+
+gitlab:
+  app: "$app_name"
+  envURL: "$repo_url"
+
+service:
+  enabled: true
+  name: "web"
+  url: "$public_url"
+  type: ClusterIP
+  externalPort: 5000   # must match your app port
+  internalPort: 5000
+
+ingress:
+  enabled: true
+  path: "/"
+  className: "nginx"
+  annotations:
+    cert-manager.io/cluster-issuer: acdh-prod
+
+# --- STARTUP PROBE ---
+# Wait until MediaWiki is fully initialized (DB + extensions loaded)
+startupProbe:
+  enabled: true
+  probeType: "httpGet"
+  path: /api.php?action=query&meta=siteinfo&format=json
+  port: 5000
+  failureThreshold: 60     # ~10 minutes max startup
+  periodSeconds: 10
+  timeoutSeconds: 5
+  initialDelaySeconds: 30
+
+# --- LIVENESS PROBE ---
+# Only check if process is alive (DO NOT use HTTP here)
+livenessProbe:
+  enabled: true
+  probeType: "tcpSocket"
+  periodSeconds: 20
+  port: 5000
+  timeoutSeconds: 3
+  failureThreshold: 5
+  initialDelaySeconds: 60
+
+# --- READINESS PROBE ---
+# Check if MediaWiki + DB are actually ready
+readinessProbe:
+  enabled: true
+  probeType: "httpGet"
+  path: /api.php?action=query&meta=siteinfo&format=json
+  port: 5000
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 6
+  initialDelaySeconds: 60
+``
