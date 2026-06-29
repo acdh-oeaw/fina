@@ -103,7 +103,7 @@ RUN rm -rf extensions \
  \
  && git clone https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets \
  && cd Widgets && git checkout REL1_42 && cd ..
-
+ 
 # --------------------------------------------------
 # INSTALL EXTENSION DEPENDENCIES
 # --------------------------------------------------
