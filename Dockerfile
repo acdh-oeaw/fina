@@ -82,18 +82,19 @@ RUN git config --global --unset credential.helper || true \
  && git clone --depth=1 https://github.com/ProfessionalWiki/Maps.git \
  && mkdir Validator \
  && curl -fL --retry 3 --connect-timeout 10 --max-time 60 \
-   https://codeload.github.com/wikimedia/mediawiki-extensions-Validator/tar.gz/refs/heads/master \
-   -o validator.tar.gz \
+  https://codeload.github.com/wikimedia/mediawiki-extensions-Validator/tar.gz/REL1_42 \
+  -o validator.tar.gz \
  && tar -xzf validator.tar.gz --strip-components=1 -C Validator \
  && rm validator.tar.gz \
  && mkdir ParamProcessor \
  && curl -fL --retry 3 --connect-timeout 10 --max-time 60 \
-   https://codeload.github.com/wikimedia/mediawiki-extensions-ParamProcessor/tar.gz/refs/heads/master \
-   -o param.tar.gz \
+  https://codeload.github.com/wikimedia/mediawiki-extensions-ParamProcessor/tar.gz/REL1_42 \
+  -o param.tar.gz \
  && tar -xzf param.tar.gz --strip-components=1 -C ParamProcessor \
  && rm param.tar.gz \
  && git clone --depth=1 --branch 4.0.0 https://github.com/ProfessionalWiki/ModernTimeline.git \
  && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets
+
 
 
 # --------------------------------------------------
