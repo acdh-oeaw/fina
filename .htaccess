@@ -1,36 +1,27 @@
-RewriteOptions inherit
+# Enable rewriting
+RewriteEngine On
+RewriteOptions Inherit
 
-RewriteEngine on
-#RewriteCond %{HTTPS} off
-#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
-
-RewriteCond %{REQUEST_URI} /img_auth\.php/
-RewriteRule ^ - [L]
-
-#RewriteCond %{HTTP_HOST} ^knowledge\.wiki$ [OR]
-#RewriteCond %{HTTP_HOST} ^fina-v\.knowledge\.wiki$
-
-## http://www.mediawiki.org/wiki/Manual:Short_URL/Apache
-
-RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f
-RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-d
-## RewriteRule ^(.*)$ %{DOCUMENT_ROOT}/index.php [L]
-RewriteRule ^(?:(?!rest.php/).)*$ %{DOCUMENT_ROOT}/index.php [L]
-RewriteRule ^/*$ %{DOCUMENT_ROOT}/index.php [L]
-
-
-
-## http://www.mediawiki.org/wiki/Manual:Short_URL/Apache
-
-#<IfModule mod_rewrite.c>
-#    RewriteEngine on
-#
-#       RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f
-#       RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-d
-#       RewriteRule ^(?:(?!rest.php/).)*$ %{DOCUMENT_ROOT}/index.php [L]
-#       RewriteRule ^/*$ %{DOCUMENT_ROOT}/index.php [L]
-#</IfModule>
-
+# --- SECURITY ---
+# Block access to sensitive files
 RedirectMatch 404 /\.git
 RedirectMatch 404 secrets.env
 
+# --- MEDIAWIKI: allow direct img_auth access ---
+RewriteCond %{REQUEST_URI} ^/img_auth\.php/
+RewriteRule ^ - [L]
+
+# --- MEDIAWIKI SHORT URL HANDLING ---
+# If request is NOT a real file or directory, send to index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Exclude REST API (must NOT be rewritten)
+RewriteRule ^rest\.php/ - [L]
+
+# Main rewrite rule
+RewriteRule ^(.*)$ index.php [L]
+
+# --- ROOT REQUEST ---
+# Redirect root to index.php explicitly
+RewriteRule ^$ index.php [L]
