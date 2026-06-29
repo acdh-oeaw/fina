@@ -62,44 +62,45 @@ RUN composer install \
 RUN rm -rf extensions \
  && mkdir -p extensions \
  && cd extensions \
-
-# --- SMW core ---
+ \
+ && echo "=== SMW core ===" \
  && git clone https://github.com/SemanticMediaWiki/SemanticMediaWiki.git \
  && cd SemanticMediaWiki && git checkout 4.2.0 && cd .. \
-
+ \
  && git clone https://github.com/SemanticMediaWiki/SemanticResultFormats.git \
  && cd SemanticResultFormats && git checkout 5.2.0 && cd .. \
-
-# --- SMW ecosystem ---
+ \
+ && echo "=== SMW ecosystem ===" \
  && git clone https://github.com/SemanticMediaWiki/SemanticCompoundQueries.git \
  && cd SemanticCompoundQueries && git checkout 4.0.1 && cd .. \
-
+ \
  && git clone https://github.com/SemanticMediaWiki/SemanticExtraSpecialProperties.git \
  && cd SemanticExtraSpecialProperties && git checkout v0.2.6 && cd .. \
-
+ \
  && git clone https://github.com/SemanticMediaWiki/SemanticMetaTags.git \
  && cd SemanticMetaTags && git checkout 5.0.0 && cd .. \
-
+ \
  && git clone https://github.com/SemanticMediaWiki/SemanticGlossary.git \
  && cd SemanticGlossary && git checkout 7.0.0 && cd .. \
-
+ \
  && git clone https://github.com/SemanticMediaWiki/SemanticDrilldown.git \
  && cd SemanticDrilldown && git checkout 5.0.2 && cd .. \
-
+ \
  && git clone https://github.com/SemanticMediaWiki/SemanticCite.git \
  && cd SemanticCite && git checkout 5.0.0 && cd .. \
-
-# --- forms ---
+ \
+ && echo "=== Forms ===" \
  && git clone https://github.com/wikimedia/mediawiki-extensions-PageForms.git PageForms \
  && cd PageForms && git checkout REL1_42 && cd .. \
-
-# --- external ---
+ \
+ && echo "=== External ===" \
  && git clone https://github.com/wikimedia/mediawiki-extensions-Validator.git Validator \
  && git clone https://github.com/wikimedia/mediawiki-extensions-ParamProcessor.git ParamProcessor \
  && git clone https://github.com/ProfessionalWiki/Maps.git \
+ \
  && git clone https://github.com/ProfessionalWiki/ModernTimeline.git \
  && cd ModernTimeline && git checkout 4.0.0 && cd .. \
-
+ \
  && git clone https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets \
  && cd Widgets && git checkout REL1_42 && cd ..
 
