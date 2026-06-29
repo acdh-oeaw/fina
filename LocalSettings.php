@@ -8,8 +8,7 @@
 # -----------------------------------------------------
 
 $wgServer = getenv('PUBLIC_URL') ?: 'https://fina.oeaw.ac.at';
-$wgCanonicalServer = $wgServer
-
+$wgCanonicalServer = $wgServer;
 
 $wgSitename = 'Fina Wiki';
 $wgMetaNamespace = "FINA";
