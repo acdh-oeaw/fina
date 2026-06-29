@@ -100,12 +100,20 @@ RUN rm -rf extensions \
  && fetch_repo https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets
 
 # --------------------------------------------------
-# INSTALL EXTENSION DEPENDENCIES
+# INSTALL EXTENSION DEPENDENCIES (ROBUST)
 # --------------------------------------------------
 RUN set -ex \
- && cd extensions/SemanticMediaWiki && composer install --no-dev --no-interaction \
- && cd ../SemanticResultFormats && composer install --no-dev --no-interaction \
- && cd ../Maps && composer install --no-dev --no-interaction \
+ && cd /var/www/html/extensions \
+ \
+ && cd SemanticMediaWiki && composer install --no-dev --no-interaction && cd .. \
+ && cd SemanticResultFormats && composer install --no-dev --no-interaction && cd .. \
+ \
+ && if [ -d "Maps" ]; then \
+      cd Maps && composer install --no-dev --no-interaction && cd .. ; \
+    else \
+      echo "Maps not found, skipping composer install"; \
+    fi \
+ \
  && cd /var/www/html
 
 # --------------------------------------------------
