@@ -4,13 +4,14 @@ FROM php:8.1-apache
 # SYSTEM DEPENDENCIES
 # --------------------------------------------------
 RUN apt-get update && apt-get install -y \
-    git unzip \
+    git \
+    unzip \
+    curl \
     libicu-dev \
     libzip-dev \
     libpng-dev \
     libxml2-dev \
     libonig-dev \
-    curl \
  && rm -rf /var/lib/apt/lists/*
 
 # --------------------------------------------------
@@ -26,12 +27,11 @@ RUN docker-php-ext-install \
     calendar
 
 # --------------------------------------------------
-# APACHE CONFIG
+# APACHE
 # --------------------------------------------------
 RUN a2enmod rewrite \
  && sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf \
- && echo "ServerName localhost" >> /etc/apache2/apache2.conf \
- && echo "Timeout 300" >> /etc/apache2/apache2.conf
+ && echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # --------------------------------------------------
 # COMPOSER
@@ -41,14 +41,46 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 
 # --------------------------------------------------
-# COPY APP
+# APP
 # --------------------------------------------------
 COPY . .
 
+ENV GIT_TERMINAL_PROMPT=0
+
 # --------------------------------------------------
-# INSTALL ROOT DEPENDENCIES
+# EXTENSIONS
 # --------------------------------------------------
-RUN composer install \
+RUN rm -rf extensions \
+ && mkdir -p extensions \
+ && cd extensions \
+ \
+ && echo "=== SMW core ===" \
+ && git clone --depth=1 --branch 4.2.0 https://github.com/SemanticMediaWiki/SemanticMediaWiki.git \
+ && git clone --depth=1 --branch 5.2.0 https://github.com/SemanticMediaWiki/SemanticResultFormats.git \
+ \
+ && echo "=== SMW ecosystem ===" \
+ && git clone --depth=1 --branch 4.0.1 https://github.com/SemanticMediaWiki/SemanticCompoundQueries.git \
+ && git clone --depth=1 --branch v0.2.6 https://github.com/SemanticMediaWiki/SemanticExtraSpecialProperties.git \
+ && git clone --depth=1 --branch 5.0.0 https://github.com/SemanticMediaWiki/SemanticMetaTags.git \
+ && git clone --depth=1 --branch 7.0.0 https://github.com/SemanticMediaWiki/SemanticGlossary.git \
+ && git clone --depth=1 --branch 5.0.2 https://github.com/SemanticMediaWiki/SemanticDrilldown.git \
+ && git clone --depth=1 --branch 5.0.0 https://github.com/SemanticMediaWiki/SemanticCite.git \
+ \
+ && echo "=== Forms ===" \
+ && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-PageForms.git PageForms \
+ \
+ && echo "=== External ===" \
+ && git clone --depth=1 https://github.com/ProfessionalWiki/Maps.git \
+ && git clone --depth=1 https://github.com/JeroenDeDauw/Validator.git Validator \
+ && git clone --depth=1 https://github.com/JeroenDeDauw/ParamProcessor.git ParamProcessor \
+ && git clone --depth=1 --branch 4.0.0 https://github.com/ProfessionalWiki/ModernTimeline.git \
+ && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets
+
+# --------------------------------------------------
+# ROOT COMPOSER
+# --------------------------------------------------
+RUN rm -rf vendor composer.lock \
+ && composer install \
     --no-dev \
     --prefer-dist \
     --optimize-autoloader \
@@ -57,50 +89,15 @@ RUN composer install \
     --ignore-platform-reqs
 
 # --------------------------------------------------
-# CLONE EXTENSIONS (PINNED VERSIONS)
-# --------------------------------------------------
-ENV GIT_TERMINAL_PROMPT=0
-
-RUN git config --global --unset credential.helper || true \
- && git config --global credential.helper "" \
- && git config --global url."https://github.com/".insteadOf "git@github.com:" \
- && rm -rf extensions \
- && mkdir -p extensions \
- && cd extensions \
- && echo "=== SMW core ===" \
- && git clone --depth=1 --branch 4.2.0 https://github.com/SemanticMediaWiki/SemanticMediaWiki.git \
- && git clone --depth=1 --branch 5.2.0 https://github.com/SemanticMediaWiki/SemanticResultFormats.git \
- && echo "=== SMW ecosystem ===" \
- && git clone --depth=1 --branch 4.0.1 https://github.com/SemanticMediaWiki/SemanticCompoundQueries.git \
- && git clone --depth=1 --branch v0.2.6 https://github.com/SemanticMediaWiki/SemanticExtraSpecialProperties.git \
- && git clone --depth=1 --branch 5.0.0 https://github.com/SemanticMediaWiki/SemanticMetaTags.git \
- && git clone --depth=1 --branch 7.0.0 https://github.com/SemanticMediaWiki/SemanticGlossary.git \
- && git clone --depth=1 --branch 5.0.2 https://github.com/SemanticMediaWiki/SemanticDrilldown.git \
- && git clone --depth=1 --branch 5.0.0 https://github.com/SemanticMediaWiki/SemanticCite.git \
- && echo "=== Forms ===" \
- && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-PageForms.git PageForms \
- && echo "=== External ===" \
- && git clone --depth=1 https://github.com/ProfessionalWiki/Maps.git \
- && git clone --depth=1 https://gerrit.wikimedia.org/r/mediawiki/extensions/Validator \
- && touch extensions/Validator/Validator.php \
- && git clone --depth=1 https://github.com/JeroenDeDauw/ParamProcessor.git \
- && git clone --depth=1 --branch 4.0.0 https://github.com/ProfessionalWiki/ModernTimeline.git \
- && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets
-
-# --------------------------------------------------
-# INSTALL EXTENSION DEPENDENCIES
+# EXTENSION COMPOSER
 # --------------------------------------------------
 RUN set -ex \
- && cd /var/www/html/extensions \
- \
- && cd SemanticMediaWiki && composer install --no-dev --no-interaction && cd .. \
- && cd SemanticResultFormats && composer install --no-dev --no-interaction && cd .. \
- \
- && if [ -d "Maps" ]; then \
-      cd Maps && composer install --no-dev --no-interaction && cd .. ; \
-    fi \
- \
- && cd /var/www/html
+ && cd /var/www/html/extensions/SemanticMediaWiki \
+ && composer install --no-dev --no-interaction --ignore-platform-reqs \
+ && cd /var/www/html/extensions/SemanticResultFormats \
+ && composer install --no-dev --no-interaction --ignore-platform-reqs \
+ && cd /var/www/html/extensions/Maps \
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
 
 # --------------------------------------------------
 # PERMISSIONS
@@ -108,7 +105,7 @@ RUN set -ex \
 RUN chown -R www-data:www-data /var/www/html
 
 # --------------------------------------------------
-# PHP CONFIG
+# PHP
 # --------------------------------------------------
 RUN echo "memory_limit=512M" > /usr/local/etc/php/conf.d/media.ini \
  && echo "max_execution_time=360" >> /usr/local/etc/php/conf.d/media.ini \
@@ -121,16 +118,17 @@ RUN echo "memory_limit=512M" > /usr/local/etc/php/conf.d/media.ini \
 # --------------------------------------------------
 RUN echo "opcache.enable=1" > /usr/local/etc/php/conf.d/opcache.ini \
  && echo "opcache.memory_consumption=128" >> /usr/local/etc/php/conf.d/opcache.ini \
- && echo "opcache.max_accelerated_files=20000" >> /usr/local/etc/php/conf.d/opcache.ini \
- && echo "opcache.revalidate_freq=2" >> /usr/local/etc/php/conf.d/opcache.ini
+ && echo "opcache.max_accelerated_files=20000" >> /usr/local/etc/php/conf.d/opcache.ini
 
 # --------------------------------------------------
 # ENTRYPOINT
 # --------------------------------------------------
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 
 EXPOSE 80
+
 CMD ["apache2-foreground"]
