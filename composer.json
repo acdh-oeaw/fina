@@ -45,11 +45,11 @@
 		"mediawiki/semantic-compound-queries": "^4.0",
 		"mediawiki/semantic-extra-special-properties": "^4.0",
 		"mediawiki/semantic-cite": "^4.0",
-		"mediawiki/semantic-dependency-updater": "^4.0"
+		"mediawiki/semantic-dependency-updater": "^4.0",
 		"professional-wiki/lingo": "*",
 		"mediawiki/maps": "*",
 		"professional-wiki/modern-timeline": "*",
-		"mediawiki/mermaid": "*"
+		"mediawiki/mermaid": "*",
 		"oojs/oojs-ui": "0.44.5",
 		"pear/mail": "1.5.1",
 		"pear/mail_mime": "1.10.11",
@@ -179,7 +179,10 @@
 	},
 	"config": {
 		"optimize-autoloader": true,
-		"prepend-autoloader": false,
+		"prepend-autoloader": false,		
+		"platform": {
+		"php": "8.1.0"
+		},
 		"allow-plugins": {
 			"composer/package-versions-deprecated": true,
 			"wikimedia/composer-merge-plugin": true,
