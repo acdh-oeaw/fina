@@ -62,17 +62,13 @@ RUN composer install \
 RUN git config --global --unset credential.helper || true \
  && git config --global credential.helper "" \
  && git config --global url."https://github.com/".insteadOf "git@github.com:" \
- \
  && export GIT_TERMINAL_PROMPT=0 \
- \
  && rm -rf extensions \
  && mkdir -p extensions \
  && cd extensions \
- \
  && echo "=== SMW core ===" \
  && git clone --depth=1 --branch 4.2.0 https://github.com/SemanticMediaWiki/SemanticMediaWiki.git \
  && git clone --depth=1 --branch 5.2.0 https://github.com/SemanticMediaWiki/SemanticResultFormats.git \
- \
  && echo "=== SMW ecosystem ===" \
  && git clone --depth=1 --branch 4.0.1 https://github.com/SemanticMediaWiki/SemanticCompoundQueries.git \
  && git clone --depth=1 --branch v0.2.6 https://github.com/SemanticMediaWiki/SemanticExtraSpecialProperties.git \
@@ -80,18 +76,24 @@ RUN git config --global --unset credential.helper || true \
  && git clone --depth=1 --branch 7.0.0 https://github.com/SemanticMediaWiki/SemanticGlossary.git \
  && git clone --depth=1 --branch 5.0.2 https://github.com/SemanticMediaWiki/SemanticDrilldown.git \
  && git clone --depth=1 --branch 5.0.0 https://github.com/SemanticMediaWiki/SemanticCite.git \
- \
  && echo "=== Forms ===" \
  && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-PageForms.git PageForms \
- \
-&& echo "=== External ===" \
-&& mkdir Validator \
-&& curl -L https://codeload.github.com/wikimedia/mediawiki-extensions-Validator/tar.gz/refs/heads/master \
- | tar -xz --strip-components=1 -C Validator \
- \
-&& mkdir ParamProcessor \
-&& curl -L https://codeload.github.com/wikimedia/mediawiki-extensions-ParamProcessor/tar.gz/refs/heads/master \
- | tar -xz --strip-components=1 -C ParamProcessor \
+ && echo "=== External ===" \
+ && git clone --depth=1 https://github.com/ProfessionalWiki/Maps.git \
+ && mkdir Validator \
+ && curl -fL --retry 3 --connect-timeout 10 --max-time 60 \
+   https://codeload.github.com/wikimedia/mediawiki-extensions-Validator/tar.gz/refs/heads/master \
+   -o validator.tar.gz \
+ && tar -xzf validator.tar.gz --strip-components=1 -C Validator \
+ && rm validator.tar.gz \
+ && mkdir ParamProcessor \
+ && curl -fL --retry 3 --connect-timeout 10 --max-time 60 \
+   https://codeload.github.com/wikimedia/mediawiki-extensions-ParamProcessor/tar.gz/refs/heads/master \
+   -o param.tar.gz \
+ && tar -xzf param.tar.gz --strip-components=1 -C ParamProcessor \
+ && rm param.tar.gz \
+ && git clone --depth=1 --branch 4.0.0 https://github.com/ProfessionalWiki/ModernTimeline.git \
+ && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets
 
 
 # --------------------------------------------------
