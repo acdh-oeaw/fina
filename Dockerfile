@@ -39,12 +39,13 @@ WORKDIR /var/www/html
 COPY composer.json composer.lock ./
 
 # Install PHP dependencies
-RUN composer install \
+RUN composer update \
     --no-dev \
     --optimize-autoloader \
     --no-interaction \
     --no-progress \
  && composer dump-autoload --optimize --classmap-authoritative
+
 
 # Copy rest of app
 COPY . .
