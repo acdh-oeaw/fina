@@ -38,14 +38,16 @@ WORKDIR /var/www/html
 # Copy composer files first (build cache optimization)
 COPY composer.json composer.lock ./
 
-# Install PHP dependencies
-RUN composer update \
+# Install dependencies
+RUN composer install \
     --no-dev \
     --optimize-autoloader \
     --no-interaction \
-    --no-progress \
- && composer dump-autoload --optimize --classmap-authoritative
+    --no-progress
 
+# Link MW extensions from vendor
+RUN ln -s /var/www/html/vendor/mediawiki/semantic-media-wiki /var/www/html/extensions/SemanticMediaWiki \
+ && ln -s /var/www/html/vendor/mediawiki/semantic-result-formats /var/www/html/extensions/SemanticResultFormats
 
 # Copy rest of app
 COPY . .
