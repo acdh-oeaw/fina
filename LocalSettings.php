@@ -134,7 +134,6 @@ wfLoadExtension('SemanticMetaTags');
 wfLoadExtension('SemanticGlossary');
 wfLoadExtension('SemanticDrilldown');
 wfLoadExtension('SemanticCite');
-wfLoadExtension('SemanticDependencyUpdater');
 wfLoadExtension('PageForms');
 
 # Semantic configuration

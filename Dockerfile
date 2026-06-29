@@ -41,7 +41,7 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 
 # --------------------------------------------------
-# COPY APPLICATION
+# COPY APP
 # --------------------------------------------------
 COPY . .
 
@@ -57,44 +57,49 @@ RUN composer install \
     --ignore-platform-reqs
 
 # --------------------------------------------------
-# CLONE EXTENSIONS USING LATEST STABLE TAG
+# CLONE EXTENSIONS (PINNED VERSIONS)
 # --------------------------------------------------
 RUN rm -rf extensions \
  && mkdir -p extensions \
  && cd extensions \
 
- && fetch_repo() { \
-    REPO=$1; \
-    NAME=$(basename $REPO .git); \
-    echo "Cloning $NAME..."; \
-    git clone $REPO; \
-    cd $NAME; \
-    TAG=$(git tag --sort=-v:refname | head -n 1); \
-    if [ -n "$TAG" ]; then \
-        echo "Checking out tag $TAG"; \
-        git checkout $TAG; \
-    else \
-        echo "No tag found for $NAME, using default branch"; \
-    fi; \
-    cd ..; \
- }; \
+# --- SMW core ---
+ && git clone https://github.com/SemanticMediaWiki/SemanticMediaWiki.git \
+ && cd SemanticMediaWiki && git checkout 4.2.0 && cd .. \
 
- && fetch_repo https://github.com/SemanticMediaWiki/SemanticMediaWiki.git \
- && fetch_repo https://github.com/SemanticMediaWiki/SemanticResultFormats.git \
- && fetch_repo https://github.com/SemanticMediaWiki/SemanticCompoundQueries.git \
- && fetch_repo https://github.com/SemanticMediaWiki/SemanticExtraSpecialProperties.git \
- && fetch_repo https://github.com/SemanticMediaWiki/SemanticMetaTags.git \
- && fetch_repo https://github.com/SemanticMediaWiki/SemanticGlossary.git \
- && fetch_repo https://github.com/SemanticMediaWiki/SemanticDrilldown.git \
- && fetch_repo https://github.com/SemanticMediaWiki/SemanticCite.git \
- && fetch_repo https://github.com/SemanticMediaWiki/SemanticDependencyUpdater.git \
- && fetch_repo https://github.com/wikimedia/mediawiki-extensions-PageForms.git \
- \
- # Maps (still direct)
- && git clone https://github.com/ProfessionalWiki/Maps.git Maps \
- \
- && fetch_repo https://github.com/ProfessionalWiki/ModernTimeline.git \
- && fetch_repo https://github.com/wikimedia/mediawiki-extensions-Widgets.git
+ && git clone https://github.com/SemanticMediaWiki/SemanticResultFormats.git \
+ && cd SemanticResultFormats && git checkout 5.2.0 && cd .. \
+
+# --- SMW ecosystem ---
+ && git clone https://github.com/SemanticMediaWiki/SemanticCompoundQueries.git \
+ && cd SemanticCompoundQueries && git checkout 4.0.1 && cd .. \
+
+ && git clone https://github.com/SemanticMediaWiki/SemanticExtraSpecialProperties.git \
+ && cd SemanticExtraSpecialProperties && git checkout v0.2.6 && cd .. \
+
+ && git clone https://github.com/SemanticMediaWiki/SemanticMetaTags.git \
+ && cd SemanticMetaTags && git checkout 5.0.0 && cd .. \
+
+ && git clone https://github.com/SemanticMediaWiki/SemanticGlossary.git \
+ && cd SemanticGlossary && git checkout 7.0.0 && cd .. \
+
+ && git clone https://github.com/SemanticMediaWiki/SemanticDrilldown.git \
+ && cd SemanticDrilldown && git checkout 5.0.2 && cd .. \
+
+ && git clone https://github.com/SemanticMediaWiki/SemanticCite.git \
+ && cd SemanticCite && git checkout 5.0.0 && cd .. \
+
+# --- forms ---
+ && git clone https://github.com/wikimedia/mediawiki-extensions-PageForms.git PageForms \
+ && cd PageForms && git checkout REL1_42 && cd .. \
+
+# --- external ---
+ && git clone https://github.com/ProfessionalWiki/Maps.git \
+ && git clone https://github.com/ProfessionalWiki/ModernTimeline.git \
+ && cd ModernTimeline && git checkout 4.0.0 && cd .. \
+
+ && git clone https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets \
+ && cd Widgets && git checkout REL1_42 && cd ..
 
 # --------------------------------------------------
 # INSTALL EXTENSION DEPENDENCIES
@@ -107,12 +112,9 @@ RUN set -ex \
  \
  && if [ -d "Maps" ]; then \
       cd Maps && composer install --no-dev --no-interaction && cd .. ; \
-    else \
-      echo "Maps not found, skipping"; \
     fi \
  \
  && cd /var/www/html
-
 
 # --------------------------------------------------
 # PERMISSIONS
