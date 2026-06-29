@@ -18,8 +18,8 @@ service:
   name: "web"
   url: "$public_url"
   type: ClusterIP
-  externalPort: 5000   # must match your app port
-  internalPort: 5000
+  externalPort: 80   # must match your app port
+  internalPort: 80
 
 ingress:
   enabled: true
@@ -34,7 +34,7 @@ startupProbe:
   enabled: true
   probeType: "httpGet"
   path: /api.php?action=query&meta=siteinfo&format=json
-  port: 5000
+  port: 80
   failureThreshold: 60     # ~10 minutes max startup
   periodSeconds: 10
   timeoutSeconds: 5
@@ -46,7 +46,7 @@ livenessProbe:
   enabled: true
   probeType: "tcpSocket"
   periodSeconds: 20
-  port: 5000
+  port: 80
   timeoutSeconds: 3
   failureThreshold: 5
   initialDelaySeconds: 60
@@ -57,7 +57,7 @@ readinessProbe:
   enabled: true
   probeType: "httpGet"
   path: /api.php?action=query&meta=siteinfo&format=json
-  port: 5000
+  port: 80
   periodSeconds: 10
   timeoutSeconds: 5
   failureThreshold: 6
