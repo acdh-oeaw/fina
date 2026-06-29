@@ -80,6 +80,18 @@ RUN mkdir -p /var/www/html/extensions \
  \
  && echo "=== Other ===" \
  && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets
+
+# --------------------------------------------------
+# SKINS
+# --------------------------------------------------
+RUN mkdir -p /var/www/html/skins \
+ && cd /var/www/html/skins \
+ \
+ && echo "=== MediaWiki skins ===" \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-skins-Vector.git Vector \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-skins-MonoBook.git MonoBook \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-skins-Timeless.git Timeless
+
 # --------------------------------------------------
 # ROOT COMPOSER
 # --------------------------------------------------
@@ -90,6 +102,7 @@ RUN composer install \
     --no-interaction \
     --no-progress \
     --ignore-platform-reqs
+
 
 # --------------------------------------------------
 # EXTENSION COMPOSER
