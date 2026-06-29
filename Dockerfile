@@ -57,38 +57,47 @@ RUN composer install \
     --ignore-platform-reqs
 
 # --------------------------------------------------
-# CLONE MEDIAWIKI EXTENSIONS (CLEAN + PINNED)
+# CLONE EXTENSIONS USING LATEST STABLE TAG
 # --------------------------------------------------
 RUN rm -rf extensions \
  && mkdir -p extensions \
  && cd extensions \
 
- # --- Semantic MediaWiki core ---
- && git clone https://github.com/SemanticMediaWiki/SemanticMediaWiki.git \
- && cd SemanticMediaWiki && git checkout 4.2.1 && cd .. \
+# function to clone latest tag
+ && fetch_repo () { \
+    REPO=$1; \
+    NAME=$(basename $REPO .git); \
+    echo "Cloning $NAME..."; \
+    git clone --quiet $REPO; \
+    cd $NAME; \
+    TAG=$(git tag --sort=-v:refname | head -n 1); \
+    if [ -n "$TAG" ]; then \
+        echo "Checking out tag $TAG"; \
+        git checkout $TAG; \
+    else \
+        echo "No tag found, staying on default branch"; \
+    fi; \
+    cd ..; \
+ }; \
 
- && git clone https://github.com/SemanticMediaWiki/SemanticResultFormats.git \
- && cd SemanticResultFormats && git checkout 4.2.1 && cd .. \
+# SMW core
+ fetch_repo https://github.com/SemanticMediaWiki/SemanticMediaWiki.git \
+ && fetch_repo https://github.com/SemanticMediaWiki/SemanticResultFormats.git \
 
- # --- SMW ecosystem ---
- && git clone https://github.com/SemanticMediaWiki/SemanticCompoundQueries.git \
- && git clone https://github.com/SemanticMediaWiki/SemanticExtraSpecialProperties.git \
- && git clone https://github.com/SemanticMediaWiki/SemanticMetaTags.git \
- && git clone https://github.com/SemanticMediaWiki/SemanticGlossary.git \
- && git clone https://github.com/SemanticMediaWiki/SemanticDrilldown.git \
- && git clone https://github.com/SemanticMediaWiki/SemanticCite.git \
- && git clone https://github.com/SemanticMediaWiki/SemanticDependencyUpdater.git \
+# SMW ecosystem
+ && fetch_repo https://github.com/SemanticMediaWiki/SemanticCompoundQueries.git \
+ && fetch_repo https://github.com/SemanticMediaWiki/SemanticExtraSpecialProperties.git \
+ && fetch_repo https://github.com/SemanticMediaWiki/SemanticMetaTags.git \
+ && fetch_repo https://github.com/SemanticMediaWiki/SemanticGlossary.git \
+ && fetch_repo https://github.com/SemanticMediaWiki/SemanticDrilldown.git \
+ && fetch_repo https://github.com/SemanticMediaWiki/SemanticCite.git \
+ && fetch_repo https://github.com/SemanticMediaWiki/SemanticDependencyUpdater.git \
 
- # --- Forms ---
- && git clone https://github.com/wikimedia/mediawiki-extensions-PageForms.git PageForms \
- && cd PageForms && git checkout REL1_39 && cd .. \
-
- # --- External ---
- && git clone https://github.com/ProfessionalWiki/Maps.git \
- && cd Maps && git checkout 10.0 && cd .. \
-
- && git clone https://github.com/ProfessionalWiki/ModernTimeline.git \
- && git clone https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets
+# external
+ && fetch_repo https://github.com/wikimedia/mediawiki-extensions-PageForms.git \
+ && fetch_repo https://github.com/ProfessionalWiki/Maps.git \
+ && fetch_repo https://github.com/ProfessionalWiki/ModernTimeline.git \
+ && fetch_repo https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets
 
 # --------------------------------------------------
 # INSTALL EXTENSION DEPENDENCIES
