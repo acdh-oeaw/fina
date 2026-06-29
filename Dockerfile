@@ -84,12 +84,15 @@ RUN git config --global --unset credential.helper || true \
  && echo "=== Forms ===" \
  && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-PageForms.git PageForms \
  \
- && echo "=== External ===" \
- && git clone --depth=1 https://github.com/wikimedia/mediawiki-extensions-Validator.git Validator \
- && git clone --depth=1 https://github.com/wikimedia/mediawiki-extensions-ParamProcessor.git ParamProcessor \
- && git clone --depth=1 https://github.com/ProfessionalWiki/Maps.git \
- && git clone --depth=1 --branch 4.0.0 https://github.com/ProfessionalWiki/ModernTimeline.git \
- && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets
+&& echo "=== External ===" \
+&& mkdir Validator \
+&& curl -L https://codeload.github.com/wikimedia/mediawiki-extensions-Validator/tar.gz/refs/heads/master \
+ | tar -xz --strip-components=1 -C Validator \
+ \
+&& mkdir ParamProcessor \
+&& curl -L https://codeload.github.com/wikimedia/mediawiki-extensions-ParamProcessor/tar.gz/refs/heads/master \
+ | tar -xz --strip-components=1 -C ParamProcessor \
+
 
 # --------------------------------------------------
 # INSTALL EXTENSION DEPENDENCIES
