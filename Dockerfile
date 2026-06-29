@@ -49,7 +49,6 @@ WORKDIR /var/www/html
 COPY . .
 
 ENV GIT_TERMINAL_PROMPT=0
-
 # --------------------------------------------------
 # EXTENSIONS
 # --------------------------------------------------
@@ -89,7 +88,7 @@ RUN mkdir -p /var/www/html/skins \
  \
  && echo "=== MediaWiki skins ===" \
  && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-skins-MonoBook.git MonoBook
- 
+
 # --------------------------------------------------
 # ROOT COMPOSER
 # --------------------------------------------------
@@ -100,7 +99,6 @@ RUN composer install \
     --no-interaction \
     --no-progress \
     --ignore-platform-reqs
-
 
 # --------------------------------------------------
 # EXTENSION COMPOSER
@@ -113,6 +111,9 @@ RUN set -ex \
  && composer install --no-dev --no-interaction --ignore-platform-reqs \
  \
  && cd /var/www/html/extensions/Maps \
+ && composer install --no-dev --no-interaction --ignore-platform-reqs \
+ \
+ && cd /var/www/html/extensions/TemplateStyles \
  && composer install --no-dev --no-interaction --ignore-platform-reqs
 
 # --------------------------------------------------
