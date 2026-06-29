@@ -183,11 +183,11 @@ wfLoadExtension('TemplateStyles');
 # -----------------------------------------------------
 # SKINS
 # -----------------------------------------------------
-// wfLoadSkin('Vector');
+wfLoadSkin('Vector');
 wfLoadSkin('MonoBook');
 // wfLoadSkin('Timeless');
 
-$wgDefaultSkin = 'MonoBook';
+$wgDefaultSkin = 'Vector';
 
 # -----------------------------------------------------
 # NAMESPACES (custom)
