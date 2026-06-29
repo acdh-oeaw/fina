@@ -1,27 +1,21 @@
-# Enable rewriting
 RewriteEngine On
-RewriteOptions Inherit
 
-# --- SECURITY ---
-# Block access to sensitive files
+# Security
 RedirectMatch 404 /\.git
 RedirectMatch 404 secrets.env
 
-# --- MEDIAWIKI: allow direct img_auth access ---
-RewriteCond %{REQUEST_URI} ^/img_auth\.php/
+# Do not rewrite real files/directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# --- MEDIAWIKI SHORT URL HANDLING ---
-# If request is NOT a real file or directory, send to index.php
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
+# MediaWiki entry points
+RewriteRule ^api\.php$ - [L]
+RewriteRule ^load\.php$ - [L]
+RewriteRule ^img_auth\.php$ - [L]
+RewriteRule ^opensearch_desc\.php$ - [L]
+RewriteRule ^rest\.php$ - [L]
+RewriteRule ^thumb\.php$ - [L]
 
-# Exclude REST API (must NOT be rewritten)
-RewriteRule ^rest\.php/ - [L]
-
-# Main rewrite rule
-RewriteRule ^(.*)$ index.php [L]
-
-# --- ROOT REQUEST ---
-# Redirect root to index.php explicitly
-RewriteRule ^$ index.php [L]
+# Short URLs
+RewriteRule ^(.*)$ index.php [L,QSA]

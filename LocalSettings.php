@@ -16,7 +16,8 @@ $wgLanguageCode = 'en';
 
 $wgScriptPath = "";
 $wgArticlePath = "/$1";
-$wgUsePathInfo = true;
+$wgUsePathInfo = false;
+
 $wgScriptExtension = ".php";
 
 # Branding
