@@ -38,18 +38,14 @@ WORKDIR /var/www/html
 # copy everything
 COPY . .
 
-# install deps (fresh svaki build)
+# install deps
 RUN composer install \
     --no-dev \
     --optimize-autoloader \
     --no-interaction \
     --no-progress
 
-# link extensions
-RUN ln -s /var/www/html/vendor/mediawiki/semantic-media-wiki /var/www/html/extensions/SemanticMediaWiki \
- && ln -s /var/www/html/vendor/mediawiki/semantic-result-formats /var/www/html/extensions/SemanticResultFormats
-
-# Set correct permissions
+# permissions
 RUN chown -R www-data:www-data /var/www/html
 
 # ----- PHP CONFIG -----

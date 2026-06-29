@@ -38,8 +38,6 @@
 		"justinrainbow/json-schema": "5.2.11",
 		"liuggio/statsd-php-client": "1.0.18",
 		"monolog/monolog": "2.2.0",		
-		"mediawiki/semantic-media-wiki": "^4.2",
-		"mediawiki/semantic-result-formats": "^4.2",
 		"mediawiki/semantic-meta-tags": "*",
 		"mediawiki/semantic-extra-special-properties": "*",
 		"mediawiki/validator": "^2.2",
