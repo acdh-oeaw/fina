@@ -3,7 +3,7 @@ FROM php:7.4-apache
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     git unzip libicu-dev libzip-dev libpng-dev libxml2-dev \
-    && docker-php-ext-install intl pdo pdo_mysql zip gd xml \
+    && docker-php-ext-install intl pdo pdo_mysql zip gd xml calendar \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Enable Apache modules (required for MediaWiki + .htaccess)
