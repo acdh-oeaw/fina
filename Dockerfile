@@ -87,8 +87,8 @@ RUN mkdir -p /var/www/html/skins \
  && cd /var/www/html/skins \
  \
  && echo "=== MediaWiki skins ===" \
- && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-skins-MonoBook.git MonoBook
-
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-skins-MonoBook.git MonoBook \
+ && git clone --depth=1 --branch REL1_39 https://gerrit.wikimedia.org/r/mediawiki/skins/Vector Vector
 # --------------------------------------------------
 # ROOT COMPOSER
 # --------------------------------------------------
