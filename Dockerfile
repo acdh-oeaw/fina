@@ -81,20 +81,11 @@ RUN git config --global --unset credential.helper || true \
  && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-PageForms.git PageForms \
  && echo "=== External ===" \
  && git clone --depth=1 https://github.com/ProfessionalWiki/Maps.git \
- && mkdir Validator \
- && curl -fL --retry 5 --retry-all-errors --connect-timeout 10 --max-time 60 \
-    https://codeload.github.com/wikimedia/mediawiki-extensions-Validator/tar.gz/main \
-    -o validator.tar.gz \
- && tar -xzf validator.tar.gz --strip-components=1 -C Validator \
- && rm validator.tar.gz \
- && mkdir ParamProcessor \
- && curl -fL --retry 5 --retry-all-errors --connect-timeout 10 --max-time 60 \
-    https://codeload.github.com/wikimedia/mediawiki-extensions-ParamProcessor/tar.gz/main \
-    -o param.tar.gz \
- && tar -xzf param.tar.gz --strip-components=1 -C ParamProcessor \
- && rm param.tar.gz \
+ && git clone --depth=1 https://gerrit.wikimedia.org/r/mediawiki/extensions/Validator \
+ && git clone --depth=1 https://github.com/JeroenDeDauw/ParamProcessor.git \
  && git clone --depth=1 --branch 4.0.0 https://github.com/ProfessionalWiki/ModernTimeline.git \
  && git clone --depth=1 --branch REL1_42 https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets
+
 
 
 
