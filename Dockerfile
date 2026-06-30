@@ -131,14 +131,16 @@ RUN set -ex \
  && cd /var/www/html/extensions/SemanticMediaWiki \
  && composer install --no-dev --no-interaction --ignore-platform-reqs \
  \
- && cd /var/www/html/extensions/SemanticResultFormats \
- && composer install --no-dev --no-interaction --ignore-platform-reqs \
- \
  && cd /var/www/html/extensions/Maps \
  && composer install --no-dev --no-interaction --ignore-platform-reqs \
  \
  && cd /var/www/html/extensions/TemplateStyles \
  && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN rm -rf \
+    /var/www/html/extensions/SemanticResultFormats/vendor \
+    /var/www/html/extensions/SemanticResultFormats/composer.lock \
+    /var/www/html/extensions/SemanticResultFormats/extensions
 
 # --------------------------------------------------
 # PERMISSIONS
