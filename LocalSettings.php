@@ -123,7 +123,7 @@ wfLoadExtension('WikiEditor');
 # SEMANTIC MEDIAWIKI CORE
 # -----------------------------------------------------
 wfLoadExtension('SemanticMediaWiki');
-wfLoadExtension('SemanticResultFormats');
+//wfLoadExtension('SemanticResultFormats');
 
 
 # --------------------------------------------------
@@ -287,3 +287,5 @@ $smwHost = parse_url(
 if ( function_exists( 'enableSemantics' ) ) {
     enableSemantics( $smwHost );
 }
+
+wfLoadExtension( 'SemanticResultFormats' );
