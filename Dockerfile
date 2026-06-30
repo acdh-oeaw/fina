@@ -49,7 +49,8 @@ RUN a2enmod rewrite \
 
 RUN git clone \
     --depth=1 \
-    --branch ${MW_VERSION} \
+    --branch REL1_39 \
+    --recurse-submodules \
     https://github.com/wikimedia/mediawiki.git \
     /var/www/html
 
@@ -132,13 +133,6 @@ RUN ln -s /var/www/html/skins/Chameleon /var/www/html/skins/chameleon \
 # --------------------------------------------------
 # COMPOSER
 # --------------------------------------------------
-
-RUN composer install \
-    --no-dev \
-    --prefer-dist \
-    --optimize-autoloader \
-    --no-interaction \
-    --ignore-platform-reqs
 
 RUN cd extensions/SemanticMediaWiki \
  && composer install --no-dev --no-interaction --ignore-platform-reqs
