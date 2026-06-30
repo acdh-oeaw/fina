@@ -187,10 +187,11 @@ wfLoadExtension('TemplateStyles');
 wfLoadExtension( 'Kma' );
 wfLoadExtension( 'Bootstrap' );
 
+wfLoadSkin( 'Chameleon' );
 wfLoadSkin( 'Kma' );
 $wgDefaultSkin = 'kma';
 
-$egChameleonLayoutFile = 'skins/Kma/SITE/FINA-layout.xml';
+$egChameleonLayoutFile = 'SITE/FINA-layout.xml';
 $egChameleonThemeFile = 'skins/Kma/SITE/f_variables.scss';
 
 $egChameleonExternalStyleModules = [

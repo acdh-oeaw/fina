@@ -94,7 +94,9 @@ RUN mkdir -p /var/www/html/skins \
 # --------------------------------------------------
 COPY custom/extensions/Bootstrap /var/www/html/extensions/Bootstrap
 COPY custom/extensions/Kma /var/www/html/extensions/Kma
+
 COPY custom/skins/Kma /var/www/html/skins/Kma
+COPY custom/skins/chameleon /var/www/html/skins/chameleon
 
 
 # --------------------------------------------------
