@@ -99,6 +99,7 @@ COPY custom/skins/Kma /var/www/html/skins/Kma
 COPY custom/skins/Chameleon /var/www/html/skins/Chameleon
 
 RUN ln -s /var/www/html/skins/Chameleon /var/www/html/skins/chameleon
+RUN ln -s /var/www/html/skins /var/www/html/Skins
 
 # --------------------------------------------------
 # ROOT COMPOSER
