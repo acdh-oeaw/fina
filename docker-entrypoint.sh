@@ -1,5 +1,6 @@
 #!/bin/bash
-set -e
+
+set -u
 
 cd /var/www/html
 
@@ -9,13 +10,13 @@ echo "=== INIT: MediaWiki start ==="
 # DATABASE
 # --------------------------------------------------
 
-DB_HOST="${MYSQL_HOST:-${MYSQL_SERVER}}"
-DB_NAME="${MYSQL_DB}"
-DB_USER="${MYSQL_USER}"
-DB_PASS="${MYSQL_PASSWORD}"
+DB_HOST="${MYSQL_HOST:-${MYSQL_SERVER:-}}"
+DB_NAME="${MYSQL_DB:-}"
+DB_USER="${MYSQL_USER:-}"
+DB_PASS="${MYSQL_PASSWORD:-}"
 
 if [ -z "$DB_HOST" ]; then
-    echo "ERROR: MYSQL_HOST/MYSQL_SERVER not set"
+    echo "ERROR: MYSQL_HOST or MYSQL_SERVER not set"
     exit 1
 fi
 
@@ -32,7 +33,7 @@ try {
     exit(1);
 }
 "; do
-    echo "Database unavailable, retrying..."
+    echo "Database not available yet..."
     sleep 5
 done
 
@@ -43,8 +44,15 @@ echo "Database available"
 # --------------------------------------------------
 
 if [ -f maintenance/update.php ]; then
-    echo "Running MediaWiki update"
-    php maintenance/update.php --quick
+    echo "Running MediaWiki update..."
+
+    if php maintenance/update.php --quick; then
+        echo "MediaWiki update completed successfully"
+    else
+        RET=$?
+        echo "WARNING: MediaWiki update failed with exit code $RET"
+        echo "Container will continue starting for debugging purposes"
+    fi
 fi
 
 echo "=== INIT DONE ==="
