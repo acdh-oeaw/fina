@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<structure xmlns="https://ProfessionalWiki.github.io/chameleon/schema/3.4/layout.rng">
+
+
+	<component type="NavbarHorizontalKma">
+		<component type="MenuKma" message="secondary-menu"/>
+
+
+		<component type="SearchBarKma" position="right" class="order-first order-cmln-0"  
+buttons="go" />
+
+
+<!--
+		<component type="PageToolsKma" class="" hideSelectedNameSpace="yes"/>
+-->
+		<component type="PersonalToolsKma" position="right" hideSelectedNameSpace="yes"/>
+
+<!--
+		<component type="NavMenu" flatten="navigation" />
+		<component type="SearchBar" class="order-first order-cmln-0" position="right" buttons="go"/>
+		<component type="ToolboxKma" flatten="no" class="dropup"/>
+-->
+<!--
+		<component type="SearchBar" class="order-first order-cmln-0" position="right" 
+buttons="go" />
+-->
+	</component>
+
+<!--
+	<component type="NavbarHorizontal">
+		<component type="Logo" position="head"/>
+		<component type="Menu" message="secondary-menu"/>
+		<component type="PersonalTools" position="right"/>
+		<component type="PageTools" class="flex-row" position="right" hideSelectedNameSpace="yes"/>		
+	</component>
+-->
+
+
+<!--
+	<component type="NavbarHorizontal">
+		<component type="Logo" position="head"/>
+		<component type="NavMenu" flatten="navigation" />
+		<component type="Menu" message="secondary-menu"/>
+		<component type="PageTools" class="flex-row" position="right" hideSelectedNameSpace="yes"/>
+		<component type="SearchBar" class="order-first order-cmln-0" position="right" buttons="go"/>
+		<component type="PersonalTools" position="right"/>
+	</component>
+-->
+
+		<component type="PageToolsNavKma" class="nav" hideSelectedNameSpace="no"/>
+	
+				<component type="MainContentKma"/>
+
+				<component type="FooterInfoKma" class="justify-content-right"/>
+
+<component type="FooterKma" message="Footer" />
+	
+
+
+</structure>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Navbar</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+<!--    Made by Nicoletta Fabro    -->
+<nav role="navigation">
+  <div id="menuToggle">
+    <!--
+    A fake / hidden checkbox used as click reciever¬.
+    -->
+    <input type="checkbox" />
+    
+    <!--
+    Some spans acting as the hamburger icon.
+    These will be animated into a cross when clicked.
+    -->
+    <span></span>
+    <span></span>
+    <span></span>
+    
+    <!--
+    The menu itself.
+    -->
+    <ul id="menu">
+      <a href="#"><li>Home</li></a>
+      <a href="#"><li>About</li></a>
+      <a href="#"><li>Contacts</li></a>
+      <a href="#"><li>Show me more</li></a>
+      <div class="underbar"></div>
+    </ul>
+  </div>
+</nav>
+</body>
+</html>
