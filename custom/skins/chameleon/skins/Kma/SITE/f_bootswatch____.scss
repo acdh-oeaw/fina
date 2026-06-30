@@ -1,0 +1,202 @@
+
+.container {
+	/* padding: 0; */
+	max-width: none;
+}
+
+.row {
+	/* margin: 0; */
+}
+
+.col {
+	/* padding: 0; */
+}
+
+.mw-content-ltr ul, .mw-content-rtl .mw-content-ltr ul {
+	/* margin: 0; */
+}
+
+h1 {
+	font-size: 2em;
+	color: #c00000;
+}
+
+.mw-body {
+    /* max-width: 1080px; */
+    margin: auto;
+    background-color: #FFFFFF;
+    padding: 1.5em;
+	margin-top: 24px;
+}
+
+body {
+}
+
+
+.smw-tabs.smw-factbox {
+	display: none;
+}
+
+.skin-chameleon .mw-indicator.mw-indicator-smw-entity-examiner {
+	margin-top: 0 !important;
+}
+
+.mw-spinner {
+	display: none !important;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+	overflow: visible;
+}
+
+body {
+	max-width: 1600px;
+    margin: auto;
+}
+
+.mw-body h1.firstHeading {
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: .75em;
+    border-bottom: none;
+}
+
+h1, h2 {
+    border-bottom: none;
+}
+
+.ace-responsive-menu > li.menu-kda-right {
+	float: right;
+}
+
+nav .logo {
+	float: left;
+}
+
+.nav-dropdown { 
+	z-index: 1000;
+	background: white;
+}
+
+
+.nav-container .brand {
+    height: 70px;
+    overflow: hidden;
+}
+
+.nav-container {
+	position: relative;
+}
+
+section.navigation {
+	margin: 12px 15px;
+	
+}
+
+section.navigation .nav-container {
+    box-shadow: 0px 2px 18px 0px rgb(0 0 0 / 12%);
+
+}
+
+section.navigation li {
+	margin-bottom: 0;
+}
+
+
+.mw-body .firstHeading {
+	border-bottom: none;
+	margin-bottom: .5em;
+	margin-top: .5em;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.mw-body h1, .mw-body h2 {
+	margin-top: 0;
+}
+
+
+section.navigation {
+	z-index: 1000;
+}
+
+section.navigation nav {
+	background: white;
+}
+
+
+section.navigation ul {
+	list-style: none;
+}
+
+section.navigation li {
+    white-space: nowrap;
+}
+
+.personal-tools-kda-user:before {
+	font-family: 'Font Awesome 5 Free';
+	content: "\f007";
+	margin-right: 8px;
+}
+
+.page-tools-kda-edit:before {
+	font-family: 'Font Awesome 5 Free';
+	content: "\f31c";
+		margin-right: 8px;
+}
+
+section.navigation nav ul li .page-tools-kda-edit:after  {
+	content: ""
+}
+
+section.navigation nav ul li .personal-tools-kda-user:after {
+	content: ""
+}
+
+.catlinks li {
+	background: lightgray;
+	border-radius: 16px;
+	padding: 4px 8px;
+	min-width: 60px;
+	text-align: center;
+}
+
+
+.catlinks li:first-child {
+	padding-left: 8px;
+}
+
+
+.mw-normal-catlinks li a {
+	color: black;
+}
+
+section.navigation .brand img {
+	height: 66px;
+}
+
+
+.mw-collapsible .mw-collapsible-toggle {
+	display: none;
+}
+
+.btn-info a {
+	color: white;
+}
+
+.btn-info a:hover {
+	color: white;
+	text-decoration: none;
+}
+
+.btn-info {
+    margin-right: 6px;
+    margin-bottom: 6px;
+}
+
+.slick-slider ul {
+	margin: 0;
+}
+
+
