@@ -118,10 +118,9 @@ COPY customisations/skins/Chameleon \
 COPY customisations/skins/Kma \
      /var/www/html/skins/Kma
 
-COPY customisations/images \
-     /var/www/html/images
-
 COPY .htaccess /var/www/html/.htaccess
+
+RUN mkdir -p /var/www/html/images
 
 # --------------------------------------------------
 # COMPATIBILITY LINKS
