@@ -67,6 +67,10 @@ RUN mkdir -p /var/www/html/extensions \
  && echo "=== SMW core ===" \
  && git clone --depth=1 --branch 4.2.0 https://github.com/SemanticMediaWiki/SemanticMediaWiki.git \
  && git clone --depth=1 --branch datatables-v2-improvements https://github.com/Knowledge-Wiki/SemanticResultFormats.git SemanticResultFormats \
+ && cd SemanticResultFormats \
+ && git checkout 5e0ba274c5d60b6dab3aac0e2d9eb433eb59987a \
+ && rm -rf extensions \
+ && cd ..
  \
  && echo "=== Forms ===" \
  && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-PageForms.git PageForms \
