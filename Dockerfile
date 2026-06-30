@@ -66,7 +66,7 @@ RUN mkdir -p /var/www/html/extensions \
  \
  && echo "=== SMW core ===" \
  && git clone --depth=1 --branch 4.2.0 https://github.com/SemanticMediaWiki/SemanticMediaWiki.git \
- && git clone --depth=1 --branch 5.2.0 https://github.com/SemanticMediaWiki/SemanticResultFormats.git \
+ && git clone --depth=1 --branch 4.2.0 https://github.com/SemanticMediaWiki/SemanticResultFormats.git \
  \
  && echo "=== Forms ===" \
  && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-PageForms.git PageForms \
