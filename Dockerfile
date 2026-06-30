@@ -44,29 +44,23 @@ RUN a2enmod rewrite \
  && echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # --------------------------------------------------
-# MEDIAWIKI CORE
+# MEDIAWIKI
 # --------------------------------------------------
 
 RUN git clone \
     --depth=1 \
-    --branch REL1_39 \
     --recurse-submodules \
+    --branch ${MW_VERSION} \
     https://github.com/wikimedia/mediawiki.git \
     /var/www/html
 
 WORKDIR /var/www/html
 
 # --------------------------------------------------
-# CORE EXTENSIONS
+# EXTRA EXTENSIONS
 # --------------------------------------------------
 
 RUN cd extensions \
- && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-ParserFunctions.git ParserFunctions \
- && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-Scribunto.git Scribunto \
- && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-Cite.git Cite \
- && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-CategoryTree.git CategoryTree \
- && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-TemplateData.git TemplateData \
- && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-WikiEditor.git WikiEditor \
  && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-TemplateStyles.git TemplateStyles \
  && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-PageForms.git PageForms \
  && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets
@@ -76,8 +70,12 @@ RUN cd extensions \
 # --------------------------------------------------
 
 RUN cd extensions \
- && git clone --depth=1 --branch ${SMW_VERSION} https://github.com/SemanticMediaWiki/SemanticMediaWiki.git \
- && git clone https://github.com/Knowledge-Wiki/SemanticResultFormats.git SemanticResultFormats \
+ && git clone --depth=1 --branch ${SMW_VERSION} \
+    https://github.com/SemanticMediaWiki/SemanticMediaWiki.git \
+ && git clone \
+    --branch datatables-v2-improvements \
+    https://github.com/Knowledge-Wiki/SemanticResultFormats.git \
+    SemanticResultFormats \
  && cd SemanticResultFormats \
  && git checkout 5e0ba274c5d60b6dab3aac0e2d9eb433eb59987a \
  && rm -rf extensions \
@@ -85,7 +83,7 @@ RUN cd extensions \
  && sed -i '/"AutoloadNamespaces": {/a\            "SRF\\\\": "src/",' extension.json
 
 # --------------------------------------------------
-# MAPS STACK
+# MAPS
 # --------------------------------------------------
 
 RUN cd extensions \
@@ -95,17 +93,11 @@ RUN cd extensions \
  && git clone --depth=1 --branch 4.0.0 https://github.com/ProfessionalWiki/ModernTimeline.git ModernTimeline
 
 # --------------------------------------------------
-# SKINS
-# --------------------------------------------------
-
-RUN cd skins \
- && git clone --depth=1 --branch REL1_39 https://gerrit.wikimedia.org/r/mediawiki/skins/Vector Vector
-
-# --------------------------------------------------
 # CUSTOMISATIONS
 # --------------------------------------------------
 
-COPY customisations/LocalSettings.php /var/www/html/LocalSettings.php
+COPY customisations/LocalSettings.php \
+     /var/www/html/LocalSettings.php
 
 COPY customisations/extensions/Bootstrap \
      /var/www/html/extensions/Bootstrap
@@ -119,7 +111,8 @@ COPY customisations/skins/Chameleon \
 COPY customisations/skins/Kma \
      /var/www/html/skins/Kma
 
-COPY .htaccess /var/www/html/.htaccess
+COPY .htaccess \
+     /var/www/html/.htaccess
 
 RUN mkdir -p /var/www/html/images
 
@@ -127,24 +120,36 @@ RUN mkdir -p /var/www/html/images
 # COMPATIBILITY LINKS
 # --------------------------------------------------
 
-RUN ln -s /var/www/html/skins/Chameleon /var/www/html/skins/chameleon \
- && ln -s /var/www/html/skins /var/www/html/Skins
+RUN ln -sf /var/www/html/skins/Chameleon /var/www/html/skins/chameleon \
+ && ln -sf /var/www/html/skins /var/www/html/Skins
 
 # --------------------------------------------------
 # COMPOSER
 # --------------------------------------------------
 
 RUN cd extensions/SemanticMediaWiki \
- && composer install --no-dev --no-interaction --ignore-platform-reqs
+ && composer install \
+    --no-dev \
+    --no-interaction \
+    --ignore-platform-reqs
 
 RUN cd extensions/Maps \
- && composer install --no-dev --no-interaction --ignore-platform-reqs
+ && composer install \
+    --no-dev \
+    --no-interaction \
+    --ignore-platform-reqs
 
 RUN cd extensions/TemplateStyles \
- && composer install --no-dev --no-interaction --ignore-platform-reqs
+ && composer install \
+    --no-dev \
+    --no-interaction \
+    --ignore-platform-reqs
 
 RUN cd extensions/Bootstrap \
- && composer install --no-dev --no-interaction --ignore-platform-reqs
+ && composer install \
+    --no-dev \
+    --no-interaction \
+    --ignore-platform-reqs
 
 # --------------------------------------------------
 # CLEANUP
@@ -180,7 +185,8 @@ RUN chown -R www-data:www-data /var/www/html
 # ENTRYPOINT
 # --------------------------------------------------
 
-COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+COPY docker-entrypoint.sh \
+     /usr/local/bin/docker-entrypoint.sh
 
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
