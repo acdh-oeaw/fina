@@ -273,7 +273,7 @@ $wgShellLocale = "C.UTF-8";
 # -----------------------------------------------------
 # SECURITY & DEBUG
 # -----------------------------------------------------
-$wgShowExceptionDetails = true;
+$wgShowExceptionDetails = false;
 
 # -----------------------------------------------------
 # FINAL SMW INIT
