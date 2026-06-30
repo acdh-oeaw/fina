@@ -116,6 +116,8 @@ RUN composer install \
     --no-progress \
     --ignore-platform-reqs
 
+RUN rm -rf /var/www/html/extensions/SemanticResultFormats/extensions
+
 # --------------------------------------------------
 # CUSTOM EXTENSIONS
 # --------------------------------------------------
