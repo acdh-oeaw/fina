@@ -192,7 +192,7 @@ wfLoadSkin( 'Kma' );
 $wgDefaultSkin = 'kma';
 
 $egChameleonLayoutFile = 'SITE/FINA-layout.xml';
-$egChameleonThemeFile = 'skins/Kma/SITE/f_variables.scss';
+$egChameleonThemeFile = 'SITE/f_variables.scss';
 
 $egChameleonExternalStyleModules = [
     'skins/Kma/SITE/f_bootswatch.scss' => 'afterMain',
