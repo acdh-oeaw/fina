@@ -183,11 +183,66 @@ wfLoadExtension('TemplateStyles');
 # -----------------------------------------------------
 # SKINS
 # -----------------------------------------------------
-wfLoadSkin('Vector');
-wfLoadSkin('MonoBook');
-// wfLoadSkin('Timeless');
 
-$wgDefaultSkin = 'vector';
+wfLoadExtension( 'Kma' );
+wfLoadExtension( 'Bootstrap' );
+
+wfLoadSkin( 'Kma' );
+$wgDefaultSkin = 'kma';
+
+$egChameleonLayoutFile = 'skins/Kma/SITE/FINA-layout.xml';
+$egChameleonThemeFile = 'skins/Kma/SITE/f_variables.scss';
+
+$egChameleonExternalStyleModules = [
+    'skins/Kma/SITE/f_bootswatch.scss' => 'afterMain',
+];
+
+$egChameleonEnableVisualEditor = true;
+$egChameleonEnableExternalLinkIcons = false;
+
+$egChameleonExternalStyleVariables = [
+    'body-bg' => '#ffffff',
+    'font-family-base' => "Roboto,sans-serif",
+    'headings-color' => '#0047bb',
+    'headings-font-family' => "Alegreya,serif",
+    'dark' => '#5c6784',
+    'light' => '#f5f5f5',
+    'primary' => '#00122f',
+    'secondary' => '#9eaeb5',
+    'info' => '#0355ad',
+    'danger' => '#910a00',
+    'warning' => '#e39f00',
+    'success' => '#009e4c',
+    'cmln-navbar-logo-height' => '1.0rem',
+    'cmln-navbar-bg-color' => 'light',
+    'cmln-search-bar-btn-color' => 'light',
+    'navbar-light-color' => '#0047bb',
+    'navbar-light-hover-color' => '#0099ff',
+    'navbar-light-active-color' => '#0355ad',
+    'navbar-padding-y' => '1.0rem',
+    'dropdown-link-hover-bg' => '#0355ad',
+    'dropdown-link-hover-color' => '#f5f5f5',
+    'dropdown-link-active-color' => '#ffffff',
+    'dropdown-link-active-bg' => '#0355ad',
+    'dropdown-link-color' => '#0355ad',
+    'font-size-base' => '1.0rem',
+    'h1-font-size' => '1.8rem',
+    'h2-font-size' => '1.6rem',
+    'h3-font-size' => '1.4rem',
+    'h4-font-size' => '1.2rem',
+    'h5-font-size' => '1.2rem',
+    'jumbotron-bg' => '#f0f0f0',
+    'card-cap-bg' => '#f0f0f0',
+    'card-spacer-y' => '0.5rem',
+    'card-spacer-x' => '1rem',
+    'table-cell-padding-sm' => '0.2rem',
+];
+
+
+// wfLoadSkin( 'MonoBook' );
+// wfLoadSkin( 'Timeless' );
+wfLoadSkin( 'Vector' );
+// wfLoadSkin( 'Tweeki' );
 
 # -----------------------------------------------------
 # NAMESPACES (custom)

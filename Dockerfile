@@ -87,8 +87,16 @@ RUN mkdir -p /var/www/html/skins \
  && cd /var/www/html/skins \
  \
  && echo "=== MediaWiki skins ===" \
- && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-skins-MonoBook.git MonoBook \
  && git clone --depth=1 --branch REL1_39 https://gerrit.wikimedia.org/r/mediawiki/skins/Vector Vector
+
+# --------------------------------------------------
+# Custom FINA extensions and skins
+# --------------------------------------------------
+COPY custom/extensions/Bootstrap /var/www/html/extensions/Bootstrap
+COPY custom/extensions/Kma /var/www/html/extensions/Kma
+COPY custom/skins/Kma /var/www/html/skins/Kma
+
+
 # --------------------------------------------------
 # ROOT COMPOSER
 # --------------------------------------------------
@@ -99,6 +107,12 @@ RUN composer install \
     --no-interaction \
     --no-progress \
     --ignore-platform-reqs
+
+# --------------------------------------------------
+# CUSTOM EXTENSIONS
+# --------------------------------------------------
+RUN cd /var/www/html/extensions/Bootstrap \
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
 
 # --------------------------------------------------
 # EXTENSION COMPOSER
