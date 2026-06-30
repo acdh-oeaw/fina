@@ -187,7 +187,6 @@ wfLoadExtension('TemplateStyles');
 wfLoadExtension( 'Kma' );
 wfLoadExtension( 'Bootstrap' );
 
-wfLoadSkin( 'Chameleon' );
 wfLoadSkin( 'Kma' );
 $wgDefaultSkin = 'kma';
 
