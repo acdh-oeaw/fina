@@ -1,8 +1,12 @@
 FROM php:8.1-apache
 
+ENV MW_VERSION=REL1_39
+ENV SMW_VERSION=4.2.0
+
 # --------------------------------------------------
-# SYSTEM DEPENDENCIES
+# SYSTEM
 # --------------------------------------------------
+
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
@@ -16,8 +20,9 @@ RUN apt-get update && apt-get install -y \
  && rm -rf /var/lib/apt/lists/*
 
 # --------------------------------------------------
-# PHP EXTENSIONS
+# PHP
 # --------------------------------------------------
+
 RUN docker-php-ext-install \
     intl \
     pdo \
@@ -28,34 +33,33 @@ RUN docker-php-ext-install \
     xml \
     calendar
 
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 # --------------------------------------------------
 # APACHE
 # --------------------------------------------------
+
 RUN a2enmod rewrite \
  && sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf \
  && echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # --------------------------------------------------
-# COMPOSER
+# MEDIAWIKI CORE
 # --------------------------------------------------
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+RUN git clone \
+    --depth=1 \
+    --branch ${MW_VERSION} \
+    https://github.com/wikimedia/mediawiki.git \
+    /var/www/html
 
 WORKDIR /var/www/html
 
 # --------------------------------------------------
-# APPLICATION
+# CORE EXTENSIONS
 # --------------------------------------------------
-COPY . .
 
-ENV GIT_TERMINAL_PROMPT=0
-# --------------------------------------------------
-# EXTENSIONS
-# --------------------------------------------------
-RUN mkdir -p /var/www/html/extensions \
- && cd /var/www/html/extensions \
- \
- && echo "=== Core MW extensions ===" \
+RUN cd extensions \
  && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-ParserFunctions.git ParserFunctions \
  && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-Scribunto.git Scribunto \
  && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-Cite.git Cite \
@@ -63,111 +67,126 @@ RUN mkdir -p /var/www/html/extensions \
  && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-TemplateData.git TemplateData \
  && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-WikiEditor.git WikiEditor \
  && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-TemplateStyles.git TemplateStyles \
- \
- && echo "=== SMW core ===" \
- && git clone --depth=1 --branch 4.2.0 https://github.com/SemanticMediaWiki/SemanticMediaWiki.git \
- && git clone --branch datatables-v2-improvements https://github.com/Knowledge-Wiki/SemanticResultFormats.git SemanticResultFormats \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-PageForms.git PageForms \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets
+
+# --------------------------------------------------
+# SEMANTIC STACK
+# --------------------------------------------------
+
+RUN cd extensions \
+ && git clone --depth=1 --branch ${SMW_VERSION} https://github.com/SemanticMediaWiki/SemanticMediaWiki.git \
+ && git clone https://github.com/Knowledge-Wiki/SemanticResultFormats.git SemanticResultFormats \
  && cd SemanticResultFormats \
  && git checkout 5e0ba274c5d60b6dab3aac0e2d9eb433eb59987a \
  && rm -rf extensions \
  && sed -i '/"AutoloadClasses": {/a\            "SemanticResultFormats": "SemanticResultFormats.php",' extension.json \
- && sed -i '/"AutoloadNamespaces": {/a\            "SRF\\\\": "src/",' extension.json \
- && cd .. \
- \
- && echo "=== Forms ===" \
- && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-PageForms.git PageForms \
- \
- && echo "=== Maps stack ===" \
+ && sed -i '/"AutoloadNamespaces": {/a\            "SRF\\\\": "src/",' extension.json
+
+# --------------------------------------------------
+# MAPS STACK
+# --------------------------------------------------
+
+RUN cd extensions \
  && git clone --depth=1 https://github.com/JeroenDeDauw/Validator.git Validator \
  && git clone --depth=1 https://github.com/JeroenDeDauw/ParamProcessor.git ParamProcessor \
  && git clone --depth=1 https://github.com/ProfessionalWiki/Maps.git Maps \
- && git clone --depth=1 --branch 4.0.0 https://github.com/ProfessionalWiki/ModernTimeline.git ModernTimeline \
- \
- && echo "=== Other ===" \
- && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets
+ && git clone --depth=1 --branch 4.0.0 https://github.com/ProfessionalWiki/ModernTimeline.git ModernTimeline
 
 # --------------------------------------------------
 # SKINS
 # --------------------------------------------------
-RUN mkdir -p /var/www/html/skins \
- && cd /var/www/html/skins \
- \
- && echo "=== MediaWiki skins ===" \
+
+RUN cd skins \
  && git clone --depth=1 --branch REL1_39 https://gerrit.wikimedia.org/r/mediawiki/skins/Vector Vector
 
 # --------------------------------------------------
-# Custom FINA extensions and skins
+# CUSTOMISATIONS
 # --------------------------------------------------
-COPY custom/extensions/Bootstrap /var/www/html/extensions/Bootstrap
-COPY custom/extensions/Kma /var/www/html/extensions/Kma
 
-COPY custom/skins/Kma /var/www/html/skins/Kma
-COPY custom/skins/Chameleon /var/www/html/skins/Chameleon
+COPY customisations/LocalSettings.php /var/www/html/LocalSettings.php
 
-RUN ln -s /var/www/html/skins/Chameleon /var/www/html/skins/chameleon
-RUN ln -s /var/www/html/skins /var/www/html/Skins
+COPY customisations/extensions/Bootstrap \
+     /var/www/html/extensions/Bootstrap
+
+COPY customisations/extensions/Kma \
+     /var/www/html/extensions/Kma
+
+COPY customisations/skins/Chameleon \
+     /var/www/html/skins/Chameleon
+
+COPY customisations/skins/Kma \
+     /var/www/html/skins/Kma
+
+COPY customisations/images \
+     /var/www/html/images
+
+COPY .htaccess /var/www/html/.htaccess
 
 # --------------------------------------------------
-# ROOT COMPOSER
+# COMPATIBILITY LINKS
 # --------------------------------------------------
+
+RUN ln -s /var/www/html/skins/Chameleon /var/www/html/skins/chameleon \
+ && ln -s /var/www/html/skins /var/www/html/Skins
+
+# --------------------------------------------------
+# COMPOSER
+# --------------------------------------------------
+
 RUN composer install \
     --no-dev \
     --prefer-dist \
     --optimize-autoloader \
     --no-interaction \
-    --no-progress \
     --ignore-platform-reqs
 
-RUN rm -rf /var/www/html/extensions/SemanticResultFormats/extensions
+RUN cd extensions/SemanticMediaWiki \
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
 
-# --------------------------------------------------
-# CUSTOM EXTENSIONS
-# --------------------------------------------------
-RUN cd /var/www/html/extensions/Bootstrap \
+RUN cd extensions/Maps \
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/TemplateStyles \
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/Bootstrap \
  && composer install --no-dev --no-interaction --ignore-platform-reqs
 
 # --------------------------------------------------
-# EXTENSION COMPOSER
+# CLEANUP
 # --------------------------------------------------
-RUN set -ex \
- && cd /var/www/html/extensions/SemanticMediaWiki \
- && composer install --no-dev --no-interaction --ignore-platform-reqs \
- \
- && cd /var/www/html/extensions/Maps \
- && composer install --no-dev --no-interaction --ignore-platform-reqs \
- \
- && cd /var/www/html/extensions/TemplateStyles \
- && composer install --no-dev --no-interaction --ignore-platform-reqs
 
 RUN rm -rf \
-    /var/www/html/extensions/SemanticResultFormats/vendor \
-    /var/www/html/extensions/SemanticResultFormats/composer.lock \
-    /var/www/html/extensions/SemanticResultFormats/extensions
+    extensions/SemanticResultFormats/vendor \
+    extensions/SemanticResultFormats/composer.lock
+
+# --------------------------------------------------
+# PHP
+# --------------------------------------------------
+
+RUN printf "memory_limit=512M\n\
+max_execution_time=360\n\
+max_input_time=360\n\
+upload_max_filesize=256M\n\
+post_max_size=257M\n" \
+> /usr/local/etc/php/conf.d/media.ini
+
+RUN printf "opcache.enable=1\n\
+opcache.memory_consumption=128\n\
+opcache.max_accelerated_files=20000\n" \
+> /usr/local/etc/php/conf.d/opcache.ini
 
 # --------------------------------------------------
 # PERMISSIONS
 # --------------------------------------------------
+
 RUN chown -R www-data:www-data /var/www/html
-
-# --------------------------------------------------
-# PHP SETTINGS
-# --------------------------------------------------
-RUN echo "memory_limit=512M" > /usr/local/etc/php/conf.d/media.ini \
- && echo "max_execution_time=360" >> /usr/local/etc/php/conf.d/media.ini \
- && echo "max_input_time=360" >> /usr/local/etc/php/conf.d/media.ini \
- && echo "upload_max_filesize=256M" >> /usr/local/etc/php/conf.d/media.ini \
- && echo "post_max_size=257M" >> /usr/local/etc/php/conf.d/media.ini
-
-# --------------------------------------------------
-# OPCACHE
-# --------------------------------------------------
-RUN echo "opcache.enable=1" > /usr/local/etc/php/conf.d/opcache.ini \
- && echo "opcache.memory_consumption=128" >> /usr/local/etc/php/conf.d/opcache.ini \
- && echo "opcache.max_accelerated_files=20000" >> /usr/local/etc/php/conf.d/opcache.ini
 
 # --------------------------------------------------
 # ENTRYPOINT
 # --------------------------------------------------
+
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
