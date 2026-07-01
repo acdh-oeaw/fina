@@ -115,6 +115,10 @@ $wgParserCacheExpireTime = 14 * 24 * 3600;
 $wgMaxArticleSize = 4096;
 $wgCategoryCollation = 'numeric';
 
+$wgCacheDirectory = "/tmp/mw-cache";
+$wgUseLocalMessageCache = true;
+$wgLocalisationCacheConf['store'] = 'file';
+
 # -----------------------------------------------------
 # SEARCH
 # -----------------------------------------------------
