@@ -106,33 +106,50 @@ RUN mkdir -p /var/www/html/images \
  && ln -sf /var/www/html/skins /var/www/html/Skins
 
 # --------------------------------------------------
-# ALL COMPOSER INSTALLS (single layer, clean cache)
+# ALL COMPOSER INSTALLS (separate steps for debugging)
 # --------------------------------------------------
 
 RUN composer config --no-interaction policy.advisories.block false \
- && composer install --no-dev --no-interaction --ignore-platform-reqs \
- && cd extensions/SemanticMediaWiki && composer install --no-dev --no-interaction --ignore-platform-reqs && cd ../.. \
- && cd extensions/SemanticResultFormats && composer install --no-dev --no-interaction --ignore-platform-reqs && cd ../.. \
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/SemanticMediaWiki && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/SemanticResultFormats && composer install --no-dev --no-interaction --ignore-platform-reqs \
  && rm -rf extensions/SemanticResultFormats/extensions/SemanticMediaWiki \
- && cd extensions/SemanticResultFormats && composer dump-autoload --no-interaction && cd ../.. \
- && cd extensions/Maps && composer install --no-dev --no-interaction --ignore-platform-reqs && cd ../.. \
- && cd extensions/TemplateStyles && composer install --no-dev --no-interaction --ignore-platform-reqs && cd ../.. \
- && cd extensions/Bootstrap && composer install --no-dev --no-interaction --ignore-platform-reqs && cd ../.. \
- && cd extensions/Widgets && composer install --no-dev --no-interaction --ignore-platform-reqs && cd ../.. \
- && cd extensions/Elastica && composer install --no-dev --no-interaction --ignore-platform-reqs && cd ../.. \
- && cd extensions/CirrusSearch && composer install --no-dev --no-interaction --ignore-platform-reqs && cd ../.. \
- && cd extensions/Mermaid && composer install --no-dev --no-interaction --ignore-platform-reqs && cd ../.. \
- && cd extensions/Network && composer install --no-dev --no-interaction --ignore-platform-reqs && cd ../.. \
- && cd extensions/Mpdf && composer config --no-interaction policy.advisories.block false \
-    && composer install --no-dev --no-interaction --ignore-platform-reqs && cd ../.. \
- && cd extensions/SemanticCite && composer install --no-dev --no-interaction --ignore-platform-reqs && cd ../.. \
- && cd extensions/SemanticGlossary && composer install --no-dev --no-interaction --ignore-platform-reqs && cd ../.. \
- && cd extensions/ExternalData && composer install --no-dev --no-interaction --ignore-platform-reqs && cd ../.. \
- && cd extensions/RSS && composer install --no-dev --no-interaction --ignore-platform-reqs && cd ../.. \
- && cd extensions/KnowledgeGraph && composer install --no-dev --no-interaction --ignore-platform-reqs && cd ../.. \
- && cd skins/Chameleon && composer install --no-dev --no-interaction --ignore-platform-reqs && cd ../.. \
- && composer clear-cache \
- && rm -rf /root/.composer/cache /tmp/*
+ && cd extensions/SemanticResultFormats && composer dump-autoload --no-interaction
+
+RUN cd extensions/Maps && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/TemplateStyles && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/Bootstrap && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/Widgets && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/Elastica && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/CirrusSearch && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/Mermaid && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/Network && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/Mpdf && composer config --no-interaction policy.advisories.block false \
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/SemanticCite && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/SemanticGlossary && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/ExternalData && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/RSS && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/KnowledgeGraph && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd skins/Chameleon && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN composer clear-cache && rm -rf /root/.composer/cache /tmp/*
 
 # --------------------------------------------------
 # PHP CONFIG
