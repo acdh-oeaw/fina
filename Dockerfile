@@ -57,7 +57,7 @@ RUN cd extensions \
  && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-ExternalData.git ExternalData \
  && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-DataTransfer.git DataTransfer \
  && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-DeleteBatch.git DeleteBatch \
- && git clone --depth=1 -b 2.1.0 https://github.com/ProfessionalWiki/SimpleBatchUpload.git SimpleBatchUpload \
+ && git clone --depth=1 -b 2.0.1 https://github.com/ProfessionalWiki/SimpleBatchUpload.git SimpleBatchUpload \
  && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-ImportUsers.git ImportUsers \
  && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-AdminLinks.git AdminLinks \
  && git clone --depth=1 -b REL1_39 https://github.com/miraheze/RottenLinks.git RottenLinks \
@@ -68,18 +68,20 @@ RUN cd extensions \
  && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-UserFunctions.git UserFunctions \
  && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-Mpdf.git Mpdf \
  && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-RightFunctions.git RightFunctions \
- && git clone --depth=1 -b REL1_39 https://github.com/miraheze/MatomoAnalytics.git MatomoAnalytics \
+ # MatomoAnalytics - DISABLED (no MW 1.39 compatible version) \
+ # && git clone --depth=1 ... MatomoAnalytics \
  && git clone --depth=1 -b ${SMW_VERSION} https://github.com/SemanticMediaWiki/SemanticMediaWiki.git \
  && git clone -b datatables-v2-improvements https://github.com/Knowledge-Wiki/SemanticResultFormats.git SemanticResultFormats \
  && cd SemanticResultFormats && git checkout 5e0ba274c5d60b6dab3aac0e2d9eb433eb59987a && cd .. \
  && git clone --depth=1 -b 2.2.0 https://github.com/SemanticMediaWiki/SemanticCompoundQueries.git \
  && git clone --depth=1 -b 3.0.4 https://github.com/SemanticMediaWiki/SemanticExtraSpecialProperties.git \
- && git clone --depth=1 -b 2.1.0 https://github.com/SemanticMediaWiki/SemanticMetaTags.git \
- && git clone --depth=1 -b 3.1.0 https://github.com/SemanticMediaWiki/SemanticCite.git \
+ && git clone --depth=1 -b 2.0.0 https://github.com/SemanticMediaWiki/SemanticMetaTags.git \
+ && git clone --depth=1 -b 3.0.0 https://github.com/SemanticMediaWiki/SemanticCite.git \
  && git clone --depth=1 -b 2.0.0 https://github.com/gesinn-it-pub/SemanticDependencyUpdater.git \
- && git clone --depth=1 -b 3.1.2 https://github.com/SemanticMediaWiki/SemanticGlossary.git \
- && git clone --depth=1 -b 2.1.2 https://github.com/SemanticMediaWiki/SemanticDrilldown.git \
- && git clone --depth=1 -b 2.1.0 https://github.com/SemanticMediaWiki/KnowledgeGraph.git \
+ && git clone --depth=1 -b 3.0.0 https://github.com/SemanticMediaWiki/SemanticGlossary.git \
+ # SemanticDrilldown - DISABLED (no MW 1.39 compatible version) \
+ # && git clone --depth=1 ... SemanticDrilldown \
+ && git clone --depth=1 -b 2.2.0 https://github.com/SemanticMediaWiki/KnowledgeGraph.git \
  && git clone --depth=1 https://github.com/JeroenDeDauw/Validator.git Validator \
  && git clone --depth=1 https://github.com/JeroenDeDauw/ParamProcessor.git ParamProcessor \
  && git clone --depth=1 -b 10.3.0 https://github.com/ProfessionalWiki/Maps.git Maps \
