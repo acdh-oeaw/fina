@@ -32,6 +32,12 @@ The goal of this approach is to:
     ├── skins/
     │   ├── Chameleon/
     │   └── Kma/
+    ├── root-files/
+    │   ├── favicon.png
+    │   ├── fina-logo.png
+    │   ├── footer-logo.png
+    │   ├── google17603f5f7c6b9568.html
+    │   └── KnowledgeWiki.png
     ├── images/
     ├── resources/
     └── ...
@@ -157,6 +163,18 @@ These extensions can be re-enabled after upgrading MediaWiki to ≥1.43 and SMW 
 
 ---
 
+## Root-Level Files
+
+The following files are stored in `customisations/root-files/` and copied to the MediaWiki web root (`/var/www/html/`) during image build:
+
+- `favicon.png` — site favicon
+- `fina-logo.png` — main site logo
+- `footer-logo.png` — footer logo
+- `google17603f5f7c6b9568.html` — Google Search Console verification
+- `KnowledgeWiki.png` — Knowledge Wiki logo
+
+---
+
 ## Customizations
 
 Only FINA-specific code should be stored in this repository.
@@ -189,9 +207,12 @@ During startup the container:
 1. Waits for the database to become available.
 2. Verifies database connectivity.
 3. Executes MediaWiki database updates (`maintenance/update.php`).
-4. Starts Apache.
+4. Runs Semantic MediaWiki setup tasks **in the background**:
+   - `setupStore.php` — ensures SMW database tables are up to date.
+   - `updateEntityCollation.php` — updates entity collation settings.
+5. Starts Apache.
 
-This ensures that database schema changes are applied automatically during deployment.
+The SMW setup tasks run in the background to avoid delaying container startup and health check failures. Apache starts immediately while SMW tasks complete asynchronously.
 
 ---
 
@@ -302,7 +323,7 @@ git push
 
 Build and deploy a new Docker image.
 
-The container automatically executes MediaWiki updates during startup.
+The container automatically executes MediaWiki updates and SMW setup during startup.
 
 ---
 
