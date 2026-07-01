@@ -266,17 +266,17 @@ wfLoadExtension( 'TextExtracts' );
 # CLONED EXTENSIONS
 # -----------------------------------------------------
 
-wfLoadExtension( 'HeaderTabs' );
-wfLoadExtension( 'TitleIcon' );
+# wfLoadExtension( 'HeaderTabs' );
+# wfLoadExtension( 'TitleIcon' );
 wfLoadExtension( 'NativeSvgHandler' );
 wfLoadExtension( 'LinkTarget' );
 wfLoadExtension( 'ExternalData' );
 wfLoadExtension( 'DataTransfer' );
-wfLoadExtension( 'DeleteBatch' );
-wfLoadExtension( 'SimpleBatchUpload' );
-wfLoadExtension( 'ImportUsers' );
+# wfLoadExtension( 'DeleteBatch' );
+# wfLoadExtension( 'SimpleBatchUpload' );
+# wfLoadExtension( 'ImportUsers' );
 wfLoadExtension( 'AdminLinks' );
-wfLoadExtension( 'RottenLinks' );
+# wfLoadExtension( 'RottenLinks' );
 wfLoadExtension( 'RSS' );
 wfLoadExtension( 'MyVariables' );
 wfLoadExtension( 'Variables' );
@@ -289,19 +289,18 @@ wfLoadExtension( 'Popups' );
 wfLoadExtension( 'Lockdown' );
 wfLoadExtension( 'CodeMirror' );
 wfLoadExtension( 'Lingo' );
-// wfLoadExtension( 'MatomoAnalytics' );
-wfLoadExtension( 'SemanticCompoundQueries' );
-wfLoadExtension( 'SemanticExtraSpecialProperties' );
-wfLoadExtension( 'SemanticMetaTags' );
-wfLoadExtension( 'SemanticCite' );
-wfLoadExtension( 'SemanticDependencyUpdater' );
-wfLoadExtension( 'SemanticGlossary' );
-// wfLoadExtension( 'SemanticDrilldown' );
+# wfLoadExtension( 'MatomoAnalytics' );
+# wfLoadExtension( 'SemanticCompoundQueries' );
+# wfLoadExtension( 'SemanticExtraSpecialProperties' );
+# wfLoadExtension( 'SemanticMetaTags' );
+# wfLoadExtension( 'SemanticCite' );
+# wfLoadExtension( 'SemanticDependencyUpdater' );
+# wfLoadExtension( 'SemanticGlossary' );
+# wfLoadExtension( 'SemanticDrilldown' );
 wfLoadExtension( 'ModernTimeline' );
-wfLoadExtension( 'Network' );
-wfLoadExtension( 'Mermaid' );
-wfLoadExtension( 'KnowledgeGraph' );
-
+# wfLoadExtension( 'Network' );
+# wfLoadExtension( 'Mermaid' );
+# wfLoadExtension( 'KnowledgeGraph' );
 
 # -----------------------------------------------------
 # SKINS
