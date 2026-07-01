@@ -36,10 +36,10 @@ startupProbe:
   probeType: "httpGet"
   path: /api.php?action=query&meta=siteinfo&format=json
   port: 80
-  failureThreshold: 60
+  failureThreshold: 120
   periodSeconds: 10
   timeoutSeconds: 5
-  initialDelaySeconds: 30
+  initialDelaySeconds: 60
 
 # --- LIVENESS PROBE ---
 livenessProbe:
