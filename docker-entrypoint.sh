@@ -55,6 +55,18 @@ if [ -f maintenance/update.php ]; then
     fi
 fi
 
+# --------------------------------------------------
+# SEMANTIC MEDIAWIKI SETUP
+# --------------------------------------------------
+
+if [ -f extensions/SemanticMediaWiki/maintenance/setupStore.php ]; then
+    echo "Running SMW setupStore..."
+    php maintenance/runScript.php extensions/SemanticMediaWiki/maintenance/setupStore.php || echo "WARNING: SMW setupStore failed"
+
+    echo "Running SMW updateEntityCollation..."
+    php maintenance/runScript.php extensions/SemanticMediaWiki/maintenance/updateEntityCollation.php || echo "WARNING: SMW updateEntityCollation failed"
+fi
+
 echo "=== INIT DONE ==="
 
 exec "$@"
