@@ -56,15 +56,17 @@ if [ -f maintenance/update.php ]; then
 fi
 
 # --------------------------------------------------
-# SEMANTIC MEDIAWIKI SETUP
+# SEMANTIC MEDIAWIKI SETUP (background)
 # --------------------------------------------------
 
 if [ -f extensions/SemanticMediaWiki/maintenance/setupStore.php ]; then
-    echo "Running SMW setupStore..."
-    php maintenance/runScript.php extensions/SemanticMediaWiki/maintenance/setupStore.php || echo "WARNING: SMW setupStore failed"
-
-    echo "Running SMW updateEntityCollation..."
-    php maintenance/runScript.php extensions/SemanticMediaWiki/maintenance/updateEntityCollation.php || echo "WARNING: SMW updateEntityCollation failed"
+    (
+        echo "Running SMW setupStore (background)..."
+        php maintenance/runScript.php extensions/SemanticMediaWiki/maintenance/setupStore.php || echo "WARNING: SMW setupStore failed"
+        echo "Running SMW updateEntityCollation (background)..."
+        php maintenance/runScript.php extensions/SemanticMediaWiki/maintenance/updateEntityCollation.php || echo "WARNING: SMW updateEntityCollation failed"
+        echo "SMW setup complete"
+    ) &
 fi
 
 echo "=== INIT DONE ==="
