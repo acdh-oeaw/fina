@@ -178,7 +178,7 @@ if ( function_exists( 'enableSemantics' ) ) {
     enableSemantics( $smwHost );
 }
 
-# SMW config
+# SMW config (must be after enableSemantics)
 $smwgQMaxLimit = 20000;
 $smwgQMaxInlineLimit = 20000;
 $smwgQMaxSize = 32;
@@ -192,12 +192,10 @@ $smwgPageSpecialProperties = [ '_MDAT', '_CDAT', '_NEWP', '_LEDT' ];
 $smwgNamespacesWithSemanticLinks[NS_FINA] = true;
 $smwgNamespacesWithSemanticLinks[NS_FINA_TALK] = true;
 
-$smwgParserFeatures =
-    SMW_PARSER_STRICT |
-    SMW_PARSER_INL_ERROR |
-    SMW_PARSER_HID_CATS |
-    SMW_PARSER_UNSTRIP |
-    SMW_PARSER_LINV;
+# Parser features using numeric values because SMW constants
+# are not yet available at LocalSettings load time
+# SMW_PARSER_STRICT=1 | INL_ERROR=2 | HID_CATS=4 | UNSTRIP=16 | LINV=32
+$smwgParserFeatures = 55;
 
 # -----------------------------------------------------
 # SEMANTIC RESULT FORMATS
