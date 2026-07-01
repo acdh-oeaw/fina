@@ -251,7 +251,6 @@ wfLoadExtension( 'Gadgets' );
 wfLoadExtension( 'ImageMap' );
 wfLoadExtension( 'InputBox' );
 wfLoadExtension( 'Interwiki' );
-wfLoadExtension( 'LocalisationUpdate' );
 wfLoadExtension( 'Nuke' );
 wfLoadExtension( 'OATHAuth' );
 wfLoadExtension( 'PageImages' );
