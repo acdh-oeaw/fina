@@ -116,7 +116,7 @@ RUN cd extensions \
  && git clone --depth=1 https://github.com/SemanticMediaWiki/SemanticExtraSpecialProperties.git \
  && git clone --depth=1 https://github.com/SemanticMediaWiki/SemanticMetaTags.git \
  && git clone --depth=1 https://github.com/SemanticMediaWiki/SemanticCite.git \
- && git clone --depth=1 https://github.com/SemanticMediaWiki/SemanticDependencyUpdater.git \
+ && git clone --depth=1 https://github.com/gesinn-it-pub/SemanticDependencyUpdater.git \
  && git clone --depth=1 https://github.com/SemanticMediaWiki/SemanticGlossary.git \
  && git clone --depth=1 https://github.com/SemanticMediaWiki/SemanticDrilldown.git
 
@@ -137,9 +137,10 @@ RUN cd extensions \
 RUN cd extensions \
  && git clone --depth=1 https://github.com/ProfessionalWiki/Network.git \
  && git clone --depth=1 https://github.com/SemanticMediaWiki/Mermaid.git \
- && git clone --depth=1 https://github.com/ProfessionalWiki/KnowledgeGraph.git \
- && git clone --depth=1 https://github.com/DaSchTour/mediawiki-extension-RightFunctions.git RightFunctions \
- && git clone --depth=1 https://github.com/WikibaseSolutions/MatomoAnalytics.git MatomoAnalytics
+ && git clone --depth=1 https://github.com/wikimedia/mediawiki-extensions-RightFunctions.git RightFunctions \
+ && git clone --depth=1 https://github.com/miraheze/MatomoAnalytics.git
+ 
+# KnowledgeGraph - REMOVED (repo no longer available)
 
 # --------------------------------------------------
 # CUSTOMISATIONS
@@ -222,9 +223,6 @@ RUN cd extensions/Mermaid \
  && composer install --no-dev --no-interaction --ignore-platform-reqs
 
 RUN cd extensions/Network \
- && composer install --no-dev --no-interaction --ignore-platform-reqs
-
-RUN cd extensions/KnowledgeGraph \
  && composer install --no-dev --no-interaction --ignore-platform-reqs
 
 RUN cd extensions/Mpdf \
