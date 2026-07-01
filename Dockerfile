@@ -28,9 +28,9 @@ RUN a2enmod rewrite \
 # MEDIAWIKI CORE
 # --------------------------------------------------
 
-RUN git clone --depth=1 --branch ${MW_VERSION} \
+RUN git clone --depth=1 --recurse-submodules --branch ${MW_VERSION} \
     https://github.com/wikimedia/mediawiki.git /var/www/html \
- && rm -rf /var/www/html/.git
+ && find /var/www/html -name ".git" -type d -exec rm -rf {} + 2>/dev/null; true
 
 WORKDIR /var/www/html
 
