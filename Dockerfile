@@ -152,6 +152,11 @@ RUN cd extensions/SemanticResultFormats \
     --no-interaction \
     --ignore-platform-reqs
 
+# FIX: Remove bundled SMW copy from SRF and regenerate autoload
+RUN rm -rf /var/www/html/extensions/SemanticResultFormats/extensions/SemanticMediaWiki \
+ && cd /var/www/html/extensions/SemanticResultFormats \
+ && composer dump-autoload --no-interaction
+
 RUN cd extensions/Maps \
  && composer install \
     --no-dev \
