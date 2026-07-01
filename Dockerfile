@@ -78,9 +78,7 @@ RUN cd extensions \
     SemanticResultFormats \
  && cd SemanticResultFormats \
  && git checkout 5e0ba274c5d60b6dab3aac0e2d9eb433eb59987a \
- && rm -rf extensions \
- && sed -i '/"AutoloadClasses": {/a\            "SemanticResultFormats": "SemanticResultFormats.php",' extension.json \
- && sed -i '/"AutoloadNamespaces": {/a\            "SRF\\\\": "src/",' extension.json
+ && rm -rf extensions 
 
 # --------------------------------------------------
 # MAPS
