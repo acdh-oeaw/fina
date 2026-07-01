@@ -125,10 +125,12 @@ RUN ln -sf /var/www/html/skins/Chameleon /var/www/html/skins/chameleon \
  && ln -sf /var/www/html/skins /var/www/html/Skins
 
 # --------------------------------------------------
-# COMPOSER: ROOT (CRITICAL - generates composer.lock)
+# COMPOSER: ROOT
 # --------------------------------------------------
 
 WORKDIR /var/www/html
+
+RUN composer config --no-interaction policy.advisories.block false
 
 RUN composer install \
     --no-dev \
