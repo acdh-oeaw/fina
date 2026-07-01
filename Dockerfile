@@ -138,9 +138,9 @@ RUN cd extensions \
  && git clone --depth=1 https://github.com/ProfessionalWiki/Network.git \
  && git clone --depth=1 https://github.com/SemanticMediaWiki/Mermaid.git \
  && git clone --depth=1 https://github.com/wikimedia/mediawiki-extensions-RightFunctions.git RightFunctions \
- && git clone --depth=1 https://github.com/miraheze/MatomoAnalytics.git
- 
-# KnowledgeGraph - REMOVED (repo no longer available)
+ && git clone --depth=1 https://github.com/miraheze/MatomoAnalytics.git  \
+ && git clone --depth=1 https://github.com/SemanticMediaWiki/KnowledgeGraph.git
+
 
 # --------------------------------------------------
 # CUSTOMISATIONS
@@ -239,6 +239,9 @@ RUN cd extensions/ExternalData \
  && composer install --no-dev --no-interaction --ignore-platform-reqs
 
 RUN cd extensions/RSS \
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/KnowledgeGraph \
  && composer install --no-dev --no-interaction --ignore-platform-reqs
 
 # --------------------------------------------------
