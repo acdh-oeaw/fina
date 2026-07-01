@@ -115,8 +115,8 @@ RUN composer config --no-interaction policy.advisories.block false \
 RUN cd extensions/SemanticMediaWiki && composer install --no-dev --no-interaction --ignore-platform-reqs
 
 RUN cd extensions/SemanticResultFormats && composer install --no-dev --no-interaction --ignore-platform-reqs \
- && rm -rf extensions/SemanticResultFormats/extensions/SemanticMediaWiki \
- && cd extensions/SemanticResultFormats && composer dump-autoload --no-interaction
+ && rm -rf extensions/SemanticMediaWiki \
+ && composer dump-autoload --no-interaction
 
 RUN cd extensions/Maps && composer install --no-dev --no-interaction --ignore-platform-reqs
 
