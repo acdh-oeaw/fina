@@ -123,7 +123,6 @@ RUN cd extensions/Elastica && composer install --no-dev --no-interaction --ignor
 RUN cd extensions/CirrusSearch && composer install --no-dev --no-interaction --ignore-platform-reqs
 RUN cd extensions/Mpdf && composer config --no-interaction policy.advisories.block false \
  && composer install --no-dev --no-interaction --ignore-platform-reqs
-RUN cd extensions/SemanticCite && composer install --no-dev --no-interaction --ignore-platform-reqs
 RUN cd extensions/SemanticGlossary && composer install --no-dev --no-interaction --ignore-platform-reqs
 RUN cd extensions/ExternalData && composer install --no-dev --no-interaction --ignore-platform-reqs
 RUN cd extensions/RSS && composer install --no-dev --no-interaction --ignore-platform-reqs
