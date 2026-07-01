@@ -301,7 +301,7 @@ wfLoadExtension( 'SemanticDrilldown' );
 wfLoadExtension( 'ModernTimeline' );
 wfLoadExtension( 'Network' );
 wfLoadExtension( 'Mermaid' );
-# KnowledgeGraph - REMOVED (repo no longer available)
+wfLoadExtension( 'KnowledgeGraph' );
 
 
 # -----------------------------------------------------
