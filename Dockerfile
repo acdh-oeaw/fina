@@ -101,6 +101,9 @@ COPY customisations/skins/Chameleon /var/www/html/skins/Chameleon
 COPY customisations/skins/Kma /var/www/html/skins/Kma
 COPY .htaccess /var/www/html/.htaccess
 
+# Copy root-level files (favicon, logos, Google verification)
+COPY customisations/root-files/ /var/www/html/
+
 RUN mkdir -p /var/www/html/images \
  && ln -sf /var/www/html/skins/Chameleon /var/www/html/skins/chameleon \
  && ln -sf /var/www/html/skins /var/www/html/Skins
