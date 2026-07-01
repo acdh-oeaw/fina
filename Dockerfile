@@ -121,7 +121,6 @@ RUN cd extensions/Bootstrap && composer install --no-dev --no-interaction --igno
 RUN cd extensions/Widgets && composer install --no-dev --no-interaction --ignore-platform-reqs
 RUN cd extensions/Elastica && composer install --no-dev --no-interaction --ignore-platform-reqs
 RUN cd extensions/CirrusSearch && composer install --no-dev --no-interaction --ignore-platform-reqs
-RUN cd extensions/Network && composer install --no-dev --no-interaction --ignore-platform-reqs
 RUN cd extensions/Mpdf && composer config --no-interaction policy.advisories.block false \
  && composer install --no-dev --no-interaction --ignore-platform-reqs
 RUN cd extensions/SemanticCite && composer install --no-dev --no-interaction --ignore-platform-reqs
