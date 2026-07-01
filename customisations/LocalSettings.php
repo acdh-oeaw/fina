@@ -239,6 +239,71 @@ $wgGroupPermissions['sysop']['viewedittab'] = true;
 
 wfLoadExtension( 'Widgets' );
 
+
+# -----------------------------------------------------
+# BUNDLED EXTENSIONS (already in MW core)
+# -----------------------------------------------------
+
+wfLoadExtension( 'CiteThisPage' );
+wfLoadExtension( 'CodeEditor' );
+wfLoadExtension( 'ConfirmEdit' );
+wfLoadExtension( 'Gadgets' );
+wfLoadExtension( 'ImageMap' );
+wfLoadExtension( 'InputBox' );
+wfLoadExtension( 'Interwiki' );
+wfLoadExtension( 'LocalisationUpdate' );
+wfLoadExtension( 'Nuke' );
+wfLoadExtension( 'OATHAuth' );
+wfLoadExtension( 'PageImages' );
+wfLoadExtension( 'PdfHandler' );
+wfLoadExtension( 'Poem' );
+wfLoadExtension( 'Renameuser' );
+wfLoadExtension( 'ReplaceText' );
+wfLoadExtension( 'SecureLinkFixer' );
+wfLoadExtension( 'SyntaxHighlight_GeSHi' );
+wfLoadExtension( 'TextExtracts' );
+
+# -----------------------------------------------------
+# CLONED EXTENSIONS
+# -----------------------------------------------------
+
+wfLoadExtension( 'HeaderTabs' );
+wfLoadExtension( 'TitleIcon' );
+wfLoadExtension( 'NativeSvgHandler' );
+wfLoadExtension( 'LinkTarget' );
+wfLoadExtension( 'ExternalData' );
+wfLoadExtension( 'DataTransfer' );
+wfLoadExtension( 'DeleteBatch' );
+wfLoadExtension( 'SimpleBatchUpload' );
+wfLoadExtension( 'ImportUsers' );
+wfLoadExtension( 'AdminLinks' );
+wfLoadExtension( 'RottenLinks' );
+wfLoadExtension( 'RSS' );
+wfLoadExtension( 'MyVariables' );
+wfLoadExtension( 'Variables' );
+wfLoadExtension( 'UrlGetParameters' );
+wfLoadExtension( 'UserFunctions' );
+wfLoadExtension( 'RightFunctions' );
+wfLoadExtension( 'Mpdf' );
+wfLoadExtension( 'CookieWarning' );
+wfLoadExtension( 'Popups' );
+wfLoadExtension( 'Lockdown' );
+wfLoadExtension( 'CodeMirror' );
+wfLoadExtension( 'Lingo' );
+wfLoadExtension( 'MatomoAnalytics' );
+wfLoadExtension( 'SemanticCompoundQueries' );
+wfLoadExtension( 'SemanticExtraSpecialProperties' );
+wfLoadExtension( 'SemanticMetaTags' );
+wfLoadExtension( 'SemanticCite' );
+wfLoadExtension( 'SemanticDependencyUpdater' );
+wfLoadExtension( 'SemanticGlossary' );
+wfLoadExtension( 'SemanticDrilldown' );
+wfLoadExtension( 'ModernTimeline' );
+wfLoadExtension( 'Network' );
+wfLoadExtension( 'Mermaid' );
+# KnowledgeGraph - REMOVED (repo no longer available)
+
+
 # -----------------------------------------------------
 # SKINS
 # -----------------------------------------------------
