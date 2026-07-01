@@ -226,6 +226,7 @@ RUN cd extensions/Network \
  && composer install --no-dev --no-interaction --ignore-platform-reqs
 
 RUN cd extensions/Mpdf \
+ && composer config --no-interaction policy.advisories.block false \
  && composer install --no-dev --no-interaction --ignore-platform-reqs
 
 RUN cd extensions/SemanticCite \
