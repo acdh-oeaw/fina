@@ -89,9 +89,8 @@ RUN cd extensions \
 RUN cd extensions \
  && git clone --depth=1 https://github.com/JeroenDeDauw/Validator.git Validator \
  && git clone --depth=1 https://github.com/JeroenDeDauw/ParamProcessor.git ParamProcessor \
- && git clone --depth=1 https://github.com/ProfessionalWiki/Maps.git Maps \
- && git clone --depth=1 --branch 4.0.0 \
-    https://github.com/ProfessionalWiki/ModernTimeline.git ModernTimeline
+ && git clone --depth=1 --branch 10.3.0 https://github.com/ProfessionalWiki/Maps.git Maps \
+ && git clone --depth=1 --branch 1.2.2 https://github.com/ProfessionalWiki/ModernTimeline.git ModernTimeline
 
 # --------------------------------------------------
 # CUSTOMISATIONS
