@@ -17,6 +17,8 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libxml2-dev \
     libonig-dev \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
  && rm -rf /var/lib/apt/lists/*
 
 # --------------------------------------------------
@@ -57,16 +59,44 @@ RUN git clone \
 WORKDIR /var/www/html
 
 # --------------------------------------------------
-# EXTRA EXTENSIONS
+# EXTRA EXTENSIONS (bundled-style from wikimedia)
 # --------------------------------------------------
 
 RUN cd extensions \
- && git clone --depth=1 --branch REL1_39 \
-    https://github.com/wikimedia/mediawiki-extensions-TemplateStyles.git TemplateStyles \
- && git clone --depth=1 --branch REL1_39 \
-    https://github.com/wikimedia/mediawiki-extensions-PageForms.git PageForms \
- && git clone --depth=1 --branch REL1_39 \
-    https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-TemplateStyles.git TemplateStyles \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-PageForms.git PageForms \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-Elastica.git Elastica \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-CirrusSearch.git CirrusSearch \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-AdvancedSearch.git AdvancedSearch \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-CookieWarning.git CookieWarning \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-Popups.git Popups \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-Lockdown.git Lockdown \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-CodeMirror.git CodeMirror \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-Lingo.git Lingo
+
+# --------------------------------------------------
+# EXTRA EXTENSIONS (other wikimedia)
+# --------------------------------------------------
+
+RUN cd extensions \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-HeaderTabs.git HeaderTabs \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-TitleIcon.git TitleIcon \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-NativeSvgHandler.git NativeSvgHandler \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-LinkTarget.git LinkTarget \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-ExternalData.git ExternalData \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-DataTransfer.git DataTransfer \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-DeleteBatch.git DeleteBatch \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-SimpleBatchUpload.git SimpleBatchUpload \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-ImportUsers.git ImportUsers \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-AdminLinks.git AdminLinks \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-RottenLinks.git RottenLinks \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-RSS.git RSS \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-MyVariables.git MyVariables \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-Variables.git Variables \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-UrlGetParameters.git UrlGetParameters \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-UserFunctions.git UserFunctions \
+ && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-Mpdf.git Mpdf
 
 # --------------------------------------------------
 # SEMANTIC STACK
@@ -82,6 +112,15 @@ RUN cd extensions \
  && cd SemanticResultFormats \
  && git checkout 5e0ba274c5d60b6dab3aac0e2d9eb433eb59987a
 
+RUN cd extensions \
+ && git clone --depth=1 https://github.com/SemanticMediaWiki/SemanticCompoundQueries.git \
+ && git clone --depth=1 https://github.com/SemanticMediaWiki/SemanticExtraSpecialProperties.git \
+ && git clone --depth=1 https://github.com/SemanticMediaWiki/SemanticMetaTags.git \
+ && git clone --depth=1 https://github.com/SemanticMediaWiki/SemanticCite.git \
+ && git clone --depth=1 https://github.com/SemanticMediaWiki/SemanticDependencyUpdater.git \
+ && git clone --depth=1 https://github.com/SemanticMediaWiki/SemanticGlossary.git \
+ && git clone --depth=1 https://github.com/SemanticMediaWiki/SemanticDrilldown.git
+
 # --------------------------------------------------
 # MAPS & DEPENDENCIES
 # --------------------------------------------------
@@ -91,6 +130,17 @@ RUN cd extensions \
  && git clone --depth=1 https://github.com/JeroenDeDauw/ParamProcessor.git ParamProcessor \
  && git clone --depth=1 --branch 10.3.0 https://github.com/ProfessionalWiki/Maps.git Maps \
  && git clone --depth=1 --branch 1.2.2 https://github.com/ProfessionalWiki/ModernTimeline.git ModernTimeline
+
+# --------------------------------------------------
+# OTHER THIRD-PARTY EXTENSIONS
+# --------------------------------------------------
+
+RUN cd extensions \
+ && git clone --depth=1 https://github.com/ProfessionalWiki/Network.git \
+ && git clone --depth=1 https://github.com/SemanticMediaWiki/Mermaid.git \
+ && git clone --depth=1 https://github.com/ProfessionalWiki/KnowledgeGraph.git \
+ && git clone --depth=1 https://github.com/DaSchTour/mediawiki-extension-RightFunctions.git RightFunctions \
+ && git clone --depth=1 https://github.com/WikibaseSolutions/MatomoAnalytics.git MatomoAnalytics
 
 # --------------------------------------------------
 # CUSTOMISATIONS
@@ -141,16 +191,10 @@ RUN composer install \
 # --------------------------------------------------
 
 RUN cd extensions/SemanticMediaWiki \
- && composer install \
-    --no-dev \
-    --no-interaction \
-    --ignore-platform-reqs
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
 
 RUN cd extensions/SemanticResultFormats \
- && composer install \
-    --no-dev \
-    --no-interaction \
-    --ignore-platform-reqs
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
 
 # FIX: Remove bundled SMW copy from SRF and regenerate autoload
 RUN rm -rf /var/www/html/extensions/SemanticResultFormats/extensions/SemanticMediaWiki \
@@ -158,38 +202,53 @@ RUN rm -rf /var/www/html/extensions/SemanticResultFormats/extensions/SemanticMed
  && composer dump-autoload --no-interaction
 
 RUN cd extensions/Maps \
- && composer install \
-    --no-dev \
-    --no-interaction \
-    --ignore-platform-reqs
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
 
 RUN cd extensions/TemplateStyles \
- && composer install \
-    --no-dev \
-    --no-interaction \
-    --ignore-platform-reqs
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
 
 RUN cd extensions/Bootstrap \
- && composer install \
-    --no-dev \
-    --no-interaction \
-    --ignore-platform-reqs
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
 
 RUN cd extensions/Widgets \
- && composer install \
-    --no-dev \
-    --no-interaction \
-    --ignore-platform-reqs
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/Elastica \
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/CirrusSearch \
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/Mermaid \
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/Network \
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/KnowledgeGraph \
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/Mpdf \
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/SemanticCite \
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/SemanticGlossary \
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/ExternalData \
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
+
+RUN cd extensions/RSS \
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
 
 # --------------------------------------------------
 # COMPOSER: SKINS
 # --------------------------------------------------
 
 RUN cd skins/Chameleon \
- && composer install \
-    --no-dev \
-    --no-interaction \
-    --ignore-platform-reqs
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
 
 # --------------------------------------------------
 # PHP CONFIG
