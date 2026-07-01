@@ -50,42 +50,42 @@ RUN cd extensions \
  && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-Lockdown.git Lockdown \
  && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-CodeMirror.git CodeMirror \
  && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-Lingo.git Lingo \
- && git clone --depth=1 https://github.com/wikimedia/mediawiki-extensions-HeaderTabs.git HeaderTabs \
- && git clone --depth=1 https://github.com/wikimedia/mediawiki-extensions-TitleIcon.git TitleIcon \
- && git clone --depth=1 https://github.com/wikimedia/mediawiki-extensions-NativeSvgHandler.git NativeSvgHandler \
- && git clone --depth=1 https://github.com/wikimedia/mediawiki-extensions-LinkTarget.git LinkTarget \
+ && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-HeaderTabs.git HeaderTabs \
+ && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-TitleIcon.git TitleIcon \
+ && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-NativeSvgHandler.git NativeSvgHandler \
+ && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-LinkTarget.git LinkTarget \
  && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-ExternalData.git ExternalData \
  && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-DataTransfer.git DataTransfer \
- && git clone --depth=1 https://github.com/wikimedia/mediawiki-extensions-DeleteBatch.git DeleteBatch \
- && git clone --depth=1 https://github.com/ProfessionalWiki/SimpleBatchUpload.git SimpleBatchUpload \
- && git clone --depth=1 https://github.com/wikimedia/mediawiki-extensions-ImportUsers.git ImportUsers \
+ && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-DeleteBatch.git DeleteBatch \
+ && git clone --depth=1 -b 2.1.0 https://github.com/ProfessionalWiki/SimpleBatchUpload.git SimpleBatchUpload \
+ && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-ImportUsers.git ImportUsers \
  && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-AdminLinks.git AdminLinks \
- && git clone --depth=1 https://github.com/miraheze/RottenLinks.git RottenLinks \
+ && git clone --depth=1 -b REL1_39 https://github.com/miraheze/RottenLinks.git RottenLinks \
  && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-RSS.git RSS \
  && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-MyVariables.git MyVariables \
  && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-Variables.git Variables \
  && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-UrlGetParameters.git UrlGetParameters \
- && git clone --depth=1 https://github.com/wikimedia/mediawiki-extensions-UserFunctions.git UserFunctions \
- && git clone --depth=1 https://github.com/wikimedia/mediawiki-extensions-Mpdf.git Mpdf \
- && git clone --depth=1 https://github.com/wikimedia/mediawiki-extensions-RightFunctions.git RightFunctions \
- && git clone --depth=1 https://github.com/miraheze/MatomoAnalytics.git MatomoAnalytics \
+ && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-UserFunctions.git UserFunctions \
+ && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-Mpdf.git Mpdf \
+ && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-RightFunctions.git RightFunctions \
+ && git clone --depth=1 -b REL1_39 https://github.com/miraheze/MatomoAnalytics.git MatomoAnalytics \
  && git clone --depth=1 -b ${SMW_VERSION} https://github.com/SemanticMediaWiki/SemanticMediaWiki.git \
  && git clone -b datatables-v2-improvements https://github.com/Knowledge-Wiki/SemanticResultFormats.git SemanticResultFormats \
  && cd SemanticResultFormats && git checkout 5e0ba274c5d60b6dab3aac0e2d9eb433eb59987a && cd .. \
- && git clone --depth=1 https://github.com/SemanticMediaWiki/SemanticCompoundQueries.git \
- && git clone --depth=1 https://github.com/SemanticMediaWiki/SemanticExtraSpecialProperties.git \
- && git clone --depth=1 https://github.com/SemanticMediaWiki/SemanticMetaTags.git \
- && git clone --depth=1 https://github.com/SemanticMediaWiki/SemanticCite.git \
- && git clone --depth=1 https://github.com/gesinn-it-pub/SemanticDependencyUpdater.git \
- && git clone --depth=1 https://github.com/SemanticMediaWiki/SemanticGlossary.git \
- && git clone --depth=1 https://github.com/SemanticMediaWiki/SemanticDrilldown.git \
- && git clone --depth=1 https://github.com/SemanticMediaWiki/KnowledgeGraph.git \
+ && git clone --depth=1 -b 2.2.0 https://github.com/SemanticMediaWiki/SemanticCompoundQueries.git \
+ && git clone --depth=1 -b 3.0.4 https://github.com/SemanticMediaWiki/SemanticExtraSpecialProperties.git \
+ && git clone --depth=1 -b 2.1.0 https://github.com/SemanticMediaWiki/SemanticMetaTags.git \
+ && git clone --depth=1 -b 3.1.0 https://github.com/SemanticMediaWiki/SemanticCite.git \
+ && git clone --depth=1 -b 2.0.0 https://github.com/gesinn-it-pub/SemanticDependencyUpdater.git \
+ && git clone --depth=1 -b 3.1.2 https://github.com/SemanticMediaWiki/SemanticGlossary.git \
+ && git clone --depth=1 -b 2.1.2 https://github.com/SemanticMediaWiki/SemanticDrilldown.git \
+ && git clone --depth=1 -b 2.1.0 https://github.com/SemanticMediaWiki/KnowledgeGraph.git \
  && git clone --depth=1 https://github.com/JeroenDeDauw/Validator.git Validator \
  && git clone --depth=1 https://github.com/JeroenDeDauw/ParamProcessor.git ParamProcessor \
  && git clone --depth=1 -b 10.3.0 https://github.com/ProfessionalWiki/Maps.git Maps \
  && git clone --depth=1 -b 1.2.2 https://github.com/ProfessionalWiki/ModernTimeline.git ModernTimeline \
- && git clone --depth=1 https://github.com/ProfessionalWiki/Network.git \
- && git clone --depth=1 https://github.com/SemanticMediaWiki/Mermaid.git \
+ && git clone --depth=1 -b 1.1.0 https://github.com/ProfessionalWiki/Network.git \
+ && git clone --depth=1 -b 3.1.0 https://github.com/SemanticMediaWiki/Mermaid.git \
  && find . -name ".git" -type d -exec rm -rf {} + 2>/dev/null; true
 
 # --------------------------------------------------
