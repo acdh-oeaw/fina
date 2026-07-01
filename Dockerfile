@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y \
  && rm -rf /var/lib/apt/lists/*
 
 # --------------------------------------------------
-# PHP
+# PHP EXTENSIONS
 # --------------------------------------------------
 
 RUN docker-php-ext-install \
@@ -44,7 +44,7 @@ RUN a2enmod rewrite \
  && echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # --------------------------------------------------
-# MEDIAWIKI
+# MEDIAWIKI CORE
 # --------------------------------------------------
 
 RUN git clone \
@@ -61,9 +61,12 @@ WORKDIR /var/www/html
 # --------------------------------------------------
 
 RUN cd extensions \
- && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-TemplateStyles.git TemplateStyles \
- && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-PageForms.git PageForms \
- && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets
+ && git clone --depth=1 --branch REL1_39 \
+    https://github.com/wikimedia/mediawiki-extensions-TemplateStyles.git TemplateStyles \
+ && git clone --depth=1 --branch REL1_39 \
+    https://github.com/wikimedia/mediawiki-extensions-PageForms.git PageForms \
+ && git clone --depth=1 --branch REL1_39 \
+    https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets
 
 # --------------------------------------------------
 # SEMANTIC STACK
@@ -77,18 +80,18 @@ RUN cd extensions \
     https://github.com/Knowledge-Wiki/SemanticResultFormats.git \
     SemanticResultFormats \
  && cd SemanticResultFormats \
- && git checkout 5e0ba274c5d60b6dab3aac0e2d9eb433eb59987a \
- && rm -rf extensions 
+ && git checkout 5e0ba274c5d60b6dab3aac0e2d9eb433eb59987a
 
 # --------------------------------------------------
-# MAPS
+# MAPS & DEPENDENCIES
 # --------------------------------------------------
 
 RUN cd extensions \
  && git clone --depth=1 https://github.com/JeroenDeDauw/Validator.git Validator \
  && git clone --depth=1 https://github.com/JeroenDeDauw/ParamProcessor.git ParamProcessor \
  && git clone --depth=1 https://github.com/ProfessionalWiki/Maps.git Maps \
- && git clone --depth=1 --branch 4.0.0 https://github.com/ProfessionalWiki/ModernTimeline.git ModernTimeline
+ && git clone --depth=1 --branch 4.0.0 \
+    https://github.com/ProfessionalWiki/ModernTimeline.git ModernTimeline
 
 # --------------------------------------------------
 # CUSTOMISATIONS
@@ -122,10 +125,27 @@ RUN ln -sf /var/www/html/skins/Chameleon /var/www/html/skins/chameleon \
  && ln -sf /var/www/html/skins /var/www/html/Skins
 
 # --------------------------------------------------
-# COMPOSER
+# COMPOSER: ROOT (CRITICAL - generates composer.lock)
+# --------------------------------------------------
+
+WORKDIR /var/www/html
+
+RUN composer install \
+    --no-dev \
+    --no-interaction \
+    --ignore-platform-reqs
+
+# --------------------------------------------------
+# COMPOSER: EXTENSIONS
 # --------------------------------------------------
 
 RUN cd extensions/SemanticMediaWiki \
+ && composer install \
+    --no-dev \
+    --no-interaction \
+    --ignore-platform-reqs
+
+RUN cd extensions/SemanticResultFormats \
  && composer install \
     --no-dev \
     --no-interaction \
@@ -149,16 +169,24 @@ RUN cd extensions/Bootstrap \
     --no-interaction \
     --ignore-platform-reqs
 
-# --------------------------------------------------
-# CLEANUP
-# --------------------------------------------------
-
-RUN rm -rf \
-    extensions/SemanticResultFormats/vendor \
-    extensions/SemanticResultFormats/composer.lock
+RUN cd extensions/Widgets \
+ && composer install \
+    --no-dev \
+    --no-interaction \
+    --ignore-platform-reqs
 
 # --------------------------------------------------
-# PHP
+# COMPOSER: SKINS
+# --------------------------------------------------
+
+RUN cd skins/Chameleon \
+ && composer install \
+    --no-dev \
+    --no-interaction \
+    --ignore-platform-reqs
+
+# --------------------------------------------------
+# PHP CONFIG
 # --------------------------------------------------
 
 RUN printf "memory_limit=512M\n\
