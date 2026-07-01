@@ -80,23 +80,23 @@ RUN cd extensions \
 # --------------------------------------------------
 
 RUN cd extensions \
- && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-HeaderTabs.git HeaderTabs \
- && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-TitleIcon.git TitleIcon \
- && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-NativeSvgHandler.git NativeSvgHandler \
- && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-LinkTarget.git LinkTarget \
+ && git clone --depth=1 https://github.com/wikimedia/mediawiki-extensions-HeaderTabs.git HeaderTabs \
+ && git clone --depth=1 https://github.com/wikimedia/mediawiki-extensions-TitleIcon.git TitleIcon \
+ && git clone --depth=1 https://github.com/wikimedia/mediawiki-extensions-NativeSvgHandler.git NativeSvgHandler \
+ && git clone --depth=1 https://github.com/wikimedia/mediawiki-extensions-LinkTarget.git LinkTarget \
  && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-ExternalData.git ExternalData \
  && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-DataTransfer.git DataTransfer \
- && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-DeleteBatch.git DeleteBatch \
- && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-SimpleBatchUpload.git SimpleBatchUpload \
- && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-ImportUsers.git ImportUsers \
+ && git clone --depth=1 https://github.com/wikimedia/mediawiki-extensions-DeleteBatch.git DeleteBatch \
+ && git clone --depth=1 https://github.com/wikimedia/mediawiki-extensions-SimpleBatchUpload.git SimpleBatchUpload \
+ && git clone --depth=1 https://github.com/wikimedia/mediawiki-extensions-ImportUsers.git ImportUsers \
  && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-AdminLinks.git AdminLinks \
- && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-RottenLinks.git RottenLinks \
+ && git clone --depth=1 https://github.com/wikimedia/mediawiki-extensions-RottenLinks.git RottenLinks \
  && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-RSS.git RSS \
  && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-MyVariables.git MyVariables \
  && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-Variables.git Variables \
  && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-UrlGetParameters.git UrlGetParameters \
- && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-UserFunctions.git UserFunctions \
- && git clone --depth=1 --branch REL1_39 https://github.com/wikimedia/mediawiki-extensions-Mpdf.git Mpdf
+ && git clone --depth=1 https://github.com/wikimedia/mediawiki-extensions-UserFunctions.git UserFunctions \
+ && git clone --depth=1 https://github.com/wikimedia/mediawiki-extensions-Mpdf.git Mpdf
 
 # --------------------------------------------------
 # SEMANTIC STACK
