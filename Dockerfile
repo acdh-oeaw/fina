@@ -113,24 +113,24 @@ RUN mkdir -p /var/www/html/images \
 # --------------------------------------------------
 
 RUN composer config --no-interaction policy.advisories.block false \
- && composer install --no-dev --no-interaction --ignore-platform-reqs \
- && (cd extensions/SemanticMediaWiki && composer install --no-dev --no-interaction --ignore-platform-reqs) \
- && (cd extensions/SemanticResultFormats && composer install --no-dev --no-interaction --ignore-platform-reqs) \
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
+RUN cd extensions/SemanticMediaWiki && composer install --no-dev --no-interaction --ignore-platform-reqs
+RUN cd extensions/SemanticResultFormats && composer install --no-dev --no-interaction --ignore-platform-reqs \
  && rm -rf extensions/SemanticMediaWiki \
- && composer dump-autoload --no-interaction \
- && (cd extensions/Maps && composer install --no-dev --no-interaction --ignore-platform-reqs) \
- && (cd extensions/TemplateStyles && composer install --no-dev --no-interaction --ignore-platform-reqs) \
- && (cd extensions/Bootstrap && composer install --no-dev --no-interaction --ignore-platform-reqs) \
- && (cd extensions/Widgets && composer install --no-dev --no-interaction --ignore-platform-reqs) \
- && (cd extensions/Elastica && composer install --no-dev --no-interaction --ignore-platform-reqs) \
- && (cd extensions/CirrusSearch && composer install --no-dev --no-interaction --ignore-platform-reqs) \
- && (cd extensions/Mpdf && composer config --no-interaction policy.advisories.block false && composer install --no-dev --no-interaction --ignore-platform-reqs) \
- && (cd extensions/ExternalData && composer install --no-dev --no-interaction --ignore-platform-reqs) \
- && (cd extensions/RSS && composer install --no-dev --no-interaction --ignore-platform-reqs) \
- && (cd extensions/KnowledgeGraph && composer install --no-dev --no-interaction --ignore-platform-reqs) \
- && (cd skins/Chameleon && composer install --no-dev --no-interaction --ignore-platform-reqs) \
- && composer clear-cache \
- && rm -rf /root/.composer/cache /tmp/*
+ && composer dump-autoload --no-interaction
+RUN cd extensions/Maps && composer install --no-dev --no-interaction --ignore-platform-reqs
+RUN cd extensions/TemplateStyles && composer install --no-dev --no-interaction --ignore-platform-reqs
+RUN cd extensions/Bootstrap && composer install --no-dev --no-interaction --ignore-platform-reqs
+RUN cd extensions/Widgets && composer install --no-dev --no-interaction --ignore-platform-reqs
+RUN cd extensions/Elastica && composer install --no-dev --no-interaction --ignore-platform-reqs
+RUN cd extensions/CirrusSearch && composer install --no-dev --no-interaction --ignore-platform-reqs
+RUN cd extensions/Mpdf && composer config --no-interaction policy.advisories.block false \
+ && composer install --no-dev --no-interaction --ignore-platform-reqs
+RUN cd extensions/ExternalData && composer install --no-dev --no-interaction --ignore-platform-reqs
+RUN cd extensions/RSS && composer install --no-dev --no-interaction --ignore-platform-reqs
+RUN cd extensions/KnowledgeGraph && composer install --no-dev --no-interaction --ignore-platform-reqs
+RUN cd skins/Chameleon && composer install --no-dev --no-interaction --ignore-platform-reqs
+RUN composer clear-cache && rm -rf /root/.composer/cache /tmp/*
 
 # --------------------------------------------------
 # PHP CONFIG
