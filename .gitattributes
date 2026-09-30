@@ -1,0 +1,2 @@
+# Unified diff context preserves leading spaces and upstream tab indentation.
+patches/*.patch -whitespace

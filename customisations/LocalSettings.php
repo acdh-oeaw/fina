@@ -270,7 +270,8 @@ wfLoadExtension( 'TextExtracts' );
 # wfLoadExtension( 'TitleIcon' );
 wfLoadExtension( 'NativeSvgHandler' );
 wfLoadExtension( 'LinkTarget' );
-wfLoadExtension( 'ExternalData' );
+# ExternalData disabled for CVE-2026-100382. Version 3.7 requires MW >= 1.42.
+# Re-enable only after the supported extension and MediaWiki upgrade is tested.
 wfLoadExtension( 'DataTransfer' );
 # wfLoadExtension( 'DeleteBatch' );
 # wfLoadExtension( 'SimpleBatchUpload' );

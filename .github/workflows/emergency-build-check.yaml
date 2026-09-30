@@ -1,0 +1,26 @@
+name: Emergency image build check
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check production Composer preparation syntax
+        run: |
+          php -l scripts/prepare-production-composer.php
+          php -l scripts/configure-srf-smw.php
+          php -l scripts/check-smw-api.php
+      - name: Build image without publishing or deploying
+        run: docker build --progress=plain --tag fina:emergency-check .
+      - name: Verify ExternalData is absent
+        run: >-
+          docker run --rm --entrypoint php fina:emergency-check -r
+          'if (is_dir("/var/www/html/extensions/ExternalData")) {fwrite(STDERR, "ExternalData is still installed\n"); exit(1);}'
