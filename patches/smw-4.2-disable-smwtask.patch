@@ -1,0 +1,11 @@
+diff --git a/src/MediaWiki/Hooks/ApiModuleManager.php b/src/MediaWiki/Hooks/ApiModuleManager.php
+--- a/src/MediaWiki/Hooks/ApiModuleManager.php
++++ b/src/MediaWiki/Hooks/ApiModuleManager.php
+@@ -28,7 +28,6 @@ class ApiModuleManager implements HookListener {
+ 
+ 		$modules = [
+ 			'smwinfo' => '\SMW\MediaWiki\Api\Info',
+-			'smwtask' => '\SMW\MediaWiki\Api\Task',
+ 			'smwbrowse' => '\SMW\MediaWiki\Api\Browse',
+ 			'ask' => '\SMW\MediaWiki\Api\Ask',
+ 			'askargs' => '\SMW\MediaWiki\Api\AskArgs',

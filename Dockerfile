@@ -54,7 +54,6 @@ RUN cd extensions \
  && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-TitleIcon.git TitleIcon \
  && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-NativeSvgHandler.git NativeSvgHandler \
  && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-LinkTarget.git LinkTarget \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-ExternalData.git ExternalData \
  && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-DataTransfer.git DataTransfer \
  && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-DeleteBatch.git DeleteBatch \
  && git clone --depth=1 -b 2.0.1 https://github.com/ProfessionalWiki/SimpleBatchUpload.git SimpleBatchUpload \
@@ -112,12 +111,29 @@ RUN mkdir -p /var/www/html/images \
 # ALL COMPOSER INSTALLS (separate steps for debugging)
 # --------------------------------------------------
 
+# Strip development-only requirements only in unlocked production projects.
+# Keep upstream source files in Git unchanged and use existing locks as-is.
+COPY scripts/prepare-production-composer.php /usr/local/bin/prepare-production-composer.php
+RUN php /usr/local/bin/prepare-production-composer.php \
+    . extensions/SemanticMediaWiki extensions/SemanticResultFormats \
+    extensions/Maps extensions/TemplateStyles extensions/Bootstrap \
+    extensions/Widgets extensions/Elastica extensions/CirrusSearch \
+    extensions/Mpdf extensions/RSS extensions/KnowledgeGraph skins/Chameleon
+
 RUN composer config --no-interaction policy.advisories.block false \
  && composer install --no-dev --no-interaction --ignore-platform-reqs
-RUN cd extensions/SemanticMediaWiki && composer install --no-dev --no-interaction --ignore-platform-reqs
-RUN cd extensions/SemanticResultFormats && composer install --no-dev --no-interaction --ignore-platform-reqs \
- && rm -rf extensions/SemanticMediaWiki \
- && composer dump-autoload --no-interaction
+COPY patches/smw-4.2-disable-smwtask.patch /usr/local/share/smw-4.2-disable-smwtask.patch
+COPY scripts/check-smw-api.php /usr/local/bin/check-smw-api.php
+RUN cd extensions/SemanticMediaWiki \
+ && git apply /usr/local/share/smw-4.2-disable-smwtask.patch \
+ && php /usr/local/bin/check-smw-api.php .
+RUN cd extensions/SemanticMediaWiki \
+ && COMPOSER_ROOT_VERSION=${SMW_VERSION} composer install --no-dev --no-interaction --ignore-platform-reqs
+COPY scripts/configure-srf-smw.php /usr/local/bin/configure-srf-smw.php
+RUN cd extensions/SemanticResultFormats \
+ && php /usr/local/bin/configure-srf-smw.php \
+ && composer install --no-dev --no-interaction --ignore-platform-reqs \
+ && php -r 'if (!is_link("extensions/SemanticMediaWiki") || realpath("extensions/SemanticMediaWiki") !== realpath("../SemanticMediaWiki")) { throw new RuntimeException("SRF must share the patched SMW directory."); }'
 RUN cd extensions/Maps && composer install --no-dev --no-interaction --ignore-platform-reqs
 RUN cd extensions/TemplateStyles && composer install --no-dev --no-interaction --ignore-platform-reqs
 RUN cd extensions/Bootstrap && composer install --no-dev --no-interaction --ignore-platform-reqs
@@ -126,7 +142,6 @@ RUN cd extensions/Elastica && composer install --no-dev --no-interaction --ignor
 RUN cd extensions/CirrusSearch && composer install --no-dev --no-interaction --ignore-platform-reqs
 RUN cd extensions/Mpdf && composer config --no-interaction policy.advisories.block false \
  && composer install --no-dev --no-interaction --ignore-platform-reqs
-RUN cd extensions/ExternalData && composer install --no-dev --no-interaction --ignore-platform-reqs
 RUN cd extensions/RSS && composer install --no-dev --no-interaction --ignore-platform-reqs
 RUN cd extensions/KnowledgeGraph && composer install --no-dev --no-interaction --ignore-platform-reqs
 RUN cd skins/Chameleon && composer install --no-dev --no-interaction --ignore-platform-reqs

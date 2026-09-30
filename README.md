@@ -108,7 +108,7 @@ The following extensions are loaded from MediaWiki core or downloaded during bui
 
 - PageForms
 - Widgets
-- ExternalData
+- ExternalData is temporarily disabled and omitted from the image (CVE-2026-100382).
 - DataTransfer
 
 ### Additional Compatible Extensions (MW 1.39)
