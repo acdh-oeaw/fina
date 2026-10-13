@@ -33,9 +33,8 @@ ingress:
 # --- STARTUP PROBE ---
 startupProbe:
   enabled: true
-  probeType: "httpGet"
-  path: /api.php?action=query&meta=siteinfo&format=json
-  port: 80
+  probeType: "exec"
+  command: ["php", "/usr/local/bin/fina-healthcheck.php"]
   failureThreshold: 120
   periodSeconds: 10
   timeoutSeconds: 5
@@ -54,9 +53,8 @@ livenessProbe:
 # --- READINESS PROBE ---
 readinessProbe:
   enabled: true
-  probeType: "httpGet"
-  path: /api.php?action=query&meta=siteinfo&format=json
-  port: 80
+  probeType: "exec"
+  command: ["php", "/usr/local/bin/fina-healthcheck.php"]
   periodSeconds: 10
   timeoutSeconds: 5
   failureThreshold: 6

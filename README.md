@@ -15,7 +15,12 @@ Configuration is in `customisations/LocalSettings.php` and
 
 ## Runtime configuration
 
-Set `MYSQL_SERVER`, `MYSQL_DB`, `MYSQL_USER`, `MYSQL_PASSWORD` and `MW_SECRET_KEY`.
+Set `MYSQL_SERVER`, `MYSQL_DB`, `MYSQL_USER` and `MYSQL_PASSWORD`.
+`MW_SECRET_KEY` is optional: when absent, FINA retains the exact key used by
+the previous image. A supplied value still overrides it. Existing deployments
+therefore need no new secret and do not change keys during this upgrade.
+The legacy fallback is public in repository history; replacing it with a
+private key is a separate, deliberate rotation.
 `PUBLIC_URL` defaults to `https://fina.oeaw.ac.at`. Keep credentials outside Git.
 Mount existing uploads at `/var/www/html/images`; files are served through
 `img_auth.php`.
@@ -23,6 +28,9 @@ Mount existing uploads at `/var/www/html/images`; files are served through
 SMTP uses `MAIL_SMTP_HOST`, `MAIL_SMTP_USER`, `MAIL_SMTP_PASSWORD` and
 `EMERGENCY_CONTACT` (port 25). Without an SMTP host, mail is disabled.
 `FINA_ENV=local` disables mail and enables diagnostic details for local testing.
+
+Startup and readiness probes require a valid MediaWiki API response; an HTTP
+200 response containing a PHP fatal error is unhealthy.
 
 ## Database upgrade
 
