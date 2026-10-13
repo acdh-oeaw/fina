@@ -17,6 +17,7 @@ $wgLanguageCode = 'en';
 $wgScriptPath = '';
 $wgArticlePath = '/$1';
 $wgUsePathInfo = true;
+// Preserve the existing FINA key unless deployment explicitly supplies an override.
 $wgSecretKey = getenv('MW_SECRET_KEY');
 $wgDBtype = 'mysql';
 $wgDBserver = getenv('MYSQL_SERVER');

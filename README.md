@@ -16,13 +16,13 @@ Configuration is in `customisations/LocalSettings.php` and
 ## Runtime configuration
 
 Set `MYSQL_SERVER`, `MYSQL_DB`, `MYSQL_USER`, `MYSQL_PASSWORD` and `MW_SECRET_KEY`.
-`PUBLIC_URL` defaults to `https://fina.oeaw.ac.at`. Keep credentials outside Git.
-Mount existing uploads at `/var/www/html/images`; files are served through
-`img_auth.php`.
 
 SMTP uses `MAIL_SMTP_HOST`, `MAIL_SMTP_USER`, `MAIL_SMTP_PASSWORD` and
 `EMERGENCY_CONTACT` (port 25). Without an SMTP host, mail is disabled.
 `FINA_ENV=local` disables mail and enables diagnostic details for local testing.
+
+Startup and readiness probes require a valid MediaWiki API response; an HTTP
+200 response containing a PHP fatal error is unhealthy.
 
 ## Database upgrade
 
