@@ -24,11 +24,9 @@ service:
 ingress:
   enabled: true
   path: "/"
-  className: "nginx"
+  className: "traefik"
   annotations:
     cert-manager.io/cluster-issuer: acdh-prod
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "300" 
-    nginx.ingress.kubernetes.io/proxy-send-timeout: "300" 
 
 # --- STARTUP PROBE ---
 startupProbe:
