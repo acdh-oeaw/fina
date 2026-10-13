@@ -3,7 +3,7 @@
 if (!defined('MEDIAWIKI')) {
     exit;
 }
-foreach (['MYSQL_SERVER', 'MYSQL_DB', 'MYSQL_USER', 'MYSQL_PASSWORD'] as $key) {
+foreach (['MYSQL_SERVER', 'MYSQL_DB', 'MYSQL_USER', 'MYSQL_PASSWORD', 'MW_SECRET_KEY'] as $key) {
     if (!getenv($key)) {
         throw new RuntimeException("Missing environment setting: $key");
     }
@@ -18,7 +18,7 @@ $wgScriptPath = '';
 $wgArticlePath = '/$1';
 $wgUsePathInfo = true;
 // Preserve the existing FINA key unless deployment explicitly supplies an override.
-$wgSecretKey = getenv('MW_SECRET_KEY') ?: "da5bfc1128bbf222b83d2affdad246e41ee0e775413cbd76f54132b5bb3516b7";
+$wgSecretKey = getenv('MW_SECRET_KEY');
 $wgDBtype = 'mysql';
 $wgDBserver = getenv('MYSQL_SERVER');
 $wgDBname = getenv('MYSQL_DB');
