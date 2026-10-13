@@ -1,0 +1,94 @@
+// Compatibility with Bootstrap 5 and the accessible, single-instance FINA controls.
+.skin-kma {
+    [hidden] { display: none !important; }
+    a { text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    #jump-to-nav, #siteSub { display: none; }
+    .contentHeader .firstHeading { color: #c00000; }
+    .mw-indicator-smw-entity-examiner { display: none; }
+    .nav-container { min-height: 70px; padding-left: 140px; }
+    .nav-container .brand { left: 0; top: 0; }
+    nav.navigation { display: flex; justify-content: flex-end; float: none; min-height: 70px; }
+    section.navigation { height: auto; }
+    .kma-control, .kma-menu-toggle {
+        border: 0; border-radius: 0; background: transparent; color: #0b0080;
+        font: inherit; line-height: 70px; padding: 0 20px; cursor: pointer;
+        white-space: nowrap;
+        &:hover { background: #c00000; color: white; }
+        &:focus-visible { outline: 2px solid #c00000; outline-offset: -3px; }
+    }
+    #kma-main-menu > li > .kma-menu-toggle::after { content: ' ▾'; padding-left: 4px; }
+    .kma-control::before { margin: 0; font-family: 'Font Awesome 6 Free', 'Font Awesome 5 Free'; }
+    #kma-personal-tools { right: 0; top: 70px; }
+    .nav-dropdown:not([hidden]) { display: block; }
+    .nav-dropdown { min-width: 170px; }
+    .nav-dropdown li { margin: 0; }
+    .nav-dropdown a { display: block; padding: 0 20px; line-height: 50px; white-space: nowrap; }
+    .kma-search-wrapper:not([hidden]) {
+        opacity: 1; visibility: visible; pointer-events: auto; transform: none;
+    }
+    .kma-search-wrapper { z-index: 1001; max-width: calc(100vw - 30px); }
+    .p-contentnavigation { float: none; flex-wrap: wrap; }
+    .p-contentnavigation .kma-menu-toggle { color: inherit; }
+    .p-contentnavigation li.selected a { font-weight: bold; }
+    .p-contentnavigation .nav-dropdown { right: 0; }
+    .kma-toolbox { position: relative; }
+    #kma-toolbox-toggle {
+        border: 1px solid #a2a9b1; color: #202122; background: transparent;
+        font-family: Arial, sans-serif; font-weight: bold; padding: 2px 12px; line-height: 28px;
+    }
+    #kma-toolbox-menu {
+        bottom: 100%; left: 50%; transform: translateX(-50%); text-align: left;
+        max-height: 60vh; overflow-y: auto; max-width: calc(100vw - 32px);
+    }
+    #kma-toolbox-menu li { display: block; margin: 0; }
+    #kma-toolbox-menu a { line-height: 36px; }
+    #kma-toolbox-menu a:hover { background: #eaecf0; }
+    #footer-icons { display: flex; justify-content: center; flex-wrap: wrap; gap: 4px; }
+    #footer-icons img { max-height: 31px; width: auto; }
+    #footer-icons a { padding: 0; border: 0; background: none; }
+    .slick-prev:before, .slick-next:before { color: white; }
+    // MediaWiki 1.43 emits figures for left-aligned images; preserve the FINA introduction.
+    &.page-FINA .mw-parser-output figure.mw-halign-left {
+        float: left !important; width: auto; margin: 0 8px 0 0 !important;
+    }
+    // SRF 6 uses flex slides and no longer gives carousel images an explicit height.
+    .slick-slider.homepage .slick-slide-content.img {
+        height: 100%; width: 100%; object-fit: cover;
+    }
+    @media (max-width: 768px) {
+        .slick-slider.homepage .caption { width: fit-content; max-width: 100%; left: 0; }
+        .dt-container .dt-layout-end { max-width: 100%; }
+        .dt-container .dt-paging nav { display: flex; flex-wrap: wrap; justify-content: center; }
+    }
+    .footer-row1 a { color: #0056b3; }
+    .footer-row1 a:hover { color: #003e80; }
+    .font-weight-bold { font-weight: bold; }
+    .text-left { text-align: left; }
+    .text-right { text-align: right; }
+    .float-left { float: left; }
+    .float-right { float: right; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+    @media (min-width: 1001px) {
+        #kma-main-menu, .kma-controls { display: flex !important; }
+    }
+    @media (max-width: 1000px) {
+        .nav-container { padding-left: 0; }
+        nav.navigation { padding: 70px 0 0; display: block; }
+        .kma-controls { display: flex !important; position: absolute; right: 64px; top: 0; }
+        .kma-controls .kma-control { padding: 0 14px; }
+        .kma-controls li { float: left; }
+        .kma-controls .nav-mobile { right: -64px; display: block; }
+        #nav-toggle { border: 0; background: transparent; }
+        #kma-main-menu { display: none !important; }
+        .kma-menu-open #kma-main-menu { display: block !important; width: 100%; }
+        #kma-main-menu > li { float: none; }
+        #kma-main-menu > li > .kma-menu-toggle { width: 100%; text-align: left; }
+        #kma-main-menu .nav-dropdown { position: static; }
+        #kma-personal-tools { position: absolute; }
+        .p-contentnavigation { margin: 0 15px; }
+        .p-contentnavigation li a, .p-contentnavigation .kma-menu-toggle { padding: 0 10px; line-height: 44px !important; }
+    }
+    #mw-content-text .btn-group > .dropdown-menu { max-width: calc(100vw - 2rem); }
+    @media print { section.navigation, .p-contentnavigation, .kma-toolbox { display: none; } }
+}

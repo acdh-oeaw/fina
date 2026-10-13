@@ -1,0 +1,222 @@
+[
+  {
+    "directory": "TemplateStyles",
+    "repository": "https://github.com/wikimedia/mediawiki-extensions-TemplateStyles",
+    "ref": "REL1_43",
+    "commit": "e74200b2bcc2d5b36c1b0c02086c2907caa49eb1",
+    "version": "1.0",
+    "requires": {
+      "MediaWiki": ">= 1.43"
+    }
+  },
+  {
+    "directory": "Widgets",
+    "repository": "https://github.com/wikimedia/mediawiki-extensions-Widgets",
+    "ref": "REL1_43",
+    "commit": "87fab2b843195f0d812ce5b5c45b8f8919210c18",
+    "version": "1.6.0",
+    "requires": {
+      "MediaWiki": ">= 1.38.0"
+    }
+  },
+  {
+    "directory": "CookieWarning",
+    "repository": "https://github.com/wikimedia/mediawiki-extensions-CookieWarning",
+    "ref": "REL1_43",
+    "commit": "306b52c94c6112fb387e32e2d1ff80eb21fec675",
+    "version": "0.3.0",
+    "requires": {
+      "MediaWiki": ">= 1.41.0"
+    }
+  },
+  {
+    "directory": "Popups",
+    "repository": "https://github.com/wikimedia/mediawiki-extensions-Popups",
+    "ref": "REL1_43",
+    "commit": "13157a7d24a95572c66c2bddf9bf04ea7398525d",
+    "version": "unversioned",
+    "requires": {
+      "MediaWiki": ">= 1.43"
+    }
+  },
+  {
+    "directory": "Lockdown",
+    "repository": "https://github.com/wikimedia/mediawiki-extensions-Lockdown",
+    "ref": "REL1_43",
+    "commit": "acd8edcd542f8b057929908667d4962ee295cc0f",
+    "version": "unversioned",
+    "requires": {
+      "MediaWiki": ">= 1.41.0"
+    }
+  },
+  {
+    "directory": "CodeMirror",
+    "repository": "https://github.com/wikimedia/mediawiki-extensions-CodeMirror",
+    "ref": "REL1_43",
+    "commit": "d80cde18245d24ea70d0db643bc88faa208896a5",
+    "version": "6.0.0",
+    "requires": {
+      "MediaWiki": ">= 1.43"
+    }
+  },
+  {
+    "directory": "NativeSvgHandler",
+    "repository": "https://github.com/wikimedia/mediawiki-extensions-NativeSvgHandler",
+    "ref": "REL1_43",
+    "commit": "4eb0474815f240d747a339e9365214fc16430be6",
+    "version": "1.5.0",
+    "requires": {
+      "MediaWiki": ">= 1.35.0"
+    }
+  },
+  {
+    "directory": "LinkTarget",
+    "repository": "https://github.com/wikimedia/mediawiki-extensions-LinkTarget",
+    "ref": "REL1_43",
+    "commit": "e8804f81fa9d7cd0c9b6fbb7744f49fd24e14326",
+    "version": "0.2",
+    "requires": {
+      "MediaWiki": ">= 1.35.0"
+    }
+  },
+  {
+    "directory": "DataTransfer",
+    "repository": "https://github.com/wikimedia/mediawiki-extensions-DataTransfer",
+    "ref": "REL1_43",
+    "commit": "8bdfcb4c5a3fd3cb27155a1f4d71ceea12aed234",
+    "version": "1.6.1",
+    "requires": {
+      "MediaWiki": ">= 1.37.0"
+    }
+  },
+  {
+    "directory": "AdminLinks",
+    "repository": "https://github.com/wikimedia/mediawiki-extensions-AdminLinks",
+    "ref": "REL1_43",
+    "commit": "2409da3b5a282141e6aa746dfb6d5d8413f55d5a",
+    "version": "0.6.3",
+    "requires": {
+      "MediaWiki": ">= 1.35.0"
+    }
+  },
+  {
+    "directory": "RSS",
+    "repository": "https://github.com/wikimedia/mediawiki-extensions-RSS",
+    "ref": "REL1_43",
+    "commit": "30fe44130573f3f26e4b6b7ebf30625638d00585",
+    "version": "2.25.1",
+    "requires": {
+      "MediaWiki": ">= 1.43"
+    }
+  },
+  {
+    "directory": "MyVariables",
+    "repository": "https://github.com/wikimedia/mediawiki-extensions-MyVariables",
+    "ref": "REL1_43",
+    "commit": "1a750fb57e092cc038aeb2847f42233154c7e01a",
+    "version": "4.5",
+    "requires": {
+      "MediaWiki": ">= 1.35.0"
+    }
+  },
+  {
+    "directory": "Variables",
+    "repository": "https://github.com/wikimedia/mediawiki-extensions-Variables",
+    "ref": "REL1_43",
+    "commit": "12ad832a68e1a002c821f5d1c127b04ac047181e",
+    "version": "2.6.0-beta",
+    "requires": {
+      "MediaWiki": ">= 1.29.0"
+    }
+  },
+  {
+    "directory": "UrlGetParameters",
+    "repository": "https://github.com/wikimedia/mediawiki-extensions-UrlGetParameters",
+    "ref": "REL1_43",
+    "commit": "c89539c1d159d11399a3f7f900ce298fcdbde5c9",
+    "version": "1.6.0",
+    "requires": {
+      "MediaWiki": ">= 1.35.0"
+    }
+  },
+  {
+    "directory": "UserFunctions",
+    "repository": "https://github.com/wikimedia/mediawiki-extensions-UserFunctions",
+    "ref": "REL1_43",
+    "commit": "a335d2edf876777e707222c8074faa04eb1dd019",
+    "version": "2.8.1",
+    "requires": {
+      "MediaWiki": ">= 1.35.0"
+    }
+  },
+  {
+    "directory": "Mpdf",
+    "repository": "https://github.com/wikimedia/mediawiki-extensions-Mpdf",
+    "ref": "REL1_43",
+    "commit": "87d6a74b2c3c748d6d5b16414a9023cd798385bd",
+    "version": "1.1",
+    "requires": {
+      "MediaWiki": ">= 1.35.0"
+    }
+  },
+  {
+    "directory": "RightFunctions",
+    "repository": "https://github.com/wikimedia/mediawiki-extensions-RightFunctions",
+    "ref": "REL1_43",
+    "commit": "778dc2f2b76d122e77b840862a1a1f1ea1329ba8",
+    "version": "1.13.0",
+    "requires": {
+      "MediaWiki": ">= 1.35.0"
+    }
+  },
+  {
+    "directory": "ExternalData",
+    "repository": "https://github.com/wikimedia/mediawiki-extensions-ExternalData",
+    "ref": "3.7",
+    "commit": "5be63b028177a2a4207d063c54a0b6272f79209a",
+    "version": "3.7",
+    "requires": {
+      "MediaWiki": ">= 1.42"
+    }
+  },
+  {
+    "directory": "TitleIcon",
+    "repository": "https://github.com/wikimedia/mediawiki-extensions-TitleIcon",
+    "ref": "REL1_43",
+    "commit": "e58a8f904a84ebccc2906a1facd2511433a9865a",
+    "version": "6.2.1",
+    "requires": {
+      "MediaWiki": ">= 1.39.0"
+    }
+  },
+  {
+    "directory": "SemanticDrilldown",
+    "repository": "https://github.com/SemanticMediaWiki/SemanticDrilldown",
+    "ref": "5.0.2",
+    "commit": "10e77b60fb505cbfefe97c6d6dafbc903d6d456c",
+    "version": "5.0.2",
+    "requires": {
+      "MediaWiki": ">= 1.43"
+    }
+  },
+  {
+    "directory": "Mermaid",
+    "repository": "https://github.com/SemanticMediaWiki/Mermaid",
+    "ref": "6.0.2",
+    "commit": "bc7363f003057888b2f0087f350fd63c172afb05",
+    "version": "6.0.2",
+    "requires": {
+      "MediaWiki": ">= 1.39"
+    }
+  },
+  {
+    "directory": "Network",
+    "repository": "https://github.com/ProfessionalWiki/Network",
+    "ref": "4.1.0",
+    "commit": "9e79548d64e4edb84d2b457d1e1d2f9bba1505f8",
+    "version": "4.1.0",
+    "requires": {
+      "MediaWiki": ">= 1.43.0"
+    }
+  }
+]

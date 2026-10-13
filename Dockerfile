@@ -1,170 +1,45 @@
-FROM php:8.1-apache
-
-ENV MW_VERSION=REL1_39
-ENV SMW_VERSION=4.2.0
-
-# --------------------------------------------------
-# SYSTEM + PHP EXTENSIONS (single layer)
-# --------------------------------------------------
+# Based on Dalibor's feat/mediawiki-1-43-image, ee1d15bd234a; updated within 1.43 for security fixes.
+FROM docker.io/library/mediawiki:1.43.11@sha256:76b3d47b50c4e4a78f82e814917421cb62c49b0c56b4a0f981cd74e2bddd10ac AS dependencies
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    git unzip curl lua5.1 \
-    libicu-dev libzip-dev libpng-dev libxml2-dev \
-    libonig-dev libfreetype6-dev libjpeg62-turbo-dev \
- && docker-php-ext-install intl pdo pdo_mysql mysqli zip gd xml calendar \
- && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
-
-# --------------------------------------------------
-# APACHE
-# --------------------------------------------------
-
-RUN a2enmod rewrite \
- && sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf \
- && echo "ServerName localhost" >> /etc/apache2/apache2.conf
-
-# --------------------------------------------------
-# MEDIAWIKI CORE
-# --------------------------------------------------
-
-RUN git clone --depth=1 --recurse-submodules --branch ${MW_VERSION} \
-    https://github.com/wikimedia/mediawiki.git /var/www/html \
- && find /var/www/html -name ".git" -type d -exec rm -rf {} + 2>/dev/null; true
-
+      unzip libpng-dev libjpeg62-turbo-dev libfreetype6-dev libzip-dev \
+ && docker-php-ext-configure gd --with-freetype --with-jpeg \
+ && docker-php-ext-install -j2 gd zip \
+ && rm -rf /var/lib/apt/lists/*
+COPY --from=composer:2@sha256:af98f42dfff7c68ba8d53c2164fd9fde1087b7d449514baa38c418b1f6bc4bac /usr/bin/composer /usr/local/bin/composer
+ENV COMPOSER_ALLOW_SUPERUSER=1
 WORKDIR /var/www/html
+COPY upgrade/1.43/extensions.lock.json upgrade/1.43/requirements.json upgrade/1.43/download-extensions.php upgrade/1.43/prepare-composer.php /opt/fina/
+RUN chmod 0755 /var/www/html \
+ && php /opt/fina/download-extensions.php \
+ && php /opt/fina/prepare-composer.php
 
-# --------------------------------------------------
-# ALL EXTENSIONS (single layer, remove .git dirs)
-# --------------------------------------------------
-
-RUN cd extensions \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-TemplateStyles.git TemplateStyles \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-PageForms.git PageForms \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-Widgets.git Widgets \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-Elastica.git Elastica \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-CirrusSearch.git CirrusSearch \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-AdvancedSearch.git AdvancedSearch \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-CookieWarning.git CookieWarning \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-Popups.git Popups \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-Lockdown.git Lockdown \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-CodeMirror.git CodeMirror \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-Lingo.git Lingo \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-HeaderTabs.git HeaderTabs \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-TitleIcon.git TitleIcon \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-NativeSvgHandler.git NativeSvgHandler \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-LinkTarget.git LinkTarget \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-DataTransfer.git DataTransfer \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-DeleteBatch.git DeleteBatch \
- && git clone --depth=1 -b 2.0.1 https://github.com/ProfessionalWiki/SimpleBatchUpload.git SimpleBatchUpload \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-ImportUsers.git ImportUsers \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-AdminLinks.git AdminLinks \
- && git clone --depth=1 -b REL1_39 https://github.com/miraheze/RottenLinks.git RottenLinks \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-RSS.git RSS \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-MyVariables.git MyVariables \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-Variables.git Variables \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-UrlGetParameters.git UrlGetParameters \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-UserFunctions.git UserFunctions \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-Mpdf.git Mpdf \
- && git clone --depth=1 -b REL1_39 https://github.com/wikimedia/mediawiki-extensions-RightFunctions.git RightFunctions \
- # MatomoAnalytics - DISABLED (no MW 1.39 compatible version) \
- # && git clone --depth=1 ... MatomoAnalytics \
- && git clone --depth=1 -b ${SMW_VERSION} https://github.com/SemanticMediaWiki/SemanticMediaWiki.git \
- && git clone -b datatables-v2-improvements https://github.com/Knowledge-Wiki/SemanticResultFormats.git SemanticResultFormats \
- && cd SemanticResultFormats && git checkout 5e0ba274c5d60b6dab3aac0e2d9eb433eb59987a && cd .. \
- && git clone --depth=1 -b 2.2.0 https://github.com/SemanticMediaWiki/SemanticCompoundQueries.git \
- && git clone --depth=1 -b 3.0.4 https://github.com/SemanticMediaWiki/SemanticExtraSpecialProperties.git \
- && git clone --depth=1 -b 2.0.0 https://github.com/SemanticMediaWiki/SemanticMetaTags.git \
- && git clone --depth=1 -b 3.0.0 https://github.com/SemanticMediaWiki/SemanticCite.git \
- && git clone --depth=1 -b 2.0.0 https://github.com/gesinn-it-pub/SemanticDependencyUpdater.git \
- && git clone --depth=1 -b 3.0.0 https://github.com/SemanticMediaWiki/SemanticGlossary.git \
- # SemanticDrilldown - DISABLED (no MW 1.39 compatible version) \
- # && git clone --depth=1 ... SemanticDrilldown \
- && git clone --depth=1 -b 2.2.0 https://github.com/SemanticMediaWiki/KnowledgeGraph.git \
- && git clone --depth=1 https://github.com/JeroenDeDauw/Validator.git Validator \
- && git clone --depth=1 https://github.com/JeroenDeDauw/ParamProcessor.git ParamProcessor \
- && git clone --depth=1 -b 10.3.0 https://github.com/ProfessionalWiki/Maps.git Maps \
- && git clone --depth=1 -b 1.2.2 https://github.com/ProfessionalWiki/ModernTimeline.git ModernTimeline \
- && git clone --depth=1 -b 1.1.0 https://github.com/ProfessionalWiki/Network.git \
- && git clone --depth=1 -b 3.1.0 https://github.com/SemanticMediaWiki/Mermaid.git \
- && find . -name ".git" -type d -exec rm -rf {} + 2>/dev/null; true
-
-# --------------------------------------------------
-# CUSTOMISATIONS
-# --------------------------------------------------
-
-COPY customisations/LocalSettings.php /var/www/html/LocalSettings.php
-COPY customisations/extensions/Bootstrap /var/www/html/extensions/Bootstrap
-COPY customisations/extensions/Kma /var/www/html/extensions/Kma
-COPY customisations/skins/Chameleon /var/www/html/skins/Chameleon
-COPY customisations/skins/Kma /var/www/html/skins/Kma
-COPY .htaccess /var/www/html/.htaccess
-
-# Copy root-level files (favicon, logos, Google verification)
-COPY customisations/root-files/ /var/www/html/
-
-RUN mkdir -p /var/www/html/images \
- && ln -sf /var/www/html/skins/Chameleon /var/www/html/skins/chameleon \
- && ln -sf /var/www/html/skins /var/www/html/Skins
-
-# --------------------------------------------------
-# ALL COMPOSER INSTALLS (separate steps for debugging)
-# --------------------------------------------------
-
-# Strip development-only requirements only in unlocked production projects.
-# Keep upstream source files in Git unchanged and use existing locks as-is.
-COPY scripts/prepare-production-composer.php /usr/local/bin/prepare-production-composer.php
-RUN php /usr/local/bin/prepare-production-composer.php \
-    . extensions/SemanticMediaWiki extensions/SemanticResultFormats \
-    extensions/Maps extensions/TemplateStyles extensions/Bootstrap \
-    extensions/Widgets extensions/Elastica extensions/CirrusSearch \
-    extensions/Mpdf extensions/RSS extensions/KnowledgeGraph skins/Chameleon
-
-RUN composer config --no-interaction policy.advisories.block false \
- && composer install --no-dev --no-interaction --ignore-platform-reqs
-COPY patches/smw-4.2-disable-smwtask.patch /usr/local/share/smw-4.2-disable-smwtask.patch
-COPY scripts/check-smw-api.php /usr/local/bin/check-smw-api.php
-RUN cd extensions/SemanticMediaWiki \
- && git apply /usr/local/share/smw-4.2-disable-smwtask.patch \
- && php /usr/local/bin/check-smw-api.php .
-RUN cd extensions/SemanticMediaWiki \
- && COMPOSER_ROOT_VERSION=${SMW_VERSION} composer install --no-dev --no-interaction --ignore-platform-reqs
-COPY scripts/configure-srf-smw.php /usr/local/bin/configure-srf-smw.php
-RUN cd extensions/SemanticResultFormats \
- && php /usr/local/bin/configure-srf-smw.php \
- && composer install --no-dev --no-interaction --ignore-platform-reqs \
- && php -r 'if (!is_link("extensions/SemanticMediaWiki") || realpath("extensions/SemanticMediaWiki") !== realpath("../SemanticMediaWiki")) { throw new RuntimeException("SRF must share the patched SMW directory."); }'
-RUN cd extensions/Maps && composer install --no-dev --no-interaction --ignore-platform-reqs
-RUN cd extensions/TemplateStyles && composer install --no-dev --no-interaction --ignore-platform-reqs
-RUN cd extensions/Bootstrap && composer install --no-dev --no-interaction --ignore-platform-reqs
-RUN cd extensions/Widgets && composer install --no-dev --no-interaction --ignore-platform-reqs
-RUN cd extensions/Elastica && composer install --no-dev --no-interaction --ignore-platform-reqs
-RUN cd extensions/CirrusSearch && composer install --no-dev --no-interaction --ignore-platform-reqs
-RUN cd extensions/Mpdf && composer config --no-interaction policy.advisories.block false \
- && composer install --no-dev --no-interaction --ignore-platform-reqs
-RUN cd extensions/RSS && composer install --no-dev --no-interaction --ignore-platform-reqs
-RUN cd extensions/KnowledgeGraph && composer install --no-dev --no-interaction --ignore-platform-reqs
-RUN cd skins/Chameleon && composer install --no-dev --no-interaction --ignore-platform-reqs
-RUN composer clear-cache && rm -rf /root/.composer/cache /tmp/*
-
-# --------------------------------------------------
-# PHP CONFIG
-# --------------------------------------------------
+FROM dependencies AS runtime
+COPY upgrade/1.43/composer.lock /var/www/html/composer.lock
+RUN composer install --no-dev --no-interaction --prefer-dist \
+ && composer check-platform-reqs --no-dev \
+ && composer audit --no-dev \
+ && composer clear-cache
 
 RUN printf "memory_limit=512M\nmax_execution_time=360\nmax_input_time=360\nupload_max_filesize=256M\npost_max_size=257M\n" \
-    > /usr/local/etc/php/conf.d/media.ini \
+      > /usr/local/etc/php/conf.d/zz-fina.ini \
  && printf "opcache.enable=1\nopcache.memory_consumption=128\nopcache.max_accelerated_files=20000\n" \
-    > /usr/local/etc/php/conf.d/opcache.ini
-
-# --------------------------------------------------
-# PERMISSIONS & ENTRYPOINT
-# --------------------------------------------------
-
-RUN chown -R www-data:www-data /var/www/html
-
+      > /usr/local/etc/php/conf.d/zz-fina-opcache.ini \
+ && a2enmod rewrite \
+ && mkdir -p /tmp/mw-cache /tmp/widgets \
+ && chown -R www-data:www-data /tmp/mw-cache /tmp/widgets
+COPY upgrade/1.43/apache-local.conf /etc/apache2/conf-enabled/fina-local.conf
+COPY upgrade/1.43/skins/Kma /var/www/html/skins/Kma
+COPY upgrade/1.43/extensions/Kma /var/www/html/extensions/Kma
+COPY upgrade/1.43/export-assets.lock.json upgrade/1.43/download-export-assets.php /opt/fina/
+RUN php /opt/fina/download-export-assets.php
+COPY upgrade/1.43/patches /opt/fina/patches
+RUN for patchfile in /opt/fina/patches/*.patch; do patch --batch --forward --fuzz=0 -p1 < "$patchfile" || exit 1; done
+COPY customisations/root-files/ /var/www/html/
+COPY customisations/LocalSettings.php upgrade/1.43/FinaSettings.php /var/www/html/
+COPY upgrade/1.43/migrate.sh /usr/local/bin/fina-migrate
+COPY upgrade/1.43/run-jobs.php /usr/local/bin/fina-run-jobs.php
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-
-ENTRYPOINT ["docker-entrypoint.sh"]
-EXPOSE 80
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh /usr/local/bin/fina-migrate
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 CMD ["apache2-foreground"]

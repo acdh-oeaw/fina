@@ -1,0 +1,12 @@
+{
+  "mediawiki/semantic-media-wiki": "7.3.1",
+  "mediawiki/semantic-result-formats": "6.0.0",
+  "mediawiki/page-forms": "6.0.11",
+  "mediawiki/maps": "15.0.1",
+  "professional-wiki/modern-timeline": "4.0.0",
+  "mediawiki/bootstrap": "6.0.0",
+  "mediawiki/chameleon-skin": "6.0.0",
+  "mediawiki/lingo": "3.2.4",
+  "guzzlehttp/guzzle": "7.15.5",
+  "mediawiki/semantic-cite": "5.0.0"
+}

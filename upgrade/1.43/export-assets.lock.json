@@ -1,0 +1,23 @@
+[
+  {
+    "package": "jszip",
+    "version": "3.10.2",
+    "url": "https://registry.npmjs.org/jszip/-/jszip-3.10.2.tgz",
+    "integrity": "sha512-3l+rb15IOWtUhU0H5MFqES/T6Kh7abYwjosBey/vD6hDt8zoEffkSC5Ws5SGtgVw3gBx2NEbhTeSW1+kWkpyTQ==",
+    "files": {
+      "dist/jszip.min.js": "jszip.min.js",
+      "LICENSE.markdown": "jszip.LICENSE.markdown"
+    }
+  },
+  {
+    "package": "pdfmake",
+    "version": "0.2.23",
+    "url": "https://registry.npmjs.org/pdfmake/-/pdfmake-0.2.23.tgz",
+    "integrity": "sha512-A/IksoKb/ikOZH1edSDJ/2zBbqJKDghD4+fXn3rT7quvCJDlsZMs3NmIB3eajLMMFU9Bd3bZPVvlUMXhvFI+bQ==",
+    "files": {
+      "build/pdfmake.min.js": "pdfmake.min.js",
+      "build/vfs_fonts.js": "vfs_fonts.js",
+      "LICENSE": "pdfmake.LICENSE"
+    }
+  }
+]

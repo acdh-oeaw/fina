@@ -1,0 +1,19 @@
+{
+  "name": "kma",
+  "namemsg": "skinname-kma",
+  "version": "6.0.0-fina",
+  "type": "skin",
+  "license-name": "GPL-3.0-or-later",
+  "requires": {"MediaWiki": ">= 1.43", "extensions": {"Bootstrap": "~6.0"}},
+  "AutoloadNamespaces": {"Fina\\Skin\\": "src/"},
+  "MessagesDirs": {"KmaSkin": "i18n"},
+  "callback": "Fina\\Skin\\Skin::onRegistration",
+  "ResourceFileModulePaths": {"localBasePath": "resources", "remoteSkinPath": "Kma/resources"},
+  "ResourceModules": {
+    "skins.kma.navigation": {
+      "scripts": ["navigation.js"],
+      "dependencies": ["mediawiki.cookie"]
+    }
+  },
+  "manifest_version": 2
+}

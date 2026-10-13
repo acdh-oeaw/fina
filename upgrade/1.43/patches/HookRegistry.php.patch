@@ -1,0 +1,11 @@
+--- a/extensions/SemanticCite/src/HookRegistry.php
++++ b/extensions/SemanticCite/src/HookRegistry.php
+@@ -297,7 +297,7 @@
+ 		 * @see https://www.mediawiki.org/wiki/Manual:Hooks/OutputPageParserOutput
+ 		 */
+ 		$this->handlers['OutputPageParserOutput'] = static function ( &$outputPage, $parserOutput ) {
+-			$outputPage->smwmagicwords = $parserOutput->getExtensionData( 'smwmagicwords' );
++			$outputPage->setProperty( 'smwmagicwords', $parserOutput->getExtensionData( 'smwmagicwords' ) );
+ 			return true;
+ 		};
+ 
