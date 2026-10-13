@@ -1,0 +1,117 @@
+--- a/extensions/SemanticResultFormats/formats/datatables/SearchPanes.php
++++ b/extensions/SemanticResultFormats/formats/datatables/SearchPanes.php
+@@ -218,14 +218,14 @@
+ 			$joins_ = $joins;
+ 			$joins_['insts'] = [ 'JOIN', [ "$qobj->alias.smw_id = insts.s_id" ] ];
+ 
+-			$res = $this->connection->select(
+-				$tables_,
+-				$fields_,
+-				$conds_,
+-				__METHOD__,
+-				$sql_options_,
+-				$joins_
+-			);
++			$res = $this->connection->newPrimarySelectQueryBuilder()
++				->select( $fields_ )
++				->tables( $tables_ )
++				->where( $conds_ ?: [] )
++				->options( $sql_options_ )
++				->joinConds( $joins_ )
++				->caller( __METHOD__ )
++				->fetchResultSet();
+ 
+ 			$dataLength = $res ? (int)( $res->fetchRow()['count'] ?? 0 ) : 0;
+ 
+@@ -262,14 +262,14 @@
+ 			$conds_ = $conds;
+ 			$fields_ = "COUNT($groupBy) AS count, i.smw_id, i.smw_title, i.smw_namespace, i.smw_iw, i.smw_sort, i.smw_subobject";
+ 
+-			$res = $this->connection->select(
+-				$tables_,
+-				$fields_,
+-				$conds_,
+-				__METHOD__,
+-				$sql_options_,
+-				$joins_
+-			);
++			$res = $this->connection->newPrimarySelectQueryBuilder()
++				->select( $fields_ )
++				->tables( $tables_ )
++				->where( $conds_ ?: [] )
++				->options( $sql_options_ )
++				->joinConds( $joins_ )
++				->caller( __METHOD__ )
++				->fetchResultSet();
+ 
+ 			$isIdField = true;
+ 
+@@ -307,14 +307,14 @@
+ 			$conds_ = $conds;
+ 			$joins_ = $joins;
+ 
+-			$res = $this->connection->select(
+-				$tables_,
+-				$fields_,
+-				$conds_,
+-				__METHOD__,
+-				$sql_options_,
+-				$joins_
+-			);
++			$res = $this->connection->newPrimarySelectQueryBuilder()
++				->select( $fields_ )
++				->tables( $tables_ )
++				->where( $conds_ ?: [] )
++				->options( $sql_options_ )
++				->joinConds( $joins_ )
++				->caller( __METHOD__ )
++				->fetchResultSet();
+ 
+ 			$dataLength = $res ? (int)( $res->fetchRow()['count'] ?? 0 ) : 0;
+ 
+@@ -356,14 +356,14 @@
+ 				$conds_ .= ' AND i.smw_iw != ' . $this->connection->addQuotes( SMW_SQL3_SMWDELETEIW );
+ 			}
+ 
+-			$res = $this->connection->select(
+-				$tables_,
+-				$fields_,
+-				$conds_,
+-				__METHOD__,
+-				$sql_options_,
+-				$joins_
+-			);
++			$res = $this->connection->newPrimarySelectQueryBuilder()
++				->select( $fields_ )
++				->tables( $tables_ )
++				->where( $conds_ ?: [] )
++				->options( $sql_options_ )
++				->joinConds( $joins_ )
++				->caller( __METHOD__ )
++				->fetchResultSet();
+ 		}
+ 
+ 		// verify uniqueRatio
+@@ -770,14 +770,14 @@
+ 		$conds_ = $conds;
+ 		$joins_ = $joins;
+ 
+-		$res = $this->connection->select(
+-			$tables_,
+-			$fields_,
+-			$conds_,
+-			__METHOD__,
+-			$sql_options_,
+-			$joins_
+-		);
++		$res = $this->connection->newPrimarySelectQueryBuilder()
++			->select( $fields_ )
++			->tables( $tables_ )
++			->where( $conds_ ?: [] )
++			->options( $sql_options_ )
++			->joinConds( $joins_ )
++			->caller( __METHOD__ )
++			->fetchResultSet();
+ 
+ 		$diHandler = $this->datatables->store->getDataItemHandlerForDIType(
+ 			DataItem::TYPE_WIKIPAGE

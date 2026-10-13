@@ -1,0 +1,23 @@
+{
+  "name": "Kma",
+  "version": "2.0.0",
+  "descriptionmsg": "kma-extension-description",
+  "license-name": "GPL-2.0-or-later",
+  "type": "parserhook",
+  "requires": {"MediaWiki": ">=1.43"},
+  "AutoloadNamespaces": {"Fina\\Kma\\": "includes/"},
+  "MessagesDirs": {"Kma": "i18n"},
+  "ExtensionMessagesFiles": {"KmaMagic": "Kma.i18n.php"},
+  "Hooks": {
+    "ParserFirstCallInit": "Fina\\Kma\\Hooks::onParserFirstCallInit",
+    "SetupAfterCache": "Fina\\Kma\\Hooks::onSetupAfterCache"
+  },
+  "ResourceFileModulePaths": {"localBasePath": "resources", "remoteExtPath": "Kma/resources"},
+  "ResourceModules": {
+    "ext.fina.tableExports": {
+      "packageFiles": ["tableExports.js", "vendor/jszip.min.js", "vendor/pdfmake.min.js", "vendor/vfs_fonts.js"],
+      "dependencies": ["ext.srf.datatables.v2.module"]
+    }
+  },
+  "manifest_version": 2
+}

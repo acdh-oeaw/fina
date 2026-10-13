@@ -1,0 +1,11 @@
+--- a/extensions/SemanticCite/src/MediaWikiContextInteractor.php
++++ b/extensions/SemanticCite/src/MediaWikiContextInteractor.php
+@@ -96,7 +96,7 @@
+ 	public function hasMagicWord( $magicword ) {
+ 		$outputPage = $this->context->getOutput();
+ 
+-		if ( isset( $outputPage->smwmagicwords ) && in_array( $magicword, $outputPage->smwmagicwords ) ) {
++		if ( in_array( $magicword, $outputPage->getProperty( 'smwmagicwords' ) ?? [] ) ) {
+ 			return true;
+ 		}
+ 

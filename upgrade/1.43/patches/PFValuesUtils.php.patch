@@ -1,0 +1,12 @@
+--- a/extensions/PageForms/includes/PFValuesUtils.php
++++ b/extensions/PageForms/includes/PFValuesUtils.php
+@@ -781,7 +781,8 @@
+ 			$autocompletionSource = null;
+ 		}
+ 
+-		if ( $wgCapitalLinks && in_array( $autocompleteFieldType, [ 'category', 'concept', 'namespace', 'property' ] ) ) {
++		if ( $wgCapitalLinks && $autocompletionSource !== null &&
++			in_array( $autocompleteFieldType, [ 'category', 'concept', 'namespace', 'property' ] ) ) {
+ 			$autocompletionSource = PFUtils::getContLang()->ucfirst( $autocompletionSource );
+ 		}
+ 

@@ -1,0 +1,21 @@
+--- a/extensions/SemanticMediaWiki/src/SQLStore/EntityStore/PrefetchCache.php
++++ b/extensions/SemanticMediaWiki/src/SQLStore/EntityStore/PrefetchCache.php
+@@ -117,8 +117,6 @@
+ 	 * @param RequestOptions $requestOptions
+ 	 */
+ 	public function prefetch( array $subjects, Property $property, RequestOptions $requestOptions ): void {
+-		$this->store->getObjectIds()->warmUpCache( $subjects );
+-
+ 		$fingerprint = '';
+ 
+ 		foreach ( $subjects as $subject ) {
+@@ -131,6 +129,9 @@
+ 		if ( isset( $this->executedPrefetchLookups[$valueCacheKey][$subjectSetFingerprint] ) ) {
+ 			return;
+ 		}
++
++		// Repeated property-chain lookups have already warmed these subjects.
++		$this->store->getObjectIds()->warmUpCache( $subjects );
+ 
+ 		// Lower-level lookup caches use PREFETCH_FINGERPRINT as the subject-set
+ 		// part of their bulk request identity. Keep that request identity on a

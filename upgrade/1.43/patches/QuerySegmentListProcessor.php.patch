@@ -1,0 +1,12 @@
+--- a/extensions/SemanticResultFormats/formats/datatables/QuerySegmentListProcessor.php
++++ b/extensions/SemanticResultFormats/formats/datatables/QuerySegmentListProcessor.php
+@@ -356,6 +356,9 @@
+ 			$valuecond .= ( $valuecond ? ' OR ' : '' ) . 'o_id=' . $this->connection->addQuotes( $value );
+ 		}
+ 
++		// Raw SQL needs the configured MediaWiki table prefix.
++		$smwtable = $this->connection->tableName( $smwtable );
++
+ 		// Try to save time (SELECT is cheaper than creating/dropping 3 temp tables):
+ 		$res = $this->connection->query( "SELECT s_id FROM $smwtable WHERE $valuecond LIMIT 1" );
+ 

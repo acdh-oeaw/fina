@@ -1,0 +1,12 @@
+.git
+**/node_modules
+**/__pycache__
+**/results
+**/*.sql
+**/*.sql.gz
+**/database.env
+**/wiki.env
+**/reviewer.json
+customisations/extensions
+customisations/skins
+customisations/images

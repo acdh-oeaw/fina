@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<structure xmlns="https://ProfessionalWiki.github.io/chameleon/schema/3.4/layout.rng">
+    <component type="Fina\Skin\Components\Navigation"/>
+    <component type="Fina\Skin\Components\PageTools"/>
+    <component type="Fina\Skin\Components\MainContent"/>
+    <component type="Fina\Skin\Components\Footer"/>
+</structure>

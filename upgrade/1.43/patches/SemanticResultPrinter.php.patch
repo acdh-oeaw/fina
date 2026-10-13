@@ -1,0 +1,19 @@
+--- a/extensions/SemanticDrilldown/includes/Specials/BrowseData/SemanticResultPrinter.php
++++ b/extensions/SemanticDrilldown/includes/Specials/BrowseData/SemanticResultPrinter.php
+@@ -21,7 +21,7 @@
+ 		$this->getSmwQueryResult = self::createGetSmwQueryResult( $res, $num );
+ 	}
+ 
+-	public function getText( array $displayParameters ) {
++	public function getText( array $displayParameters, bool &$isHtml = false ) {
+ 		[ $querystring, $params, $printouts ] =
+ 			SMWQueryProcessor::getComponentsFromFunctionParams( $displayParameters, false );
+ 
+@@ -47,6 +47,7 @@
+ 
+ 		$result = $printer->getResult( $smwQueryResults, $params, SMW_OUTPUT_WIKI );
+ 		$text = is_array( $result ) ? $result[0] : $result;
++		$isHtml = is_array( $result ) && !empty( $result['isHTML'] );
+ 
+ 		return $text;
+ 	}
