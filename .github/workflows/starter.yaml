@@ -69,7 +69,7 @@ jobs:
       PUBLIC_URL: ${{ steps.generate_public_url.outputs.public_url }}
   _1:
     needs: [setup_workflow_env, generate_workflow_vars]
-    uses:  acdh-oeaw/gl-autodevops-minimal-port/.github/workflows/build-dockerfile-and-push-to-registry.yaml@main
+    uses:  acdh-oeaw/gl-autodevops-minimal-port/.github/workflows/build-dockerfile-and-push-to-registry.yaml@2c726a25c69025e62e96499d826e18e63f354795
     secrets: inherit
 # if you run this outside of of an org that provides KUBE_CONFIG etc as a secret, you need to specify every secret you want to pass by name
     with:
@@ -84,7 +84,7 @@ jobs:
 
   _2:
     needs: [setup_workflow_env, generate_workflow_vars, _1]
-    uses: acdh-oeaw/gl-autodevops-minimal-port/.github/workflows/deploy.yml@main
+    uses: acdh-oeaw/gl-autodevops-minimal-port/.github/workflows/deploy.yml@2c726a25c69025e62e96499d826e18e63f354795
     secrets: inherit
 # if you run this outside of acdh-oeaw yo uneed to specify every secret you want to pass by name
 #      KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
