@@ -21,14 +21,15 @@ SMTP uses `MAIL_SMTP_HOST`, `MAIL_SMTP_USER`, `MAIL_SMTP_PASSWORD` and
 `EMERGENCY_CONTACT` (port 25). Without an SMTP host, mail is disabled.
 `FINA_ENV=local` disables mail and enables diagnostic details for local testing.
 
-Startup and readiness probes require a valid MediaWiki API response; an HTTP
-200 response containing a PHP fatal error is unhealthy.
+Temporary files and UUID state use `/tmp/mw-tmp`, independently of the uploads
+volume. Startup and readiness probes parse a small, unsaved text through the API;
+an HTTP 200 response containing a PHP fatal or JSON error is unhealthy.
 
 ## Database upgrade
 
 The image uses the instance’s existing database and uploads. It contains no
-wiki-page replacements or backup data. Startup runs the web server;
-database migration is explicit.
+wiki-page replacements or backup data. Full schema/data migration is explicit.
+Deployment automatically completes a pending SMW collation update as described below.
 
 Before adopting this configuration, check that the removed duplicate FINA
 namespaces 3000/3001 contain no pages in the target database:
@@ -49,6 +50,19 @@ FINA_MIGRATION_WORKERS=2 /usr/local/bin/fina-migrate
 This updates schema and semantic indexes. Check the migration output and empty
 job queue before reopening writes. Rollback requires the paired pre-upgrade
 database/uploads backup and previous image.
+
+The deployment uses one replica and the `Recreate` strategy, so the old web pod
+stops before the new one starts. Its `fina-smw-collation` init container runs
+`fina-migrate --collation-only` as `www-data`, using the same image and environment
+secret as the web container. This checks that the SMW schema is ready, repairs
+pending or outdated semantic sort keys, and verifies completion before starting
+the web server. It skips the update when the collation is already current.
+
+This step does not rerun the full schema/data migration or edit wiki pages.
+Keep a database backup and pause any separately managed job workers for the
+deployment. The site is unavailable during the repair. If it fails, deployment
+cannot become ready; inspect `kubectl logs <pod> -c fina-smw-collation` and resolve
+the reported error. Check `Special:PendingTaskList` for any other outstanding tasks.
 
 `$wgJobRunRate` is zero. Schedule a worker without overlapping invocations:
 

@@ -26,8 +26,8 @@ RUN printf "memory_limit=512M\nmax_execution_time=360\nmax_input_time=360\nuploa
  && printf "opcache.enable=1\nopcache.memory_consumption=128\nopcache.max_accelerated_files=20000\n" \
       > /usr/local/etc/php/conf.d/zz-fina-opcache.ini \
  && a2enmod rewrite \
- && mkdir -p /tmp/mw-cache /tmp/widgets \
- && chown -R www-data:www-data /tmp/mw-cache /tmp/widgets
+ && mkdir -p /tmp/mw-cache /tmp/mw-tmp /tmp/widgets \
+ && chown -R www-data:www-data /tmp/mw-cache /tmp/mw-tmp /tmp/widgets
 COPY upgrade/1.43/apache-local.conf /etc/apache2/conf-enabled/fina-local.conf
 COPY upgrade/1.43/skins/Kma /var/www/html/skins/Kma
 COPY upgrade/1.43/extensions/Kma /var/www/html/extensions/Kma
