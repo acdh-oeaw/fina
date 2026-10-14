@@ -56,7 +56,7 @@ jobs:
           test -n "$KUBE_CONFIG" || { echo 'Missing KUBE_CONFIG secret'; exit 1; }
           umask 077
           config_path="$RUNNER_TEMP/fina-kubeconfig"
-          printf '%s' "$KUBE_CONFIG" > "$config_path"
+          printf '%s' "$KUBE_CONFIG" | base64 --decode > "$config_path"
           echo "KUBECONFIG=$config_path" >> "$GITHUB_ENV"
           kubectl --kubeconfig "$config_path" --request-timeout=20s get deployment "$DEPLOYMENT" -n "$NAMESPACE" -o name
 
