@@ -1,0 +1,82 @@
+[
+  {
+    "title": "Template:GraphFlowchart",
+    "reason": "Use plain identifier values, rather than HTML links, as Mermaid node IDs.",
+    "before_sha256": "8192fa94ea12323fc5fdbb510bd17fc0374c50dfaed578d18044159fa62c1b5e",
+    "after_sha256": "1ede4de6a7b9e448c8eb0b10abee65346649d084d4f3a42b93487e305d4cbc35",
+    "reviewed_revision": 4230,
+    "replacements": [
+      {
+        "before": "|?PageID=|mainlabel=-",
+        "after": "|?PageID#=|mainlabel=-|link=none",
+        "count": 4
+      }
+    ]
+  },
+  {
+    "title": "Mermaid Test",
+    "reason": "Supply the missing node ID in the existing anonymous-correspondent click directive.",
+    "before_sha256": "3fa5581359226fcb3b05bfd8eed5e29220010b3056597bc3760dd227533193c0",
+    "after_sha256": "7e608a3012b4b5773644dad67a4275c546027d0a024393e58ba7c7a8ea718a0c",
+    "reviewed_revision": 32833,
+    "replacements": [
+      {
+        "before": "click \n\"https://fina.knowledge.wiki/Joseph_Eckhel\"",
+        "after": "click N.N. \"https://fina.knowledge.wiki/Joseph_Eckhel\"",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "title": "Form:Person",
+    "reason": "Treat absent Wikidata results as empty fields instead of parser error text",
+    "before_sha256": "f6636c0f41bc82129bf1d79ff149342bce526affdcc6f605e708f38f46f39632",
+    "after_sha256": "3830264344dc68af8781ab736b8809ad3c9d556f588e9b905915f877cf03c726",
+    "reviewed_revision": 42202,
+    "replacements": [
+      {
+        "before": "{{#external_value:Qid}}",
+        "after": "{{#external_value:Qid|}}",
+        "count": 4
+      },
+      {
+        "before": "{{#external_value:Description}}",
+        "after": "{{#external_value:Description|}}",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "title": "Template:Query Person",
+    "reason": "Treat absent Wikidata results as empty fields instead of parser error text",
+    "before_sha256": "31212319d90687de5744d67c6f333665ef0314607a750def3facf3a04444ad44",
+    "after_sha256": "6a3c06e093aa7e5de951e7e9bc48fe6eedb3578a7d6c97584c6323af18e6be8c",
+    "reviewed_revision": 31089,
+    "replacements": [
+      {
+        "before": "{{#external_value:Qid}}",
+        "after": "{{#external_value:Qid|}}",
+        "count": 3
+      },
+      {
+        "before": "{{#external_value:Description}}",
+        "after": "{{#external_value:Description|}}",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "title": "Literature Export",
+    "reason": "Export the Literature category instead of the nonexistent Literature Export category",
+    "before_sha256": "147db688d064ce82a2651fb33374468a327a1c27f2288b504f01636ed58ef7ae",
+    "after_sha256": "d46058dbec75e2ab86a50d592d13fa34b06aa430929dc2cf703e59f372f28d1a",
+    "reviewed_revision": 31329,
+    "replacements": [
+      {
+        "before": "[[Category:{{FULLPAGENAME}}]]",
+        "after": "[[Category:Literature]]",
+        "count": 2
+      }
+    ]
+  }
+]
