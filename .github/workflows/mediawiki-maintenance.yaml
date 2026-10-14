@@ -47,6 +47,10 @@ jobs:
         with:
           version: ${{ env.KUBECTL_VERSION }}
 
+      - name: Set up Buildx for image digest checks
+        if: inputs.task == 'run-jobs'
+        uses: docker/setup-buildx-action@v3
+
       - name: Configure cluster access
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
@@ -103,7 +107,12 @@ jobs:
           kubectl get pvc images rdf-dumps -n "$NAMESPACE" -o name
           if [ "$TASK" = run-jobs ]; then
             deployed_image=$(kubectl get deployment "$DEPLOYMENT" -n "$NAMESPACE" -o jsonpath='{.spec.template.spec.containers[?(@.name=="auto-deploy-app")].image}')
-            test "$TARGET_IMAGE" = "$deployed_image" || { echo 'Queue test image must match the deployed web image'; exit 1; }
+            deployed_digest=$(docker buildx imagetools inspect --format '{{.Manifest.Digest}}' "$deployed_image")
+            target_digest=$(docker buildx imagetools inspect --format '{{.Manifest.Digest}}' "$TARGET_IMAGE")
+            if [ "$TARGET_IMAGE" != "$deployed_image" ] && [ "$target_digest" != "$deployed_digest" ]; then
+              echo 'Queue test image must resolve to the same digest as the deployed web image' >&2
+              exit 1
+            fi
             # A manual Job is not protected by CronJob concurrencyPolicy.
             kubectl get cronjob "$QUEUE_CRONJOB" -n "$NAMESPACE" -o json > "$RUNNER_TEMP/fina-cron.json"
             python3 - <<'PY'
