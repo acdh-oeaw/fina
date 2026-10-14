@@ -70,9 +70,9 @@ jobs:
         run: |
           set -euo pipefail
           case "$TASK" in
-            collation) source_file=.github/job-collation.yaml ;;
-            update) source_file=.github/job-update.yaml ;;
-            run-jobs) source_file=.github/cronjob-run-jobs.yaml ;;
+            collation) source_file=.github/manifests/job-collation.yaml ;;
+            update) source_file=.github/manifests/job-update.yaml ;;
+            run-jobs) source_file=.github/manifests/cronjob-run-jobs.yaml ;;
             *) echo 'Unknown task'; exit 1 ;;
           esac
           # Parse the checked-in YAML using kubectl; do not modify repo files.
