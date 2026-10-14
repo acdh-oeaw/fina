@@ -40,7 +40,6 @@ COPY customisations/LocalSettings.php upgrade/1.43/FinaSettings.php /var/www/htm
 COPY upgrade/1.43/migrate.sh /usr/local/bin/fina-migrate
 COPY upgrade/1.43/run-jobs.php /usr/local/bin/fina-run-jobs.php
 COPY upgrade/1.43/healthcheck.php /usr/local/bin/fina-healthcheck.php
-COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh /usr/local/bin/fina-migrate
-ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+RUN chmod +x /usr/local/bin/fina-migrate
+ENTRYPOINT []
 CMD ["apache2-foreground"]
