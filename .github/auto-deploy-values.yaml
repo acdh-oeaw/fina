@@ -5,6 +5,19 @@ podSecurityContext:
   fsGroup: 33
   fsGroupChangePolicy: OnRootMismatch
 
+initContainers:
+  - name: fina-smw-collation
+    image: "$repository:$tag"
+    imagePullPolicy: Always
+    command: ["/usr/local/bin/fina-migrate", "--collation-only"]
+    envFrom:
+      - secretRef:
+          name: "$app_name"
+    securityContext:
+      runAsUser: 33
+      runAsGroup: 33
+      runAsNonRoot: true
+
 image:
   repository: $repository
   tag: "$tag"
@@ -39,7 +52,7 @@ startupProbe:
   probeType: "exec"
   command: ["php", "/usr/local/bin/fina-healthcheck.php"]
   failureThreshold: 120
-  periodSeconds: 10
+  periodSeconds: 15
   timeoutSeconds: 5
   initialDelaySeconds: 60
 
@@ -58,7 +71,6 @@ readinessProbe:
   enabled: true
   probeType: "exec"
   command: ["php", "/usr/local/bin/fina-healthcheck.php"]
-  periodSeconds: 10
+  periodSeconds: 30
   timeoutSeconds: 5
-  failureThreshold: 6
-  initialDelaySeconds: 60
+  failureThreshold: 3

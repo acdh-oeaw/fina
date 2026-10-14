@@ -1,0 +1,49 @@
+# Run only during the appropriate migration; use the target release image.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: fina-smw-collation
+  namespace: fina-prod
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 7200
+  template:
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      securityContext:
+        runAsUser: 33
+        runAsGroup: 33
+        runAsNonRoot: true
+        fsGroup: 33
+        fsGroupChangePolicy: OnRootMismatch
+      containers:
+      - name: maintenance
+        image: ghcr.io/acdh-oeaw/fina/fina:4cc7b56
+        imagePullPolicy: IfNotPresent
+        workingDir: /var/www/html
+        envFrom:
+        - secretRef:
+            name: fina-prod
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: '1'
+            memory: 1Gi
+        volumeMounts:
+        - name: images
+          mountPath: /var/www/html/images
+        - name: rdf-dumps
+          mountPath: /var/www/html/rdf-dumps
+        command:
+        - /usr/local/bin/fina-migrate
+        - --collation-only
+      volumes:
+      - name: images
+        persistentVolumeClaim:
+          claimName: images
+      - name: rdf-dumps
+        persistentVolumeClaim:
+          claimName: rdf-dumps

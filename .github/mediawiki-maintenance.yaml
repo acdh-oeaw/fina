@@ -1,0 +1,219 @@
+name: MediaWiki maintenance
+
+# Commit this workflow to the default branch.
+# Requires production environment secret KUBE_CONFIG_B64 and API connectivity.
+# Migrations STOP the web Deployment and suspend its queue CronJob.
+# They leave both stopped, including after success: deploy/verify the intended
+# release before explicitly restoring replicas and resuming the queue.
+# Serialize your deployment pipeline with this workflow; the concurrency group
+# below only coordinates workflows which use the same group.
+on:
+  workflow_dispatch:
+    inputs:
+      task:
+        description: Maintenance task (migrations stop the web application)
+        type: choice
+        options: [collation, update, run-jobs]
+        required: true
+      image:
+        description: Full FINA image reference (release tag or digest)
+        type: string
+        required: true
+      kubectl_version:
+        description: Kubectl version matching your cluster (e.g. v1.34.0)
+        type: string
+        required: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fina-prod-maintenance
+  cancel-in-progress: false
+
+jobs:
+  maintenance:
+    runs-on: ubuntu-latest
+    # For a private Kubernetes API, use your network-connected self-hosted runner.
+    environment: production
+    timeout-minutes: 150
+    env:
+      NAMESPACE: fina-prod
+      DEPLOYMENT: fina-prod
+      QUEUE_CRONJOB: fina-run-jobs
+      TASK: ${{ inputs.task }}
+      TARGET_IMAGE: ${{ inputs.image }}
+      KUBECTL_VERSION: ${{ inputs.kubectl_version }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install kubectl
+        uses: azure/setup-kubectl@v4
+        with:
+          version: ${{ inputs.kubectl_version }}
+
+      - name: Configure cluster access
+        env:
+          KUBE_CONFIG_B64: ${{ secrets.KUBE_CONFIG_B64 }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$KUBE_CONFIG_B64" || { echo 'Missing KUBE_CONFIG_B64 secret'; exit 1; }
+          umask 077
+          config_path="$RUNNER_TEMP/fina-kubeconfig"
+          printf '%s' "$KUBE_CONFIG_B64" | base64 --decode > "$config_path"
+          echo "KUBECONFIG=$config_path" >> "$GITHUB_ENV"
+          kubectl --kubeconfig "$config_path" --request-timeout=20s get deployment "$DEPLOYMENT" -n "$NAMESPACE" -o name
+
+      - name: Prepare and validate Job
+        shell: bash
+        run: |
+          set -euo pipefail
+          case "$TASK" in
+            collation) source_file=.github/job-collation.yaml ;;
+            update) source_file=.github/job-update.yaml ;;
+            run-jobs) source_file=.github/cronjob-run-jobs.yaml ;;
+            *) echo 'Unknown task'; exit 1 ;;
+          esac
+          # Parse the checked-in YAML using kubectl; do not modify repo files.
+          kubectl create --dry-run=client --validate=false -f "$source_file" -o json > "$RUNNER_TEMP/fina-source.json"
+          export MAINTENANCE_JOB="fina-${TASK}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          echo "MAINTENANCE_JOB=$MAINTENANCE_JOB" >> "$GITHUB_ENV"
+          python3 - <<'PY'
+          import json, os, pathlib
+          root = pathlib.Path(os.environ['RUNNER_TEMP'])
+          source = json.loads((root / 'fina-source.json').read_text())
+          spec = source['spec']['jobTemplate']['spec'] if source['kind'] == 'CronJob' else source['spec']
+          spec['backoffLimit'] = 0
+          pod = spec['template']['spec']
+          pod['containers'][0]['image'] = os.environ['TARGET_IMAGE']
+          # One Pod/process, conservative queue batch; keep default MW throttling.
+          spec['parallelism'] = 1
+          spec['completions'] = 1
+          pod['containers'][0].setdefault('resources', {})['limits'] = {'cpu': '250m', 'memory': '1Gi'}
+          if os.environ['TASK'] == 'run-jobs':
+              pod['containers'][0]['command'] = ['php', '/var/www/html/maintenance/run.php',
+                  'runJobs', '--procs=1', '--maxjobs=25', '--maxtime=30']
+          # CPU limits do not limit database queries. Collation batch/throttle options
+          # must be configured inside fina-migrate after reviewing migrate.sh.
+          job = {'apiVersion': 'batch/v1', 'kind': 'Job',
+                 'metadata': {'name': os.environ['MAINTENANCE_JOB'],
+                              'namespace': os.environ['NAMESPACE'],
+                              'labels': {'app': 'fina-maintenance', 'maintenance-task': os.environ['TASK']}},
+                 'spec': spec}
+          (root / 'fina-job.json').write_text(json.dumps(job))
+          PY
+          kubectl create --dry-run=server -f "$RUNNER_TEMP/fina-job.json" -o name
+          kubectl get secret fina-prod -n "$NAMESPACE" -o name
+          kubectl get pvc images rdf-dumps -n "$NAMESPACE" -o name
+          if [ "$TASK" = run-jobs ]; then
+            deployed_image=$(kubectl get deployment "$DEPLOYMENT" -n "$NAMESPACE" -o jsonpath='{.spec.template.spec.containers[?(@.name=="auto-deploy-app")].image}')
+            test "$TARGET_IMAGE" = "$deployed_image" || { echo 'Queue test image must match the deployed web image'; exit 1; }
+            # A manual Job is not protected by CronJob concurrencyPolicy.
+            kubectl get cronjob "$QUEUE_CRONJOB" -n "$NAMESPACE" -o json > "$RUNNER_TEMP/fina-cron.json"
+            python3 - <<'PY'
+          import json, os, pathlib
+          cron = json.loads((pathlib.Path(os.environ['RUNNER_TEMP']) / 'fina-cron.json').read_text())
+          if not cron['spec'].get('suspend', False):
+              raise SystemExit('Suspend fina-run-jobs before running the manual queue test')
+          PY
+          fi
+
+      - name: Suspend queue and stop web for migration
+        if: inputs.task != 'run-jobs'
+        shell: bash
+        run: |
+          set -euo pipefail
+          replicas=$(kubectl get deployment "$DEPLOYMENT" -n "$NAMESPACE" -o jsonpath='{.spec.replicas}')
+          echo "Original web replicas: $replicas" >> "$GITHUB_STEP_SUMMARY"
+          # An absent CronJob is acceptable if the scheduled queue was not deployed yet.
+          cron=$(kubectl get cronjob "$QUEUE_CRONJOB" -n "$NAMESPACE" --ignore-not-found -o name)
+          if [ -n "$cron" ]; then
+            kubectl patch cronjob "$QUEUE_CRONJOB" -n "$NAMESPACE" --type=merge -p '{"spec":{"suspend":true}}'
+          fi
+          kubectl scale deployment "$DEPLOYMENT" -n "$NAMESPACE" --replicas=0
+          # Get the actual Deployment selector rather than guessing chart labels.
+          kubectl get deployment "$DEPLOYMENT" -n "$NAMESPACE" -o json > "$RUNNER_TEMP/fina-deployment.json"
+          selector=$(python3 - <<'PY'
+          import json, os, pathlib
+          d = json.loads((pathlib.Path(os.environ['RUNNER_TEMP']) / 'fina-deployment.json').read_text())
+          sel = d['spec']['selector']
+          if sel.get('matchExpressions'):
+              raise SystemExit('Adapt selector handling for matchExpressions before running')
+          print(','.join(k+'='+v for k,v in sel['matchLabels'].items()))
+          PY
+          )
+          pods=$(kubectl get pods -l "$selector" -n "$NAMESPACE" -o name)
+          if [ -n "$pods" ]; then
+            kubectl wait --for=delete pod -l "$selector" -n "$NAMESPACE" --timeout=300s
+          fi
+          echo 'Web stopped and queue suspended. Restore them only after migration/release verification.' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Wait for running Jobs to finish
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Covers queue Jobs still running after suspend and other maintenance Jobs.
+          # This assumes fina-prod is a dedicated application namespace.
+          kubectl get jobs -n "$NAMESPACE" -o json > "$RUNNER_TEMP/fina-existing-jobs.json"
+          python3 - <<'PY'
+          import json, os, pathlib, subprocess, time
+          ns = os.environ['NAMESPACE']
+          items = json.loads((pathlib.Path(os.environ['RUNNER_TEMP']) / 'fina-existing-jobs.json').read_text())['items']
+          deadline = time.monotonic() + 300
+          for job in items:
+              conditions = job.get('status', {}).get('conditions', [])
+              if any(c['type'] in ('Complete', 'Failed') and c['status'] == 'True' for c in conditions):
+                  continue
+              name = job['metadata']['name']
+              while True:
+                  current = json.loads(subprocess.check_output(['kubectl', 'get', 'job', name, '-n', ns, '--ignore-not-found', '-o', 'json']) or '{}')
+                  conditions = current.get('status', {}).get('conditions', [])
+                  if not current or any(c['type'] in ('Complete', 'Failed') and c['status'] == 'True' for c in conditions):
+                      break
+                  if time.monotonic() > deadline:
+                      raise SystemExit('Existing Job still active: ' + name)
+                  time.sleep(5)
+          PY
+
+      - name: Create maintenance Job
+        shell: bash
+        run: |
+          set -euo pipefail
+          kubectl create -f "$RUNNER_TEMP/fina-job.json"
+          echo "Job: $MAINTENANCE_JOB; image: $TARGET_IMAGE" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Wait for Job result
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os, subprocess, time
+          ns, name = os.environ['NAMESPACE'], os.environ['MAINTENANCE_JOB']
+          deadline = time.monotonic() + (240 if os.environ['TASK'] == 'run-jobs' else 7260)
+          while time.monotonic() < deadline:
+              job = json.loads(subprocess.check_output(['kubectl', 'get', 'job', name, '-n', ns, '-o', 'json']))
+              conditions = {c['type']: c['status'] for c in job.get('status', {}).get('conditions', [])}
+              if conditions.get('Complete') == 'True':
+                  print('Job completed successfully')
+                  break
+              if conditions.get('Failed') == 'True':
+                  raise SystemExit('Maintenance Job failed; inspect its logs')
+              time.sleep(10)
+          else:
+              raise SystemExit('Timed out; inspect the Job in Kubernetes')
+          PY
+
+      - name: Collect Job logs and diagnostics
+        if: always() && env.MAINTENANCE_JOB != ''
+        shell: bash
+        run: |
+          kubectl get job "$MAINTENANCE_JOB" -n "$NAMESPACE" -o wide || true
+          kubectl logs "job/$MAINTENANCE_JOB" -n "$NAMESPACE" --all-containers=true --tail=500 || true
+          kubectl get pods -n "$NAMESPACE" -l "job-name=$MAINTENANCE_JOB" -o wide || true
+          kubectl describe job "$MAINTENANCE_JOB" -n "$NAMESPACE" || true
+
+      - name: Remove temporary kubeconfig
+        if: always()
+        shell: bash
+        run: rm -f "$RUNNER_TEMP/fina-kubeconfig"

@@ -22,8 +22,8 @@ SMTP uses `MAIL_SMTP_HOST`, `MAIL_SMTP_USER`, `MAIL_SMTP_PASSWORD` and
 `FINA_ENV=local` disables mail and enables diagnostic details for local testing.
 
 Temporary files and UUID state use `/tmp/mw-tmp`, independently of the uploads
-volume. Startup and readiness probes parse a small, unsaved text through the API;
-an HTTP 200 response containing a PHP fatal or JSON error is unhealthy.
+volume. Startup and readiness probes query the local API and check one bounded
+`allpages` result; liveness uses a TCP check.
 
 ## Database upgrade
 
@@ -72,3 +72,17 @@ php maintenance/run.php runJobs --maxjobs 25 --maxtime 55 --memory-limit 512M
 
 The existing main-branch workflow deploys on merge; coordinate the migration
 before merging.
+
+## GitHub Actions maintenance
+
+Run **MediaWiki maintenance** from the Actions tab on the default branch. Choose
+`collation`, `update`, or `run-jobs`, then provide the full FINA image reference
+and a matching `kubectl` version. The production environment needs the
+`KUBE_CONFIG_B64` secret and runner access to the cluster.
+
+`collation` and `update` suspend the queue and stop the web Deployment; both
+remain stopped after the job, including on success. Verify and deploy the
+intended release before restoring web replicas and resuming the queue.
+`run-jobs` leaves web running, but requires the queue CronJob to be suspended
+and the selected image to match the deployed web image. Inspect the job logs in
+the Actions run.

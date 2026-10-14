@@ -1,12 +1,11 @@
 <?php
-// Exercise rendering too: siteinfo can succeed while every page parse fails.
+// Check MediaWiki and a bounded database query without invoking the parser.
 $query = http_build_query([
-    'action' => 'parse',
-    'title' => 'Special:Badtitle/FINA-healthcheck',
-    'text' => 'FINA health check: {{CURRENTVERSION}}',
-    'contentmodel' => 'wikitext',
-    'prop' => 'text',
-    'disablelimitreport' => 1,
+    'action' => 'query',
+    'meta' => 'siteinfo',
+    'siprop' => 'general',
+    'list' => 'allpages',
+    'aplimit' => 1,
     'format' => 'json',
     'formatversion' => 2,
 ]);
@@ -21,12 +20,14 @@ $body = @file_get_contents(
 );
 $data = json_decode($body === false ? '' : $body, true);
 $status = $http_response_header[0] ?? '';
-$html = $data['parse']['text'] ?? null;
+$generator = $data['query']['general']['generator'] ?? null;
+$pages = $data['query']['allpages'] ?? null;
 if (!preg_match('~^HTTP/\S+ 200(?:\s|$)~', $status)
-    || !is_string($html)
-    || !preg_match('~^FINA health check: 1\.43\.[0-9]+$~D', trim(strip_tags($html)))
+    || !is_string($generator)
+    || !preg_match('~^MediaWiki 1\.43\.[0-9]+$~D', $generator)
+    || !is_array($pages)
     || isset($data['error'])
 ) {
-    fwrite(STDERR, "FINA parser health check failed.\n");
+    fwrite(STDERR, "FINA MediaWiki/API/database health check failed.\n");
     exit(1);
 }
