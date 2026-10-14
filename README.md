@@ -99,6 +99,6 @@ as `v1.43.11-fina.1`. Use the published image reference for maintenance jobs.
 `collation` and `update` suspend the queue and stop the web Deployment; both
 remain stopped after the job, including on success. Verify and deploy the
 intended release before restoring web replicas and resuming the queue.
-`run-jobs` leaves web running, but requires the queue CronJob to be suspended
-and the selected image to match the deployed web image. Inspect the job logs in
-the Actions run.
+`run-jobs` leaves web running. If the queue CronJob exists, suspend it first;
+the workflow accepts a missing CronJob and still checks that the image matches
+the deployed web image. Inspect the job logs in the Actions run.

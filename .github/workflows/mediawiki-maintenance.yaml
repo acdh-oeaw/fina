@@ -114,13 +114,18 @@ jobs:
               exit 1
             fi
             # A manual Job is not protected by CronJob concurrencyPolicy.
-            kubectl get cronjob "$QUEUE_CRONJOB" -n "$NAMESPACE" -o json > "$RUNNER_TEMP/fina-cron.json"
-            python3 - <<'PY'
+            cron=$(kubectl get cronjob "$QUEUE_CRONJOB" -n "$NAMESPACE" --ignore-not-found -o json)
+            if [ -n "$cron" ]; then
+              printf '%s' "$cron" > "$RUNNER_TEMP/fina-cron.json"
+              python3 - <<'PY'
           import json, os, pathlib
           cron = json.loads((pathlib.Path(os.environ['RUNNER_TEMP']) / 'fina-cron.json').read_text())
           if not cron['spec'].get('suspend', False):
               raise SystemExit('Suspend fina-run-jobs before running the manual queue test')
           PY
+            else
+              echo 'Queue CronJob not found; proceeding without a scheduled worker.'
+            fi
           fi
 
       - name: Suspend queue and stop web for migration
