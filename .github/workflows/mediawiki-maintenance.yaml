@@ -16,7 +16,7 @@ on:
         options: [collation, update, run-jobs]
         required: true
       image:
-        description: Full FINA image reference (release tag or digest)
+        description: Published FINA image (e.g. ghcr.io/acdh-oeaw/fina/fina:1.43.11)
         type: string
         required: true
       kubectl_version:

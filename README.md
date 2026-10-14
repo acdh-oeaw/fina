@@ -80,6 +80,21 @@ Run **MediaWiki maintenance** from the Actions tab on the default branch. Choose
 and a matching `kubectl` version. The organization must provide the `KUBE_CONFIG`
 secret containing the kubeconfig, and the runner needs access to the cluster.
 
+Production is deployed only from `main`. After the main-branch deployment
+succeeds, create a version tag on that deployed commit to publish an alias for
+its existing image; this does not rebuild or deploy. Use the MediaWiki base
+version from `Dockerfile`, for example:
+
+```sh
+git tag -a v1.43.11 <deployed-commit> -m "FINA release for MediaWiki 1.43.11"
+git push origin v1.43.11
+```
+
+The `Release image tag` workflow publishes
+`ghcr.io/acdh-oeaw/fina/fina:1.43.11` from the commit's existing SHA-tagged
+image. For FINA-only updates on the same MediaWiki version, use a suffix such
+as `v1.43.11-fina.1`. Use the published image reference for maintenance jobs.
+
 `collation` and `update` suspend the queue and stop the web Deployment; both
 remain stopped after the job, including on success. Verify and deploy the
 intended release before restoring web replicas and resuming the queue.
