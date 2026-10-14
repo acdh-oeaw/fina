@@ -1,6 +1,9 @@
 replicaCount: 1
 # Stop the old web pod before repairing semantic sort keys in the new image.
 strategyType: Recreate
+podSecurityContext:
+  fsGroup: 33
+  fsGroupChangePolicy: OnRootMismatch
 
 initContainers:
   - name: fina-smw-collation
