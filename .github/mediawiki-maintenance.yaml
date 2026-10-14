@@ -1,7 +1,7 @@
 name: MediaWiki maintenance
 
 # Commit this workflow to the default branch.
-# Requires production environment secret KUBE_CONFIG_B64 and API connectivity.
+# Requires the organization secret KUBE_CONFIG and API connectivity.
 # Migrations STOP the web Deployment and suspend its queue CronJob.
 # They leave both stopped, including after success: deploy/verify the intended
 # release before explicitly restoring replicas and resuming the queue.
@@ -54,14 +54,14 @@ jobs:
 
       - name: Configure cluster access
         env:
-          KUBE_CONFIG_B64: ${{ secrets.KUBE_CONFIG_B64 }}
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
         shell: bash
         run: |
           set -euo pipefail
-          test -n "$KUBE_CONFIG_B64" || { echo 'Missing KUBE_CONFIG_B64 secret'; exit 1; }
+          test -n "$KUBE_CONFIG" || { echo 'Missing KUBE_CONFIG secret'; exit 1; }
           umask 077
           config_path="$RUNNER_TEMP/fina-kubeconfig"
-          printf '%s' "$KUBE_CONFIG_B64" | base64 --decode > "$config_path"
+          printf '%s' "$KUBE_CONFIG" > "$config_path"
           echo "KUBECONFIG=$config_path" >> "$GITHUB_ENV"
           kubectl --kubeconfig "$config_path" --request-timeout=20s get deployment "$DEPLOYMENT" -n "$NAMESPACE" -o name
 

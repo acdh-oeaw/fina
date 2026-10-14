@@ -77,8 +77,8 @@ before merging.
 
 Run **MediaWiki maintenance** from the Actions tab on the default branch. Choose
 `collation`, `update`, or `run-jobs`, then provide the full FINA image reference
-and a matching `kubectl` version. The production environment needs the
-`KUBE_CONFIG_B64` secret and runner access to the cluster.
+and a matching `kubectl` version. The organization must provide the `KUBE_CONFIG`
+secret containing the kubeconfig, and the runner needs access to the cluster.
 
 `collation` and `update` suspend the queue and stop the web Deployment; both
 remain stopped after the job, including on success. Verify and deploy the
