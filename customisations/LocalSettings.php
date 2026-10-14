@@ -56,7 +56,8 @@ $wgMaxArticleSize = 4096;
 $wgEnableUploads = true;
 $wgUploadDirectory = "$IP/images";
 $wgUploadPath = "$wgScriptPath/img_auth.php";
-$wgTmpDirectory = "$IP/images/temp";
+// Parsing writes UUID state here; it must not depend on the uploads volume.
+$wgTmpDirectory = '/tmp/mw-tmp';
 $wgUseImageMagick = false;
 $wgFileExtensions = ['jpg', 'jpeg', 'png', 'gif', 'pdf', 'svg', 'txt', 'ico', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'odt', 'zip'];
 $wgShowExceptionDetails = $finaLocal;

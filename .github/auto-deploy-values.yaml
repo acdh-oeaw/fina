@@ -1,4 +1,19 @@
 replicaCount: 1
+# Stop the old web pod before repairing semantic sort keys in the new image.
+strategyType: Recreate
+
+initContainers:
+  - name: fina-smw-collation
+    image: "$repository:$tag"
+    imagePullPolicy: Always
+    command: ["/usr/local/bin/fina-migrate", "--collation-only"]
+    envFrom:
+      - secretRef:
+          name: "$app_name"
+    securityContext:
+      runAsUser: 33
+      runAsGroup: 33
+      runAsNonRoot: true
 
 image:
   repository: $repository
