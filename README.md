@@ -76,9 +76,10 @@ before merging.
 ## GitHub Actions maintenance
 
 Run **MediaWiki maintenance** from the Actions tab on the default branch. Choose
-`collation`, `update`, or `run-jobs`, then provide the full FINA image reference
-and a matching `kubectl` version. The organization must provide the `KUBE_CONFIG`
-secret containing the kubeconfig, and the runner needs access to the cluster.
+`collation`, `update`, or `run-jobs`, then provide the full FINA image reference.
+The workflow pins `kubectl` to `v1.36.4`, matching the RKE2 cluster. The
+organization must provide the `KUBE_CONFIG` secret containing the kubeconfig,
+and the runner needs access to the cluster.
 
 Production is deployed only from `main`. After the main-branch deployment
 succeeds, create a version tag on that deployed commit to publish an alias for
